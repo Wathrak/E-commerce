@@ -1,4 +1,4 @@
-name: Reuse Telegram Notifications Workflow
+name: Use Reusable Workflow
 
 on:
   push:
@@ -17,8 +17,6 @@ jobs:
       event_name: ${{ github.event_name }}
       actor: ${{ github.actor }}
       repo_name: ${{ github.repository }}
-      repo_url: "https://github.com/${{ github.repository }}"
+      repo_url: https://github.com/${{ github.repository }}
       ref: ${{ github.ref }}
-    secrets:
-      TELEGRAM_BOT_TOKEN: "8020573419:AAHF9qdRJcnR8RuOlgKJnHK8CdBDTHd2AiE"
-      TELEGRAM_CHAT_ID: "-4559022522"
+    secrets: inherit
