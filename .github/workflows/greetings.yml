@@ -3,13 +3,22 @@ name: Reuse Telegram Notifications Workflow
 on:
   push:
     branches:
-      - "**"  # Trigger for all branches
+      - "**"
   pull_request:
     types: [opened, closed, merged]
   delete:
+    branches:
+      - "**"
 
 jobs:
   notifications:
-    # Reference the reusable workflow in the 'IP_script' repository
     uses: SunLeang/IP_script/.github/workflows/greetings.yml@main
-    secrets: inherit
+    with:
+      event_name: ${{ github.event_name }}
+      actor: ${{ github.actor }}
+      repo_name: ${{ github.repository }}
+      repo_url: "https://github.com/${{ github.repository }}"
+      ref: ${{ github.ref }}
+    secrets:
+      TELEGRAM_BOT_TOKEN: "8020573419:AAHF9qdRJcnR8RuOlgKJnHK8CdBDTHd2AiE"
+      TELEGRAM_CHAT_ID: "-4559022522"
