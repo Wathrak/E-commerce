@@ -1,6 +1,6 @@
 <template>
   <nav class="navbar">
-    <div class="logo">
+    <div class="text-2xl font-serif">
       <router-link to="/">PTES SART</router-link>
     </div>
     <ul class="nav-links">

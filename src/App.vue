@@ -5,7 +5,7 @@
         <RouterLink to="/">Home</RouterLink>
         <RouterLink to="/browse">Browse</RouterLink>
         <RouterLink to="/product">Product</RouterLink>
-        <RouterLink to="/">PTES SART</RouterLink>
+        <RouterLink to="/" class="text-2xl font-serif">PTES SART</RouterLink>
         <input type="text" placeholder="Search" />
         <RouterLink to="/login">LOGIN</RouterLink>
         <RouterLink to="/register">REGISTER</RouterLink>

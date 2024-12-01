@@ -8,15 +8,28 @@
     >
       <BannerItem :title="item.title" :desc="item.desc" :logo="item.logo" />
     </div>
+    <div class="bg-white">
+    <div class="product-section">
+      <h2>Candle Stands</h2>
+      <div class="product-grid">
+        <ProductCard v-for="product in products" :key="product.id" :product="product" />
+      </div>
+    </div>
+    <Footer />
+    </div>
   </div>
 </template>
 
 <script>
 import BannerItem from '@/components/BannerItem.vue'
+import Footer from '@/components/Footer.vue';
+import Carousel from '@/components/Carousel.vue';
+import FeaturesList from '@/components/FeaturesList.vue';
+import ProductCard from '@/components/ProductCard.vue';
 
 export default {
   name: 'HomePage',
-  components: { BannerItem },
+  components: { BannerItem, Footer, Carousel, FeaturesList, ProductCard },
 
   data() {
     return {
@@ -42,9 +55,19 @@ export default {
           logo: 'M240-80q-33 0-56.5-23.5T160-160v-400q0-33 23.5-56.5T240-640h40v-80q0-83 58.5-141.5T480-920q83 0 141.5 58.5T680-720v80h40q33 0 56.5 23.5T800-560v400q0 33-23.5 56.5T720-80H240Zm0-80h480v-400H240v400Zm240-120q33 0 56.5-23.5T560-360q0-33-23.5-56.5T480-440q-33 0-56.5 23.5T400-360q0 33 23.5 56.5T480-280ZM360-640h240v-80q0-50-35-85t-85-35q-50 0-85 35t-35 85v80ZM240-160v-400 400Z',
         },
       ],
+      products: [
+        { id: 1, name: 'Candle Stand', image: 'path/to/image1.jpg', price: '$100' },
+        { id: 2, name: 'Candle Stand', image: 'path/to/image2.jpg', price: '$120' },
+      ],
     }
   },
 }
 </script>
 
-<style></style>
+<style scoped>
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+}
+</style>
