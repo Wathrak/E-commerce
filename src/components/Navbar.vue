@@ -25,12 +25,14 @@
   background-color: #fff;
   border-bottom: 1px solid #ccc;
 }
-.nav-links, .auth-links {
+.nav-links,
+.auth-links {
   display: flex;
   list-style: none;
   gap: 20px;
 }
-.nav-links li a, .auth-links a {
+.nav-links li a,
+.auth-links a {
   text-decoration: none;
   color: #333;
 }
