@@ -1,8 +1,11 @@
 <template>
-  <div class="product-card">
-    <img :src="product.image" :alt="product.name" />
-    <h3>{{ product.name }}</h3>
-    <p>{{ product.price }}</p>
+  <div
+    class="product-card flex flex-col items-center justify-end w-auto h-[25rem] bg-center bg-cover"
+    :style="{ backgroundImage: `url(${product.image})` }"
+  >
+    <div class="bg-white py-1 px-2 border">
+      {{ product.name }}
+    </div>
   </div>
 </template>
 
@@ -11,25 +14,20 @@ export default {
   props: {
     product: Object,
   },
-};
+}
 </script>
 
 <style scoped>
 .product-card {
-  border: 1px solid #ccc;
-  padding: 10px;
-  border-radius: 5px;
+  padding: 0.6rem;
   text-align: center;
-  transition: box-shadow 0.3s;
-}
-.product-card img {
-  width: 100%;
-  height: 200px;
-  object-fit: cover;
-  border-bottom: 1px solid #ccc;
-  margin-bottom: 10px;
+  background-size: 100%;
+  transition-property: background-size;
+  transition-duration: 1s;
+  transition-delay: 1ms;
 }
 .product-card:hover {
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  /* box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); */
+  background-size: 120%;
 }
 </style>
