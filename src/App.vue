@@ -1,23 +1,17 @@
 <template>
   <header>
-    <div>
-      <nav class="nav-links">
-        <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/browse">Browse</RouterLink>
-        <RouterLink to="/product">Product</RouterLink>
-        <RouterLink to="/" class="text-2xl font-serif">PTES SART</RouterLink>
-        <input type="text" placeholder="Search" />
-        <RouterLink to="/login">LOGIN</RouterLink>
-        <RouterLink to="/register">REGISTER</RouterLink>
-      </nav>
-    </div>
+    <Navbar />
   </header>
 
   <RouterView />
 </template>
 
 <script>
-export default {}
+import Navbar from './components/Navbar.vue'
+
+export default {
+  components: { Navbar },
+}
 </script>
 
 <style>
