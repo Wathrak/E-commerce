@@ -28,7 +28,7 @@ import Footer from "@/components/Footer.vue";
 import ProductCard from "@/components/ProductCard.vue";
 
 export default {
-  components: { Navbar, Footer, ProductCard },
+  components: { Footer, ProductCard },
   data() {
     return {
       currentCategory: "Wall Decor",
