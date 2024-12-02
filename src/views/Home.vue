@@ -1,4 +1,3 @@
-<Navbar />
 <template>
   <div>
     <img src="@/assets/images/clock.png" alt="clock" />
