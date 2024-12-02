@@ -1,6 +1,6 @@
 <template>
   <div>
-    <img src="@/assets/images/clock.png" alt="clock" />
+    <LandingImage />
     <div class="text-center">
       <div
         v-for="item in BannerItem"
@@ -20,16 +20,20 @@
         />
       </div>
     </div>
+
+    <Banner2 />
   </div>
 </template>
 
 <script>
+import Banner2 from '@/components/Banner2.vue'
 import BannerItem from '@/components/BannerItem.vue'
+import LandingImage from '@/components/LandingImage.vue'
 import ProductCard from '@/components/ProductCard.vue'
 
 export default {
   name: 'HomePage',
-  components: { BannerItem, ProductCard },
+  components: { BannerItem, ProductCard, LandingImage, Banner2 },
 
   data() {
     return {

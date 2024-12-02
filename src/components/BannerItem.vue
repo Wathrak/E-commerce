@@ -14,8 +14,8 @@
     </div>
 
     <div class="flex flex-col items-start">
-      <div>{{ title }}</div>
-      <div>{{ desc }}</div>
+      <div class="text-md">{{ title }}</div>
+      <div class="text-sm text-gray-400">{{ desc }}</div>
     </div>
   </div>
 </template>
