@@ -7,70 +7,70 @@
         <div class="form-group">
           <label for="gender">Gender (Required)</label>
           <div class="gender-radio">
-            <input 
-              type="radio" 
-              id="male" 
-              value="male" 
-              v-model="gender" 
-              required 
+            <input
+              type="radio"
+              id="male"
+              value="male"
+              v-model="gender"
+              required
             />
             <label for="male">Male</label>
-            <input 
-              type="radio" 
-              id="female" 
-              value="female" 
-              v-model="gender" 
-              required 
+            <input
+              type="radio"
+              id="female"
+              value="female"
+              v-model="gender"
+              required
             />
             <label for="female">Female</label>
           </div>
         </div>
-        
+
         <!-- First Name -->
         <div class="form-group">
           <label for="first-name">First Name</label>
-          <input 
-            type="text" 
-            id="first-name" 
-            v-model="firstName" 
-            placeholder="Enter first name" 
-            required 
+          <input
+            type="text"
+            id="first-name"
+            v-model="firstName"
+            placeholder="Enter first name"
+            required
           />
         </div>
 
         <!-- Last Name -->
         <div class="form-group">
           <label for="last-name">Last Name</label>
-          <input 
-            type="text" 
-            id="last-name" 
-            v-model="lastName" 
-            placeholder="Enter last name" 
-            required 
+          <input
+            type="text"
+            id="last-name"
+            v-model="lastName"
+            placeholder="Enter last name"
+            required
           />
         </div>
 
         <!-- Mobile Number -->
         <div class="form-group">
           <label for="mobile-number">Mobile Number</label>
-          <input 
-            type="text" 
-            id="mobile-number" 
-            v-model="mobileNumber" 
-            placeholder="Enter phone number" 
-            required 
+          <input
+            type="text"
+            id="mobile-number"
+            v-model="mobileNumber"
+            placeholder="Enter phone number"
+            required
           />
         </div>
 
         <!-- Email -->
         <div class="form-group">
           <label for="email">Email</label>
-          <input 
-            type="email" 
-            id="email" 
-            v-model="email" 
-            placeholder="Enter email" 
-            required 
+          <input
+            type="email"
+            id="email"
+            v-model="email"
+            placeholder="Enter email"
+            required
           />
         </div>
 
@@ -88,24 +88,30 @@
           <label for="city-province">City/Province</label>
           <select id="city-province" v-model="cityProvince" required>
             <option value="">Select City/Province</option>
-            <option v-for="city in cities" :key="city" :value="city">{{ city }}</option>
+            <option v-for="city in cities" :key="city" :value="city">
+              {{ city }}
+            </option>
           </select>
         </div>
 
         <!-- Submit Button -->
         <button type="submit" class="submit-button">CREATE ACCOUNT</button>
-        
+
         <!-- Social Login -->
         <div class="or-divider">OR</div>
         <button class="social-button google" @click.prevent="loginWithGoogle">
           Continue with Google
         </button>
-        <button class="social-button facebook" @click.prevent="loginWithFacebook">
+        <button
+          class="social-button facebook"
+          @click.prevent="loginWithFacebook"
+        >
           Continue with Facebook
         </button>
         <!-- Login Link -->
         <p class="login-link">
-          Already have an account? <a href="#" @click.prevent="navigateToLogin">Login</a>
+          Already have an account?
+          <a href="/login" @click.prevent="navigateToLogin">Login</a>
         </p>
       </form>
     </div>
@@ -124,33 +130,40 @@ export default {
       country: 'Cambodia',
       cityProvince: '',
       cities: ['Phnom Penh', 'Siem Reap', 'Battambang', 'Kampong Cham'], // Example list
-    };
+    }
   },
   methods: {
     handleSubmit() {
-      if (!this.gender || !this.firstName || !this.lastName || !this.mobileNumber || !this.email || !this.cityProvince) {
-        alert('Please fill in all required fields.');
-        return;
+      if (
+        !this.gender ||
+        !this.firstName ||
+        !this.lastName ||
+        !this.mobileNumber ||
+        !this.email ||
+        !this.cityProvince
+      ) {
+        alert('Please fill in all required fields.')
+        return
       }
-      console.log('Gender:', this.gender);
-      console.log('First Name:', this.firstName);
-      console.log('Last Name:', this.lastName);
-      console.log('Mobile Number:', this.mobileNumber);
-      console.log('Email:', this.email);
-      console.log('Country:', this.country);
-      console.log('City/Province:', this.cityProvince);
+      console.log('Gender:', this.gender)
+      console.log('First Name:', this.firstName)
+      console.log('Last Name:', this.lastName)
+      console.log('Mobile Number:', this.mobileNumber)
+      console.log('Email:', this.email)
+      console.log('Country:', this.country)
+      console.log('City/Province:', this.cityProvince)
     },
     loginWithGoogle() {
-      console.log('Login with Google clicked.');
+      console.log('Login with Google clicked.')
     },
     loginWithFacebook() {
-      console.log('Login with Facebook clicked.');
+      console.log('Login with Facebook clicked.')
     },
     navigateToLogin() {
-      console.log('Navigate to Login page.');
+      console.log('Navigate to Login page.')
     },
   },
-};
+}
 </script>
 <style scoped>
 /* General Container */
@@ -184,8 +197,8 @@ label {
   font-weight: bold;
 }
 
-input[type="text"],
-input[type="email"],
+input[type='text'],
+input[type='email'],
 select {
   width: 100%;
   padding: 10px;
