@@ -1,10 +1,15 @@
 <template>
-  <div>
-    <Navbar />
-    <div class="browse-header">
-      <h1>{{ currentCategory }}</h1>
-      <p>Home > {{ currentCategory }}</p>
+  <div class="relative">
+    <div
+      class="h-[300px] bg-cover bg-center relative"
+      style="background-image: url('https://th.bing.com/th/id/OIP.CXBoa656oc1DXBt3AIj6NAHaEh?rs=1&pid=ImgDetMain')"
+    >
+      <div class="browse-header">
+        <h1 class="text-4xl font-serif mb-4">{{ currentCategory }}</h1>
+        <p class="items-center space-x-2 text-sm hover:underline">Home > {{ currentCategory }}</p>
+      </div>
     </div>
+
     <div class="category-selector">
       <button
         v-for="category in categories"
@@ -15,20 +20,21 @@
         {{ category }}
       </button>
     </div>
+
     <div class="product-grid">
-      <ProductCard v-for="product in filteredProducts" :key="product.id" :product="product" />
+      <ProductBrowse v-for="product in filteredProducts" :key="product.id" :product="product" />
     </div>
+
     <Footer />
   </div>
 </template>
 
 <script>
-import Navbar from "@/components/Navbar.vue";
 import Footer from "@/components/Footer.vue";
-import ProductCard from "@/components/ProductCard.vue";
+import ProductBrowse from "@/components/ProductBrowse.vue";
 
 export default {
-  components: { Footer, ProductCard },
+  components: { Footer, ProductBrowse },
   data() {
     return {
       currentCategory: "Wall Decor",
@@ -82,15 +88,24 @@ export default {
 
 <style scoped>
 .browse-header {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   text-align: center;
-  margin: 20px 0;
+  color: white; /* Ensure text is visible */
+  z-index: 10; /* Bring the header above the buttons */
 }
+
 .category-selector {
   display: flex;
   justify-content: center;
   gap: 10px;
-  margin-bottom: 20px;
+  margin: 20px 0; /* Add margin for spacing */
+  z-index: 5; /* Ensure buttons are below the header */
+  position: relative; /* Maintain context for stacking */
 }
+
 .category-selector button {
   padding: 10px 20px;
   border: none;
@@ -99,10 +114,12 @@ export default {
   border-radius: 5px;
   transition: all 0.3s;
 }
+
 .category-selector button.active {
   background-color: black;
   color: white;
 }
+
 .product-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
