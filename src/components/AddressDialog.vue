@@ -1,4 +1,4 @@
-<template>
+A<template>
   <transition name="fade">
     <div class="modal-overlay" v-if="show">
       <div class="modal">
@@ -96,7 +96,7 @@ export default {
   transition: opacity 0.5s;
 }
 .fade-enter, .fade-leave-to /* .fade-leave-active in <2.1.8 */ {
-  opacity: 0; 
+  opacity: 0;
 }
 
 .modal-overlay {
