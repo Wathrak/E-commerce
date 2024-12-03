@@ -5,6 +5,7 @@ import Login from '@/views/Login.vue'
 import Product from '@/views/Product.vue'
 import Checkout from '@/views/Checkout.vue'
 
+
 const routes = [
   { path: '/', name: 'Home', component: Home },
   { path: '/browse', name: 'Browse', component: Browse },
