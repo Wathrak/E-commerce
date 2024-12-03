@@ -4,8 +4,10 @@ import Browse from '@/views/Browse.vue'
 import Login from '@/views/Login.vue'
 import Product from '@/views/Product.vue'
 import Checkout from '@/views/Checkout.vue'
+import Register from '@/views/Register.vue'
 
 const routes = [
+  { path: '/register', name: 'Register', component: Register },
   { path: '/', name: 'Home', component: Home },
   { path: '/browse', name: 'Browse', component: Browse },
   { path: '/login', name: 'login', component: Login },
