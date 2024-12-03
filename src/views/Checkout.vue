@@ -6,7 +6,7 @@
         <h2>Delivery address</h2>
         <div class="address-content">
 
-          <button class="add-address" @click="showAddressDialog = true">
+          <button class="add-address" @click="addAddress">
             Add Your Address
           </button>
 
@@ -101,18 +101,18 @@
     </div>
 
     <!-- Pass showAddressDialog and methods to AddressDialog -->
-    <AdressDialog :show="showAddressDialog"  @update:show="showAddressDialog = $event" />
+    <AddressDialog :show="showAddressDialog"  @update:show="showAddressDialog = $event" />
 
   </div>
 </template>
 
 <script>
-// import AdressDialog from '../components/AdressDialog.vue';
+import AddressDialog from '../components/AddressDialog.vue';
 
 export default {
   name: 'Checkout',
   components: {
-    // AdressDialog,
+    AddressDialog,
   },
   data() {
     return {
@@ -139,12 +139,12 @@ export default {
     };
   },
   methods: {
-    // addAddress() {
-    //   this.showAddressDialog = true;
-    // },
-    // hideAddressDialog() {
-    //   this.showAddressDialog = false;
-    // },
+    addAddress() {
+      this.showAddressDialog = true;
+    },
+    hideAddressDialog() {
+      this.showAddressDialog = false;
+    },
     proceedToCheckout() {
       // Add your logic here to handle the checkout process
     },
