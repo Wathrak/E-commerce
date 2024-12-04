@@ -4,13 +4,9 @@
       <div class="flex items-center justify-between">
         <!-- Left Navigation -->
         <div class="flex items-center space-x-8">
-          <a href="/browse" class="text-gray-800 hover:text-gray-600"
-            >WALL DECOR</a
-          >
-          <a href="/browse" class="text-gray-800 hover:text-gray-600"
-            >FUNITURES</a
-          >
-          <a href="/browse" class="text-gray-800 hover:text-gray-600">LAMPS</a>
+          <RouterLink to="/browse/walldecor" class="text-gray-800 hover:text-gray-600">WALL DECOR</RouterLink>
+          <RouterLink to="/browse/lamps" class="text-gray-800 hover:text-gray-600">LAMPS</RouterLink>
+          <RouterLink to="/browse/furnitures" class="text-gray-800 hover:text-gray-600">FURNITURES</RouterLink>
         </div>
 
         <!-- Logo -->
@@ -33,8 +29,8 @@
           <BellIcon class="h-6 w-6 text-gray-700" />
           <HeartIcon class="h-6 w-6 text-gray-700" />
           <ShoppingBagIcon class="h-6 w-6 text-gray-700" />
-          <a href="/login" class="text-sm font-medium">LOGIN</a>
-          <a href="/register" class="text-sm font-medium">REGISTER</a>
+          <RouterLink to="/login" class="text-sm font-medium">LOGIN</RouterLink>
+          <RouterLink to="/register" class="text-sm font-medium">REGISTER</RouterLink>
         </div>
       </div>
     </nav>

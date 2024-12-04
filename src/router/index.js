@@ -6,13 +6,37 @@ import Product from '@/views/Product.vue'
 import Checkout from '@/views/Checkout.vue'
 import Register from '@/views/Register.vue'
 
+
+// export default new Router({
+//   mode: "history", // For clean URLs
+//   routes: [
+//     {
+//       path: "/browse/:category",
+//       name: "Browse",
+//       component: Browse,
+//     },
+//     {
+//       path: "/browse",
+//       redirect: "/browse/walldecor", // Default route
+//     },
+//   ],
+// });
+
 const routes = [
   { path: '/register', name: 'Register', component: Register },
   { path: '/', name: 'Home', component: Home },
-  { path: '/browse', name: 'Browse', component: Browse },
   { path: '/login', name: 'login', component: Login },
   { path: '/product', name: 'Product', component: Product },
   { path: '/checkout', name: 'Checkout', component: Checkout },
+  {
+    path: "/browse/:category",
+    name: "Browse",
+    component: Browse,
+  },
+  {
+    path: "/browse",
+    redirect: "/browse/walldecor",
+  },
 ]
 
 const router = createRouter({
