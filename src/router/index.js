@@ -7,21 +7,6 @@ import Checkout from '@/views/Checkout.vue'
 import Register from '@/views/Register.vue'
 
 
-// export default new Router({
-//   mode: "history", // For clean URLs
-//   routes: [
-//     {
-//       path: "/browse/:category",
-//       name: "Browse",
-//       component: Browse,
-//     },
-//     {
-//       path: "/browse",
-//       redirect: "/browse/walldecor", // Default route
-//     },
-//   ],
-// });
-
 const routes = [
   { path: '/register', name: 'Register', component: Register },
   { path: '/', name: 'Home', component: Home },
