@@ -246,10 +246,10 @@ export default {
 }
 
 .product-item img {
-  width: 110px; /* Adjust as needed */
+  width: 110px; 
   height: auto;
   border-radius: 8px;
-  margin-right: 1rem; /* Add spacing between image and text */
+  margin-right: 1rem; 
 }
 
 .product-info {
@@ -263,7 +263,7 @@ export default {
 
 .product-price {
   font-size: 0.85rem;
-  color: #7ADA5D; /* Green color for the price */
+  color: #7ADA5D; 
   margin-top: 0.5rem;
 }
 
@@ -316,73 +316,73 @@ export default {
 
 .features {
   margin-top: 1rem;
-  padding: 1rem; /* Add padding inside the border */
-  border: 1px solid #ccc; /* Add a border around the features section */
-  border-radius: 8px; /* Smooth corners */
-  background-color: #f9f9f9; /* Light background for contrast */
-  max-width: 400px; /* Adjust width for better layout */
-  font-size: 0.9rem; /* Reduce font size */
-  display: grid; /* Use grid layout for alignment */
-  grid-template-columns: 1fr 1fr; /* Two equal columns */
-  gap: 1rem; /* Add space between columns */
+  padding: 1rem; 
+  border: 1px solid #ccc; 
+  border-radius: 8px; 
+  background-color: #f9f9f9; 
+  max-width: 400px; 
+  font-size: 0.9rem; 
+  display: grid; 
+  grid-template-columns: 1fr 1fr; 
+  gap: 1rem; 
 }
 
 .feature {
   display: flex;
-  align-items: flex-start; /* Align items to the top */
-  gap: 0.5rem; /* Gap between icon and text */
+  align-items: flex-start; 
+  gap: 0.5rem; 
 }
 
 .feature i {
-  font-size: 1.2rem; /* Adjust icon size */
+  font-size: 1.2rem; 
 }
 
 .feature-text {
   display: flex;
-  flex-direction: column; /* Stack title and subtext vertically */
+  flex-direction: column; 
 }
 
 .feature-title {
   font-weight: bold;
-  font-size: 0.9rem; /* Font size for the title */
+  font-size: 0.9rem; 
 }
 
 .feature-subtext {
-  font-size: 0.8rem; /* Smaller font for subtext */
-  color: #666; /* Lighter text color for subtext */
-  margin-top: 0.2rem; /* Add slight spacing between title and subtext */
+  font-size: 0.8rem; 
+  color: #666; 
+  margin-top: 0.2rem; 
 }
 
 .expandable-sections {
   display: flex;
-  flex-direction: column; /* Stack sections vertically */
-  gap: 0.5rem; /* Add space between expandable sections */
-  align-items: flex-start; /* Align content to the left */
+  flex-direction: column; 
+  gap: 0.5rem;
+  align-items: flex-start; 
   justify-content: center;
-  grid-column: 2 / 3; /* Place these sections in the second column */
+  grid-column: 2 / 3; 
 }
 
 .expandable-sections summary {
   font-weight: bold;
-  font-size: 0.9rem; /* Slightly smaller font for expandable sections */
+  font-size: 0.9rem; 
   cursor: pointer;
 }
 
 
 .product-container {
-  display: flex;          /* Flex container to place items side by side */
+  display: flex;          
   gap: 2rem;
-  justify-content: space-between; /* Align items to the top */
+  justify-content: space-between; 
 }
 .image-gallery {
-  display: flex;          /* Flex container for thumbnails and main image */
-  flex-direction: row;    /* Arrange thumbnails and main image horizontally */
+  display: flex;          
+  flex-direction: row;    
   gap: 1rem;
   flex: 1;    
 }
 .thumbnail-list {
   display: flex;
-  flex-direction: column; /* Stack thumbnails vertically */
+  flex-direction: column; 
   gap: 0.5rem;
 }
 .thumbnail-list img {
@@ -393,11 +393,11 @@ export default {
   border-radius: 8px;
 }
 .thumbnail-list img.active {
-  border-color: #000;     /* Highlight active thumbnail */
+  border-color: #000;     
 }
 .main-image img {
   width: 700px; 
-  height: 400px;          /* Set a fixed width for the main image */
+  height: 400px;          
   border-radius: 8px;
 }
 
@@ -407,34 +407,34 @@ export default {
   flex-direction: column;
   align-items: flex-start;
   margin-left: auto;
-  font-size: 0.9rem; /* Reduce font size for the entire product details section */
+  font-size: 0.9rem; 
 }
 
 .price {
-  font-size: 1.2rem; /* Smaller price size */
+  font-size: 1.2rem; 
   font-weight: bold;
   margin: 0.3rem 0;
 }
 
 .section-title {
-  font-size: 1rem; /* Smaller section titles */
+  font-size: 1rem; 
   margin: 0.8rem 0 0.4rem;
   font-weight: bold;
 }
 
 .size-selector {
   display: flex;
-  gap: 0.3rem; /* Reduced gap between sizes */
+  gap: 0.3rem; 
   margin-bottom: 0.8rem;
 }
 
 .size-selector label {
   display: inline-block;
-  padding: 0.1rem 1rem; /* Smaller padding inside size options */
-  border: 1px solid #ccc; /* Subtle border for smaller design */
+  padding: 0.1rem 1rem; 
+  border: 1px solid #ccc; 
   border-radius: 6px;
   cursor: pointer;
-  font-size: 0.85rem; /* Smaller font size for sizes */
+  font-size: 0.85rem; 
   transition: border-color 0.3s ease, background-color 0.3s ease;
 }
 
@@ -450,29 +450,29 @@ export default {
 .quantity-selector {
   display: flex;
   align-items: center;
-  gap: 0.5rem; /* Reduce space between elements */
+  gap: 0.5rem; 
   margin-bottom: 0.8rem;
-  font-size: 0.85rem; /* Smaller font size for quantity */
+  font-size: 0.85rem; 
 }
 
 .quantity-selector button {
-  width: 30px; /* Smaller button width */
-  height: 20px; /* Smaller button height */
+  width: 30px; 
+  height: 20px; 
   background-color: #ddd;
   border: none;
   cursor: pointer;
   border-radius: 6px;
-  font-size: 0.8rem; /* Smaller font size for buttons */
+  font-size: 0.8rem; 
 }
 
 .add-to-bag {
   background-color: #000;
   color: #fff;
-  padding: 0.3rem 4rem; /* Reduced padding inside the button */
+  padding: 0.3rem 4rem; 
   border: none;
   cursor: pointer;
   border-radius: 8px;
-  font-size: 0.9rem; /* Smaller font size for button text */
-  width: auto; /* Allow the button to resize dynamically */
+  font-size: 0.9rem; 
+  width: auto; 
 }
 </style>
