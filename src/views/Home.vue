@@ -1,21 +1,36 @@
 <template>
-  <div class="text-center">
-    <LandingImage />
-    <BannerItem />
+  <div class="relative">
+    <div class="text-center z-0 absolute">
+      <LandingImage />
+      <BannerItem />
 
-    <div class="product-section m-5">
-      <div class="product-grid flex justify-center">
-        <ProductCard
-          v-for="product in products"
-          :key="product.id"
-          :product="product"
+      <div class="product-section m-5">
+        <div class="product-grid flex justify-center">
+          <ProductCard
+            v-for="product in Products"
+            :key="product.id"
+            :product="product"
+            :to="`/browse/${product.category}`"
+          />
+        </div>
+      </div>
+
+      <Banner2 />
+
+      <div class="flex flex-wrap gap-[20px] justify-center">
+        <ProductCard2
+          v-for="item in Items"
+          :key="item.id"
+          :item="item"
+          class="grid-item"
+          :to="`/browse/${item.category}`"
+          toButton="/checkout"
         />
       </div>
-    </div>
 
-    <Banner2 />
-    <ProductCard2 />
-    <Footer />
+      <Footer />
+    </div>
+    <Notification class="z-10 absolute left-full" />
   </div>
 </template>
 
@@ -24,8 +39,11 @@ import Banner2 from '@/components/Banner2.vue'
 import BannerItem from '@/components/BannerItem.vue'
 import Footer from '@/components/Footer.vue'
 import LandingImage from '@/components/LandingImage.vue'
+import Notification from '@/components/Notification.vue'
 import ProductCard from '@/components/ProductCard.vue'
 import ProductCard2 from '@/components/ProductCard2.vue'
+import { useProductStore } from '@/store'
+import { mapState } from 'pinia'
 
 export default {
   name: 'HomePage',
@@ -36,41 +54,34 @@ export default {
     Banner2,
     ProductCard2,
     Footer,
+    Notification,
+  },
+
+  computed: {
+    ...mapState(useProductStore, { Products: 'products' }),
+    ...mapState(useProductStore, { Items: 'items' }),
   },
 
   data() {
-    return {
-      products: [
-        {
-          id: 1,
-          name: 'Candle Stand',
-          image: './src/assets/images/candle-stand.png',
-        },
-        {
-          id: 2,
-          name: 'Plant Pot',
-          image: './src/assets/images/plant-pot.png',
-        },
-        {
-          id: 3,
-          name: 'Painting',
-          image: './src/assets/images/painting.png',
-        },
-        {
-          id: 4,
-          name: 'Table',
-          image: './src/assets/images/table.png',
-        },
-      ],
-    }
+    return {}
   },
+  methods: {},
 }
 </script>
 
-<style>
+<style scoped>
 .product-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(35%, 0.4fr));
   gap: 40px;
+}
+
+.grid-item {
+  border: 1px solid rgba(0, 0, 0, 0.8);
+  padding: 20px;
+  text-align: start;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+  border-radius: 5px;
+  width: fit-content;
 }
 </style>

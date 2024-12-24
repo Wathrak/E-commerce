@@ -1,20 +1,23 @@
 <template>
-  <div class="product-card-container justify-center">
-    <div
-      class="product-card flex flex-col items-center justify-end h-[460px] w-[470px] bg-center"
-      :style="{ backgroundImage: `url(${product.image})` }"
-    >
-      <div class="bg-white py-1 px-2 border">
-        {{ product.name }}
+  <router-link :to="to">
+    <div class="product-card-container flex justify-center overflow-hidden">
+      <div
+        class="product-card flex flex-col items-center justify-end h-[460px] w-[470px] bg-center"
+        :style="{ backgroundImage: `url(${product.image})` }"
+      >
+        <div class="bg-white py-1 px-2 border">
+          {{ product.name }}
+        </div>
       </div>
     </div>
-  </div>
+  </router-link>
 </template>
 
 <script>
 export default {
   props: {
     product: Object,
+    to: String,
   },
 }
 </script>

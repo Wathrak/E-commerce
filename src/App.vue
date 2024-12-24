@@ -5,7 +5,9 @@
 </template>
 
 <script>
+import { mapState } from 'pinia'
 import Navbar from './components/Navbar.vue'
+import { useProductStore } from './store'
 
 export default {
   components: { Navbar },
