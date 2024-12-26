@@ -1,12 +1,14 @@
 <template>
-  <div class="border-b border-gray-200">
-    <nav class="container mx-auto px-4 py-4">
+  <div
+    class="border-b border-gray-200 h-[65px] text-center items-center align-middle"
+  >
+    <nav class="container mx-auto px-4 py-4 h-[65px]">
       <div class="flex items-center justify-between">
         <!-- Left Navigation -->
         <div class="flex items-center space-x-8">
           <RouterLink
             to="/browse/walldecor"
-            class="text-gray-800 hover:text-gray-600"
+            class="text-gray-800 hover:text-gray-600 w-[95px]"
             >WALL DECOR</RouterLink
           >
           <RouterLink
@@ -22,7 +24,7 @@
         </div>
 
         <!-- Logo -->
-        <div class="text-2xl font-serif">
+        <div class="text-2xl font-serif w-[127px]">
           <RouterLink to="/">PTES SART</RouterLink>
         </div>
 
@@ -35,7 +37,9 @@
               class="pl-3 pr-10 py-1 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-gray-500"
             />
           </div>
-          <Icon icon="mdi:bell-outline" width="24" height="24" @click="click" />
+          <button @click="productStore.clickNotification">
+            <Icon icon="mdi:bell-outline" width="24" height="24" />
+          </button>
           <Icon icon="mdi:heart-outline" width="24" height="24" />
           <Icon icon="uil:cart" width="24" height="24" />
 
@@ -50,9 +54,15 @@
 </template>
 
 <script>
+import { useProductStore } from '@/store'
+
 export default {
-  props: {
-    click: Function,
+  setup() {
+    const productStore = useProductStore()
+
+    return {
+      productStore,
+    }
   },
 }
 </script>

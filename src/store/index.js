@@ -1,8 +1,21 @@
 import { defineStore } from 'pinia'
 
 export const useProductStore = defineStore('product', {
+  actions: {
+    clickNotification() {
+      this.isNotificationActive = !this.isNotificationActive
+      // console.log(this.isNotificationActive)
+    },
+  },
   state: () => {
     return {
+      isNotificationActive: false,
+      categories: [
+        { id: 1, name: 'Canvas Wall Art' },
+        { id: 2, name: 'Hand Painted Wall Art' },
+        { id: 3, name: 'Shadow Boxes' },
+        { id: 4, name: 'Metal Wall Art' },
+      ],
       products: [
         {
           id: 1,

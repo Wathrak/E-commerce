@@ -6,7 +6,7 @@
         <h2>Delivery address</h2>
         <div class="address-content">
 
-          <button class="add-address" @click="addAddress">
+          <button class="add-address" @click="showAddressDialog = true">
             Add Your Address
           </button>
 
@@ -26,9 +26,9 @@
       <section class="shopping-cart">
         <h2>My shopping cart ({{ cart.length }})</h2>
         <div v-for="item in cart" :key="item.id" class="cart-item">
-         <div class="image">
-          <img :src="item.image" alt="item.name" class="cart-item-image" />
-         </div>
+          <div class="image">
+            <img :src="item.image" alt="item.name" class="cart-item-image" />
+          </div>
           <div class="cart-item-details">
             <p>{{ item.name }}</p>
             <p>Size: {{ item.size }}</p>
@@ -45,6 +45,7 @@
         <form class="payment-cart" @submit.prevent="submitPayment">
           <label v-for="method in paymentMethods" :key="method.id">
             <input type="radio" name="payment" :value="method.id" />
+            <img :src="method.img" alt="method.name" class="payment-img" />
             {{ method.name }}
           </label>
         </form>
@@ -52,22 +53,23 @@
 
       <section class="contact-preference">
         <h2>Preferred contact line:</h2>
-        <form   class="Form">
+        <form class="Form">
           <div class="contact-options">
-             <div class="contact-option">
-               <input type="checkbox" id="phoneCall">
-               <label for="phoneCall"><i class="fas fa-phone"></i> Phone Call</label>
-             </div>
-             <div class="contact-option">
-               <input type="checkbox" id="telegram">
-               <label for="telegram"><i class="fab fa-telegram"></i> Telegram</label>
-             </div>
-             <div class="contact-option">
+            <div class="contact-option">
+              <input type="checkbox" id="phoneCall">
+              <label for="phoneCall"><i class="fas fa-phone"></i> Phone Call</label>
+            </div>
+            <div class="contact-option">
+              <input type="checkbox" id="telegram">
+              <label for="telegram"><i class="fab fa-telegram"></i> Telegram</label>
+            </div>
+            <div class="contact-option">
               <input type="checkbox" id="whatsapp">
               <label for="whatsapp"><i class="fab fa-whatsapp"></i> WhatsApp</label>
-             </div>
-           </div>
-           <textarea class="input"></textarea>
+            </div>
+          </div>
+          <textarea class="input"></textarea>
+
         </form>
 
       </section>
@@ -101,7 +103,7 @@
     </div>
 
     <!-- Pass showAddressDialog and methods to AddressDialog -->
-    <AddressDialog :show="showAddressDialog"  @update:show="showAddressDialog = $event" />
+    <AddressDialog :show="showAddressDialog" @update:show="showAddressDialog = $event" />
 
   </div>
 </template>
@@ -110,7 +112,7 @@
 import AddressDialog from '../components/AddressDialog.vue';
 
 export default {
-  name: 'Checkout',
+  name: 'CheckoutPage',
   components: {
     AddressDialog,
   },
@@ -129,22 +131,23 @@ export default {
         },
       ],
       paymentMethods: [
-        { id: 'card', name: 'Credit/Debit Card' },
-        { id: 'aba', name: 'ABA Pay' },
-        { id: 'acleda', name: 'ACLEDA Pay' },
-        { id: 'cash', name: 'Cash On Delivery' },
+        { id: 'card', img: new URL('../assets/images/image copy.png', import.meta.url).href, name: 'Credit/Debit Card' },
+        { id: 'aba', img: new URL('../assets/images/image copy.png', import.meta.url).href, name: 'ABA Pay' },
+        { id: 'acleda', img: new URL('../assets/images/image copy.png', import.meta.url).href, name: 'ACLEDA Pay' },
+        { id: 'cash', img: new URL('../assets/images/image copy.png', import.meta.url).href, name: 'Cash On Delivery' },
       ],
+
       total: 4.99,
       deliveryFee: 0.99,
     };
   },
   methods: {
-    addAddress() {
-      this.showAddressDialog = true;
-    },
-    hideAddressDialog() {
-      this.showAddressDialog = false;
-    },
+    // addAddress() {
+    //   this.showAddressDialog = true;
+    // },
+    // hideAddressDialog() {
+    //   this.showAddressDialog = false;
+    // },
     proceedToCheckout() {
       // Add your logic here to handle the checkout process
     },
@@ -170,24 +173,55 @@ export default {
 .delivery-address button,
 .order-summary button {
   margin-top: 10px;
-}
 
-.cart-item-image {
-  width: 100px;
-  height: auto;
 }
 
 .cart-item {
   display: flex;
-  align-items: center;
+  justify-content: space-between;
+  background-color: #f0f0f0;
+  padding: 16px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   margin-bottom: 10px;
 }
 
-.item-price {
-  font-weight: bold;
-  text-align: end;
-  color: #da292e;
+.cart-item .image {
+  width: 100px;
+  height: 100px;
+  display: flex;
+  flex: row;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+  border-radius: 8px;
+  overflow: hidden;
 }
+
+.cart-item-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.cart-item-details {
+  flex: 1;
+  margin-left: 16px;
+}
+
+.cart-item-details p {
+  margin: 4px 0;
+  font-size: 14px;
+  color: #333; /* Dark gray text */
+}
+
+.item-price {
+  font-size: 16px;
+  font-weight: bold;
+  color: #e63946;
+  margin-top: 8px;
+}
+
 
 .address-content {
   display: flex;
@@ -267,13 +301,13 @@ export default {
   width: 500px;
   background-color: rgba(128, 128, 128, 0.181);
 } */
- .Form{
+.Form {
   width: 500px;
   height: 150px;
   background-color: #ccc;
   /* position:relative;
   top: 30px; */
- }
+}
 
 .Contact {
   width: 500px;
@@ -335,14 +369,20 @@ hr {
   flex-direction: column;
   gap: 16px;
 }
+
+.payment-img {
+  width: 30px;
+  height: auto;
+}
+
 /* Overall container */
 .contact-options {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    /* border: 1px solid #ccc; */
-    width: 500px;
-    position:relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  /* border: 1px solid #ccc; */
+  width: 500px;
+  position: relative;
   top: 30px;
 
 
@@ -350,41 +390,42 @@ hr {
 
 /* Individual contact options */
 .contact-option {
-    display: flex;
-    align-items: center;
+  display: flex;
+  align-items: center;
 }
 
 /* Checkbox */
 .contact-option input[type="checkbox"] {
-    margin-right: 10px;
+  margin-right: 10px;
 }
 
 /* Label */
 .contact-option label {
-    font-size: medium;
-    margin-right: 10px;
+  font-size: medium;
+  margin-right: 10px;
 }
 
 /* Text input */
 .input textarea {
-    width: 100%;
-    /* resize: vertical; */
-    border: 1px solid #ccc;
-    padding: 10px;
-    background: white;
+  width: 100%;
+  /* resize: vertical; */
+  border: 1px solid #ccc;
+  padding: 10px;
+  background: white;
 
 
 }
-.input{
-  display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border: 1px solid #ccc;
-    width: 460px;
 
-    background-color:white;
-    position:relative;
-    top: 60px;
-    left: 20px;
+.input {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 1px solid #ccc;
+  width: 460px;
+
+  background-color: white;
+  position: relative;
+  top: 60px;
+  left: 20px;
 }
 </style>

@@ -30,7 +30,6 @@
 
       <Footer />
     </div>
-    <Notification class="z-10 absolute left-full" />
   </div>
 </template>
 
@@ -46,6 +45,14 @@ import { useProductStore } from '@/store'
 import { mapState } from 'pinia'
 
 export default {
+  setup() {
+    const productStore = useProductStore()
+
+    return {
+      productStore,
+    }
+  },
+
   name: 'HomePage',
   components: {
     BannerItem,
@@ -54,7 +61,6 @@ export default {
     Banner2,
     ProductCard2,
     Footer,
-    Notification,
   },
 
   computed: {
