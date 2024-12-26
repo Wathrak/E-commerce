@@ -46,9 +46,7 @@
 </template>
 
 <script>
-
 import AddressPopup from '../components/AddressPopup.vue';
-
 export default {
   name: 'AddressDialog',
   components: {
@@ -98,7 +96,6 @@ export default {
 .fade-enter, .fade-leave-to /* .fade-leave-active in <2.1.8 */ {
   opacity: 0;
 }
-
 .modal-overlay {
   position: fixed;
   height: 100%;
@@ -112,7 +109,6 @@ export default {
   background-color: #00000040;
   z-index: 1000;
 }
-
 .modal {
   display: flex;
   flex-direction: column; /* Stacks children vertically */
@@ -126,30 +122,25 @@ export default {
   box-shadow: 0 4px 6px rgba(0,0,0,0.1);
   overflow: hidden; /* Keeps everything within the bounds of border-radius */
 }
-
 .modal-content {
   flex-grow: 1; /* Allows the content to expand and fill the space */
   overflow-y: auto; /* Enables scrolling within the content area if needed */
 }
-
 .modal-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-top: 10px;
 }
-
 .modal-header h2 {
   flex-grow: 1; /* Allows the title to take up any extra space */
   text-align: center; /* Centers the title text */
   margin: 0; /* Removes any default margin */
 }
-
 .modal-footer {
   width: 100%;
   padding-bottom: 35px;
 }
-
 .full-width-button {
   width: 100%;
   padding: 12px 20px;
@@ -160,26 +151,21 @@ export default {
   cursor: pointer;
   margin-top: 20px; /* Ensures space between the form and the button */
 }
-
 .close-button {
   border: none;
   background: none;
   font-size: 40px;
   cursor: pointer;
 }
-
 .form-group {
   margin-bottom: 20px; /* Increased margin for better spacing */
 }
-
 .button-group {
   display: flex;
   justify-content: space-between;
 }
-
 .divider {
   border-bottom: 1px solid #A7ABAE;
   width: 100%;
 }
-
 </style>

@@ -77,7 +77,6 @@ export default {
 </script>
 
 <style scoped>
-
 /* Animation Styles */
 .fade-slide-enter-active, .fade-slide-leave-active {
   transition: opacity 0.3s ease, transform 0.3s ease;
@@ -86,7 +85,6 @@ export default {
   opacity: 0;
   transform: translateY(-20px); /* Slide in/out effect */
 }
-
 .popup-overlay {
   position: fixed;
   top: 0;
@@ -99,7 +97,6 @@ export default {
   justify-content: center;
   align-items: center;
 }
-
 .popup-container {
   position: relative;
   background-color: #fff;
@@ -108,7 +105,6 @@ export default {
   border-radius: 8px;
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
 }
-
 .close-button {
   position: absolute;
   top: 10px;
@@ -118,32 +114,27 @@ export default {
   border: none;
   cursor: pointer;
 }
-
 h2 {
   text-align: center;
   margin-bottom: 20px;
   font-size: 18px;
   font-weight: bold;
 }
-
 .form-row {
   display: flex;
   justify-content: space-between;
   gap: 10px;
 }
-
 .form-group {
   flex: 1;
   margin-bottom: 15px;
 }
-
 .form-group label {
   display: block;
   margin-bottom: 5px;
   font-size: 14px;
   font-weight: 600;
 }
-
 input, select {
   width: 100%;
   padding: 8px;
@@ -151,7 +142,6 @@ input, select {
   border-radius: 5px;
   font-size: 14px;
 }
-
 .save-button {
   width: 100%;
   padding: 12px;
@@ -163,7 +153,6 @@ input, select {
   font-size: 16px;
   font-weight: bold;
 }
-
 .save-button:hover {
   background-color: #000;
 }
