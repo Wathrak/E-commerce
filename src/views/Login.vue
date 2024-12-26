@@ -49,7 +49,7 @@
 
       <!-- Register Link -->
       <p class="register-link">
-        New to Pres Sart? <a href="#" @click.prevent="handleRegister">Register</a>
+        New to Ptes Sart? <a href="http://localhost:5173/register" @click.prevent="handleRegister">Register</a>
       </p>
     </div>
   </div>
@@ -139,22 +139,22 @@ input[type="password"] {
 /* Buttons */
 button {
   width: 100%;
-  padding: 12px;
+  padding: 8px;
   border: none;
   border-radius: 4px;
-  font-size: 16px;
+  font-size: 14px;
   cursor: pointer;
 }
 
 .login-button {
   background-color: #050505;
   color: white;
-  margin-top: 10px;
+  margin-top: 8px;
 }
 
 .social-button {
   width: 100%;
-  margin-top: 10px;
+  margin-top: 8px;
 }
 
 .google {
@@ -172,7 +172,7 @@ button {
 /* Forgot Password */
 .forgot-password {
   display: inline-block;
-  margin-top: 10px;
+  margin-top: 8px;
   color: #007bff;
   cursor: pointer;
 }
@@ -190,7 +190,7 @@ button {
   font-size: 14px;
 }
 .register-link a {
-  color: #007bff;
+  color: black;
   text-decoration: none;
   font-weight: bold;
   cursor: pointer;
