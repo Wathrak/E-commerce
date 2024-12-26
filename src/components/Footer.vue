@@ -7,7 +7,7 @@
         Phnom Penh, Cambodia.
       </p>
       <p class="text-[12px]">+855 123 456 789</p>
-      <p class="text-[12px]">wathrak1@gmail.com</p>
+      <p class="text-[12px]">ourteam@gmail.com</p>
       <div class="flex">
         <Icon icon="mdi:github" width="20px" class="mr-1" />
         <a href="https://github.com/Wathrak" class="text-[12px] underline">

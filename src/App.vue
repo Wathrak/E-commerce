@@ -1,14 +1,42 @@
 <template>
-  <Navbar />
+  <Navbar class="fixed top-0 left-0 w-full z-10 bg-white" />
 
-  <RouterView />
+  <div class="relative">
+    <Notification
+      :class="[
+        'z-10 top-0 right-0 fixed',
+        productStore.isNotificationActive ? 'fixed' : 'hidden',
+      ]"
+    />
+
+    <div
+      :class="[
+        'text-center z-0 absolute top-0 w-full mt-[65px]',
+        productStore.isNotificationActive
+          ? 'opacity-35 pointer-events-none'
+          : 'opacity-100',
+      ]"
+    >
+      <RouterView />
+    </div>
+  </div>
 </template>
 
 <script>
+import { mapState } from 'pinia'
 import Navbar from './components/Navbar.vue'
+import { useProductStore } from './store'
+import Notification from './components/Notification.vue'
 
 export default {
-  components: { Navbar },
+  components: { Navbar, Notification },
+  setup() {
+    const productStore = useProductStore()
+
+    return {
+      productStore,
+    }
+  },
 }
 </script>
 

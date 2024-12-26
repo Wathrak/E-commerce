@@ -18,11 +18,23 @@ const routes = [
   { path: '/cart', name: 'Cart', component: Cart },
   { path: '/wishlist', name: 'Wishlist', component: Wishlist },
 
+  {
+    path: '/browse/:category',
+    name: 'Browse',
+    component: Browse,
+  },
+  {
+    path: '/browse',
+    redirect: '/browse/walldecor',
+  },
 ]
 
 const router = createRouter({
   history: createWebHistory(),
   routes,
+  scrollBehavior() {
+    return { top: 0 }
+  },
 })
 
 export default router

@@ -6,27 +6,26 @@
         >Top Sale in this week</span
       >
     </div>
-    <button
-      v-for="(category, index) in categories"
-      :key="index"
-      class="btn inline-flex mt-5 text-gray-500 p-3"
-    >
-      {{ category }}
-    </button>
+    <div class="mb-5">
+      <button
+        v-for="(category, index) in productStore.categories[1]"
+        :key="index"
+        class="btn inline-flex mt-5 text-gray-500 p-3"
+      >
+        <div>{{ category }}</div>
+      </button>
+    </div>
   </div>
 </template>
 <script>
+import { useProductStore } from '@/store'
 import { Icon } from '@iconify/vue'
 export default {
   components: { Icon },
-  data() {
+  setup() {
+    const productStore = useProductStore()
     return {
-      categories: [
-        'Canvas Wall Art',
-        'Hand Painted Wall Art',
-        'Shadow Boxes',
-        'Metal Wall Art',
-      ],
+      productStore,
     }
   },
 }

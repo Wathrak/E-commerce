@@ -1,16 +1,30 @@
 <template>
-  <div class="border-b border-gray-200">
-    <nav class="container mx-auto px-4 py-4">
+  <div
+    class="border-b border-gray-200 h-[65px] text-center items-center align-middle"
+  >
+    <nav class="container mx-auto px-4 py-4 h-[65px]">
       <div class="flex items-center justify-between">
         <!-- Left Navigation -->
         <div class="flex items-center space-x-8">
-          <RouterLink to="/browse/walldecor" class="text-gray-800 hover:text-gray-600">WALL DECOR</RouterLink>
-          <RouterLink to="/browse/lamps" class="text-gray-800 hover:text-gray-600">LAMPS</RouterLink>
-          <RouterLink to="/browse/furnitures" class="text-gray-800 hover:text-gray-600">FURNITURES</RouterLink>
+          <RouterLink
+            to="/browse/walldecor"
+            class="text-gray-800 hover:text-gray-600 w-[95px]"
+            >WALL DECOR</RouterLink
+          >
+          <RouterLink
+            to="/browse/lamps"
+            class="text-gray-800 hover:text-gray-600"
+            >LAMPS</RouterLink
+          >
+          <RouterLink
+            to="/browse/furnitures"
+            class="text-gray-800 hover:text-gray-600"
+            >FURNITURES</RouterLink
+          >
         </div>
 
         <!-- Logo -->
-        <div class="text-2xl font-serif">
+        <div class="text-2xl font-serif w-[127px]">
           <RouterLink to="/">PTES SART</RouterLink>
         </div>
 
@@ -22,20 +36,36 @@
               placeholder="Search"
               class="pl-3 pr-10 py-1 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-gray-500"
             />
-            <SearchIcon
-              class="absolute right-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400"
-            />
           </div>
-          <BellIcon class="h-6 w-6 text-gray-700" />
-          <HeartIcon class="h-6 w-6 text-gray-700" />
-          <ShoppingBagIcon class="h-6 w-6 text-gray-700" />
+          <button @click="productStore.clickNotification">
+            <Icon icon="mdi:bell-outline" width="24" height="24" />
+          </button>
+          <Icon icon="mdi:heart-outline" width="24" height="24" />
+          <Icon icon="uil:cart" width="24" height="24" />
+
           <RouterLink to="/login" class="text-sm font-medium">LOGIN</RouterLink>
-          <RouterLink to="/register" class="text-sm font-medium">REGISTER</RouterLink>
+          <RouterLink to="/register" class="text-sm font-medium"
+            >REGISTER</RouterLink
+          >
         </div>
       </div>
     </nav>
   </div>
 </template>
+
+<script>
+import { useProductStore } from '@/store'
+
+export default {
+  setup() {
+    const productStore = useProductStore()
+
+    return {
+      productStore,
+    }
+  },
+}
+</script>
 
 <style scoped>
 .navbar {
