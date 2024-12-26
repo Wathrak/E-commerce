@@ -1,5 +1,4 @@
 <template>
-  <div>Checkout Page</div>
   <div class="checkout-container">
 
     <div class="left-panel">
@@ -111,6 +110,7 @@
 
 <script>
 import AddressDialog from '../components/AddressDialog.vue';
+
 export default {
   name: 'CheckoutPage',
   components: {
@@ -136,6 +136,7 @@ export default {
         { id: 'acleda', img: new URL('../assets/images/image copy.png', import.meta.url).href, name: 'ACLEDA Pay' },
         { id: 'cash', img: new URL('../assets/images/image copy.png', import.meta.url).href, name: 'Cash On Delivery' },
       ],
+
       total: 4.99,
       deliveryFee: 0.99,
     };
@@ -156,20 +157,25 @@ export default {
   },
 };
 </script>
+
 <style scoped>
 .checkout-container {
   display: flex;
   justify-content: space-between;
   padding: 20px;
 }
+
 .left-panel,
 .right-panel {
   width: 50%;
 }
+
 .delivery-address button,
 .order-summary button {
   margin-top: 10px;
+
 }
+
 .cart-item {
   display: flex;
   justify-content: space-between;
@@ -179,6 +185,7 @@ export default {
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   margin-bottom: 10px;
 }
+
 .cart-item .image {
   width: 100px;
   height: 100px;
@@ -190,26 +197,32 @@ export default {
   border-radius: 8px;
   overflow: hidden;
 }
+
 .cart-item-image {
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
+
 .cart-item-details {
   flex: 1;
   margin-left: 16px;
 }
+
 .cart-item-details p {
   margin: 4px 0;
   font-size: 14px;
   color: #333; /* Dark gray text */
 }
+
 .item-price {
   font-size: 16px;
   font-weight: bold;
   color: #e63946;
   margin-top: 8px;
 }
+
+
 .address-content {
   display: flex;
   justify-content: center;
@@ -221,6 +234,7 @@ export default {
   border-radius: 5px;
   padding: 29px 44px 29px 44px;
 }
+
 .address-content .add-address {
   align-self: center;
   width: 50%;
@@ -229,32 +243,38 @@ export default {
   border-radius: 5px;
   margin-bottom: 20px;
 }
+
 .divider {
   border-bottom: 2px solid #ccc;
   width: 100%;
 }
+
 .address-item {
   display: flex;
   align-items: center;
   margin-top: 20px;
   /* Spacing above the address item */
 }
+
 .delivery-icon {
   width: 40px;
   height: 40px;
   border-radius: 100%;
   margin-right: 10px;
 }
+
 .item-price {
   font-weight: bold;
   text-align: end;
   color: #da292e;
 }
+
 .address-details {
   display: flex;
   flex-direction: column;
   margin-left: 10px;
 }
+
 .cart-item {
   display: flex;
   justify-content: center;
@@ -266,6 +286,8 @@ export default {
   border-radius: 5px;
   padding: 29px 44px 29px 44px;
 }
+
+
 /* .contact {
   display: flex;
   align-items: center;
@@ -274,6 +296,7 @@ export default {
   color: #333;
   cursor: pointer;
 } */
+
 /* .contact-preference {
   width: 500px;
   background-color: rgba(128, 128, 128, 0.181);
@@ -285,58 +308,73 @@ export default {
   /* position:relative;
   top: 30px; */
 }
+
 .Contact {
   width: 500px;
   justify-content: space-between;
   background-color: rgba(128, 128, 128, 0.181);
   display: flex;
+
 }
+
+
+
 .contact label {
   display: flex;
 }
+
 .contact p {
   background-color: white;
   padding: 4px 10px;
   border: 1px solid;
   border-radius: 5px;
 }
+
 .text {
   width: 500px;
   height: 100px;
   font-size: 20px;
 }
+
 hr {
   width: 500px;
   float: inline-start;
   border: 2px solid rgba(128, 128, 128, 0.677);
 }
+
 .pay-money {
   margin-top: 30px;
   width: 500px;
   background: #0000002a;
 }
+
 .total-money {
   width: 500px;
   display: flex;
   padding: 3px 0px;
   justify-content: space-between;
 }
+
 .button-checkout {
   margin-top: 10px;
   width: 500px;
   padding: 15px;
   background: #000;
   color: white;
+
 }
+
 .payment-cart {
   display: flex;
   flex-direction: column;
   gap: 16px;
 }
+
 .payment-img {
   width: 30px;
   height: auto;
 }
+
 /* Overall container */
 .contact-options {
   display: flex;
@@ -346,21 +384,27 @@ hr {
   width: 500px;
   position: relative;
   top: 30px;
+
+
 }
+
 /* Individual contact options */
 .contact-option {
   display: flex;
   align-items: center;
 }
+
 /* Checkbox */
 .contact-option input[type="checkbox"] {
   margin-right: 10px;
 }
+
 /* Label */
 .contact-option label {
   font-size: medium;
   margin-right: 10px;
 }
+
 /* Text input */
 .input textarea {
   width: 100%;
@@ -368,13 +412,17 @@ hr {
   border: 1px solid #ccc;
   padding: 10px;
   background: white;
+
+
 }
+
 .input {
   display: flex;
   justify-content: space-between;
   align-items: center;
   border: 1px solid #ccc;
   width: 460px;
+
   background-color: white;
   position: relative;
   top: 60px;
