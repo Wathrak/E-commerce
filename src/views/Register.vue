@@ -1,121 +1,153 @@
 <template>
-  <div class="register-container">
-    <div class="register-form">
-      <h1>REGISTER</h1>
-      <form @submit.prevent="handleSubmit">
-        <!-- Gender -->
-        <div class="form-group">
-          <label for="gender">Gender (Required)</label>
-          <div class="gender-radio">
-            <input 
-              type="radio" 
-              id="male" 
-              value="male" 
-              v-model="gender" 
-              required 
-            />
-            <label for="male">Male</label>
-            <input 
-              type="radio" 
-              id="female" 
-              value="female" 
-              v-model="gender" 
-              required 
-            />
-            <label for="female">Female</label>
-          </div>
-        </div>
-        
-        <!-- First Name -->
-        <div class="form-group">
-          <label for="first-name">First Name</label>
-          <input 
-            type="text" 
-            id="first-name" 
-            v-model="firstName" 
-            placeholder="Enter first name" 
-            required 
-          />
-        </div>
+  <div
+    :class="['bg-[#5C566E] p-16', isDarkMode ? 'bg-[#5C566E]' : 'bg-[#ffffff]']"
+  >
+    <div @click="darkMode" class="absolute right-1 top-0">
+      <button>
+        <Icon
+          icon="iconoir:sun-light"
+          width="24"
+          height="24"
+          :style="[isDarkMode ? 'color: white' : 'color: black']"
+        />
+      </button>
+    </div>
 
-        <!-- Last Name -->
-        <div class="form-group">
-          <label for="last-name">Last Name</label>
-          <input 
-            type="text" 
-            id="last-name" 
-            v-model="lastName" 
-            placeholder="Enter last name" 
-            required 
-          />
-        </div>
+    <div
+      :class="[
+        'register-container  rounded-lg',
+        isDarkMode ? 'bg-[#2C2638]' : 'bg-[#ffffff]',
+      ]"
+    >
+      <div class="flex-1 m-10 rounded-xl overflow-hidden h-[95%]">
+        <img src="@/assets/images/Ferraricar.png" alt="pic" />
+      </div>
+      <div class="flex-1">
+        <div
+          :class="[
+            'flex flex-col items-center',
+            isDarkMode ? 'text-white' : 'text-black',
+          ]"
+        >
+          <form
+            @submit.prevent="handleSubmit"
+            class="form w-[60%] gap-4 flex flex-col"
+          >
+            <h1
+              :class="[
+                'text-4xl text-start',
+                isDarkMode ? 'text-white' : 'text-black',
+              ]"
+            >
+              Create an account
+            </h1>
+            <!-- Login Link -->
+            <div class="login-link text-start flex">
+              <div class="text-base">Already have an account?</div>
+              <RouterLink
+                to="/login"
+                :class="[
+                  'underline self-center mx-2',
+                  isDarkMode ? 'text-[#BEABF2]' : 'text-[#7349e6]',
+                ]"
+                >Log in</RouterLink
+              >
+            </div>
 
-        <!-- Mobile Number -->
-        <div class="form-group">
-          <label for="mobile-number">Mobile Number</label>
-          <input 
-            type="text" 
-            id="mobile-number" 
-            v-model="mobileNumber" 
-            placeholder="Enter phone number" 
-            required 
-          />
-        </div>
+            <div class="flex gap-3">
+              <div class="form-group">
+                <input
+                  type="text"
+                  id="first-name"
+                  placeholder="First name"
+                  required
+                />
+              </div>
 
-        <!-- Email -->
-        <div class="form-group">
-          <label for="email">Email</label>
-          <input 
-            type="email" 
-            id="email" 
-            v-model="email" 
-            placeholder="Enter email" 
-            required 
-          />
-        </div>
+              <div class="form-group">
+                <input
+                  type="text"
+                  id="last-name"
+                  placeholder="Last name"
+                  required
+                />
+              </div>
+            </div>
 
-        <!-- Country -->
-        <div class="form-group">
-          <label for="country">Country</label>
-          <select id="country" v-model="country" required>
-            <option value="Cambodia">Cambodia</option>
-            <!-- Add more countries if needed -->
-          </select>
-        </div>
+            <div class="form-group">
+              <input
+                type="text"
+                id="phone-number"
+                placeholder="Phone number"
+                required
+              />
+            </div>
 
-        <!-- City/Province -->
-        <div class="form-group">
-          <label for="city-province">City/Province</label>
-          <select id="city-province" v-model="cityProvince" required>
-            <option value="">Select City/Province</option>
-            <option v-for="city in cities" :key="city" :value="city">{{ city }}</option>
-          </select>
-        </div>
+            <!-- <div class="form-group">
+              <input type="email" id="email" placeholder="Email" required />
+            </div> -->
 
-        <!-- Submit Button -->
-        <button type="submit" class="submit-button">CREATE ACCOUNT</button>
-        
-        <!-- Social Login -->
-        <div class="or-divider">OR</div>
-        <button class="social-button google" @click.prevent="loginWithGoogle">
-          Continue with Google
-        </button>
-        <button class="social-button facebook" @click.prevent="loginWithFacebook">
-          Continue with Facebook
-        </button>
-        <!-- Login Link -->
-        <p class="login-link">
-          Already have an account? <a href="#" @click.prevent="navigateToLogin">Login</a>
-        </p>
-      </form>
+            <div class="form-group">
+              <input
+                type="password"
+                id="password"
+                placeholder="Password"
+                required
+              />
+            </div>
+
+            <div class="flex">
+              <input
+                type="checkbox"
+                class="align-middle mr-1"
+                id="exampleCheck1"
+              />
+              <div class="flex items-center">
+                <label class="text-xs" for="exampleCheck1"
+                  >I agree to the
+                </label>
+                <div
+                  :class="[
+                    'text-xs underline self-center mx-2',
+                    isDarkMode ? 'text-[#BEABF2]' : 'text-[#7349e6]',
+                  ]"
+                >
+                  Terms & Conditions
+                </div>
+              </div>
+            </div>
+
+            <button type="submit" class="submit-button">Create account</button>
+
+            <!-- Social Login -->
+            <div class="or-divider">Or register with</div>
+            <div
+              :class="['flex gap-3', isDarkMode ? 'text-white' : 'text-black']"
+            >
+              <button
+                class="social-button google"
+                @click.prevent="loginWithGoogle"
+              >
+                <Icon icon="flat-color-icons:google" width="24" height="24" />
+                <div class="ml-1">Google</div>
+              </button>
+              <button
+                class="social-button facebook"
+                @click.prevent="loginWithFacebook"
+              >
+                <Icon icon="logos:facebook" width="24" height="24" />
+                <div class="ml-1">Facebook</div>
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
     </div>
   </div>
 </template>
 <script>
-
 export default {
   name: 'RegisterPage',
-   
   data() {
     return {
       gender: '',
@@ -123,36 +155,47 @@ export default {
       lastName: '',
       mobileNumber: '',
       email: '',
-      country: 'Cambodia',
-      cityProvince: '',
-      cities: ['Phnom Penh', 'Siem Reap', 'Battambang', 'Kampong Cham'], // Example list
-    };
+
+      isDarkMode: false,
+    }
   },
   methods: {
+    darkMode() {
+      this.isDarkMode = !this.isDarkMode
+      // console.log('Light Mode:', this.isDarkMode)
+    },
+
     handleSubmit() {
-      if (!this.gender || !this.firstName || !this.lastName || !this.mobileNumber || !this.email || !this.cityProvince) {
-        alert('Please fill in all required fields.');
-        return;
+      if (
+        !this.gender ||
+        !this.firstName ||
+        !this.lastName ||
+        !this.mobileNumber ||
+        !this.email ||
+        !this.cityProvince
+      ) {
+        alert('Please fill in all required fields.')
+        return
       }
-      console.log('Gender:', this.gender);
-      console.log('First Name:', this.firstName);
-      console.log('Last Name:', this.lastName);
-      console.log('Mobile Number:', this.mobileNumber);
-      console.log('Email:', this.email);
-      console.log('Country:', this.country);
-      console.log('City/Province:', this.cityProvince);
+      console.log('Gender:', this.gender)
+      console.log('First Name:', this.firstName)
+      console.log('Last Name:', this.lastName)
+      console.log('Mobile Number:', this.mobileNumber)
+      console.log('Email:', this.email)
+      console.log('Country:', this.country)
+      console.log('City/Province:', this.cityProvince)
     },
     loginWithGoogle() {
-      console.log('Login with Google clicked.');
+      console.log('Login with Google clicked.')
     },
     loginWithFacebook() {
-      console.log('Login with Facebook clicked.');
+      console.log('Login with Facebook clicked.')
     },
     navigateToLogin() {
-      console.log('Navigate to Login page.');
+      console.log('Navigate to Login page.')
     },
   },
-};
+}
 </script>
 <style scoped>
 /* General Container */
@@ -160,20 +203,23 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
-  background-color: #f5f5f5;
+  height: calc(100vh - 65px - 8rem); /* Adjusted for Navbar height 65px*/
 }
 
 /* Form Styles */
-.register-form {
+/* .register-form {
   width: 100%;
   max-width: 360px;
-  background: #fff;
   padding: 16px;
   border-radius: 8px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   text-align: center;
   position: relative;
+} */
+
+.form input {
+  background-color: #d4d4d8;
+  border-color: #3b364b;
 }
 
 .form-header {
@@ -221,12 +267,13 @@ export default {
   flex: 1;
 }
 
-input[type="text"],
-input[type="email"],
+input[type='text'],
+input[type='email'],
+input[type='password'],
 select {
   width: 100%;
   padding: 8px;
-  border: 1px solid #ccc;
+  border: 1px solid #3b364b;
   border-radius: 4px;
   font-size: 14px;
 }
@@ -247,7 +294,7 @@ button {
 }
 
 .submit-button {
-  background-color: black;
+  background-color: #6e55b5;
   color: white;
   margin-top: 8px;
 }
@@ -258,9 +305,8 @@ button {
   justify-content: center;
   margin-top: 6px;
   padding: 8px; /* Reduced from 10px */
-  border: 1px solid #ccc;
+  border: 1px solid #aaa;
   border-radius: 4px;
-  background-color: white;
   font-size: 13px; /* Slightly smaller text */
 }
 
@@ -272,18 +318,11 @@ button {
 .or-divider {
   margin: 10px 0;
   font-size: 12px;
-  color: #888;
+  text-align: center;
 }
-
 
 .login-link {
   margin-top: 10px;
   font-size: 12px;
-}
-
-.login-link a {
-  color: black;
-  text-decoration: none;
-  font-weight: bold;
 }
 </style>

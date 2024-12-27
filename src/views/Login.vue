@@ -6,23 +6,23 @@
         <!-- Mobile Number -->
         <div class="form-group">
           <label for="mobile-number">Mobile Number</label>
-          <input 
-            type="text" 
-            id="mobile-number" 
-            v-model="mobileNumber" 
-            placeholder="Enter phone number" 
+          <input
+            type="text"
+            id="mobile-number"
+            v-model="mobileNumber"
+            placeholder="Enter phone number"
             required
           />
         </div>
-        
+
         <!-- Password -->
         <div class="form-group">
           <label for="password">Password</label>
-          <input 
-            type="password" 
-            id="password" 
-            v-model="password" 
-            placeholder="Enter password" 
+          <input
+            type="password"
+            id="password"
+            v-model="password"
+            placeholder="Enter password"
             required
           />
         </div>
@@ -35,7 +35,7 @@
       <a href="#" class="forgot-password" @click.prevent="handleForgotPassword">
         Forgot your password?
       </a>
-      
+
       <!-- Divider -->
       <div class="or-divider">OR</div>
 
@@ -49,7 +49,10 @@
 
       <!-- Register Link -->
       <p class="register-link">
-        New to Ptes Sart? <a href="http://localhost:5173/register" @click.prevent="handleRegister">Register</a>
+        New to Ptes Sart?
+        <a href="http://localhost:5173/register" @click.prevent="handleRegister"
+          >Register</a
+        >
       </p>
     </div>
   </div>
@@ -61,38 +64,38 @@ export default {
     return {
       mobileNumber: '',
       password: '',
-    };
+    }
   },
   methods: {
     handleSubmit() {
       // Basic validation for empty fields
       if (!this.mobileNumber || !this.password) {
-        alert('Please fill in all fields.');
-        return;
+        alert('Please fill in all fields.')
+        return
       }
       // Handle login logic (e.g., API call)
-      console.log('Mobile Number:', this.mobileNumber);
-      console.log('Password:', this.password);
+      console.log('Mobile Number:', this.mobileNumber)
+      console.log('Password:', this.password)
       // Redirect or display success message
     },
     handleForgotPassword() {
       // Logic for forgot password (e.g., navigate to a reset page)
-      console.log('Forgot password clicked');
+      console.log('Forgot password clicked')
     },
     loginWithGoogle() {
       // Logic for Google login
-      console.log('Google login clicked');
+      console.log('Google login clicked')
     },
     loginWithFacebook() {
       // Logic for Facebook login
-      console.log('Facebook login clicked');
+      console.log('Facebook login clicked')
     },
     handleRegister() {
       // Logic for register navigation
-      console.log('Register clicked');
+      console.log('Register clicked')
     },
   },
-};
+}
 </script>
 <style scoped>
 /* General Container */
@@ -127,8 +130,8 @@ label {
   font-weight: bold;
 }
 
-input[type="text"],
-input[type="password"] {
+input[type='text'],
+input[type='password'] {
   width: 100%;
   padding: 10px;
   border: 1px solid #ccc;
@@ -158,14 +161,14 @@ button {
 }
 
 .google {
-  background-color:white;
-  color:black;
+  background-color: white;
+  color: black;
   border: 1px solid #ccc;
 }
 
 .facebook {
-  background-color:white;
-  color:black;
+  background-color: white;
+  color: black;
   border: 1px solid #ccc;
 }
 

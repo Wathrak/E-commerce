@@ -2,7 +2,9 @@
   <div class="relative">
     <div
       class="h-[300px] bg-cover bg-center relative"
-      style="background-image: url('https://i.pinimg.com/originals/66/8f/08/668f08c281486c01eee91a9de92b9994.jpg')"
+      style="
+        background-image: url('https://i.pinimg.com/originals/66/8f/08/668f08c281486c01eee91a9de92b9994.jpg');
+      "
     >
       <div class="browse-header">
         <h1 class="text-4xl font-serif mb-4">{{ currentCategory }}</h1>
@@ -33,48 +35,48 @@
   </div>
 </template>
 
-
 <script>
-import Pagination from "@/components/Pagination.vue";
-import Footer from "@/components/Footer.vue";
-import ProductBrowse from "@/components/ProductBrowse.vue";
-import WallDecor from "@/components/Product_Category/WallDecor.vue";
-import Lamp from "@/components/Product_Category/Lamp.vue";
-import Furniture from "@/components/Product_Category/Furniture.vue";
+import Pagination from '@/components/Pagination.vue'
+import Footer from '@/components/Footer.vue'
+import ProductBrowse from '@/components/ProductBrowse.vue'
+import WallDecor from '@/components/Product_Category/WallDecor.vue'
+import Lamp from '@/components/Product_Category/Lamp.vue'
+import Furniture from '@/components/Product_Category/Furniture.vue'
 
 export default {
   components: { Footer, ProductBrowse, WallDecor, Lamp, Furniture, Pagination },
   data() {
     return {
-      categories: ["Wall Decor", "Lamps", "Furnitures"],
+      categories: ['Wall Decor', 'Lamps', 'Furnitures'],
       products: [],
-    };
+    }
   },
   computed: {
     currentCategory() {
-
-      const routeCategory = this.$route.params.category;
+      const routeCategory = this.$route.params.category
       const formattedCategory = routeCategory
-        ? routeCategory.replace(/-/g, " ").replace(/\b\w/g, (c) => c.toUpperCase())
-        : "Wall Decor";
+        ? routeCategory
+            .replace(/-/g, ' ')
+            .replace(/\b\w/g, c => c.toUpperCase())
+        : 'Wall Decor'
       return this.categories.includes(formattedCategory)
         ? formattedCategory
-        : "Wall Decor";
+        : 'Wall Decor'
     },
     filteredProducts() {
       return this.products.filter(
-        (product) => product.category === this.currentCategory
-      );
+        product => product.category === this.currentCategory,
+      )
     },
   },
   methods: {
     selectCategory(category) {
       // Update the route when a category is selected
-      const routeCategory = category.toLowerCase().replace(/ /g, "-");
-      this.$router.push(`/browse/${routeCategory}`);
+      const routeCategory = category.toLowerCase().replace(/ /g, '-')
+      this.$router.push(`/browse/${routeCategory}`)
     },
   },
-};
+}
 </script>
 
 <style scoped>
