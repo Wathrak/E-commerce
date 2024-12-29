@@ -1,201 +1,302 @@
 <template>
-  <div class="login-container">
-    <div class="login-form">
-      <h1>LOGIN</h1>
-      <form @submit.prevent="handleSubmit">
-        <!-- Mobile Number -->
-        <div class="form-group">
-          <label for="mobile-number">Mobile Number</label>
-          <input
-            type="text"
-            id="mobile-number"
-            v-model="mobileNumber"
-            placeholder="Enter phone number"
-            required
-          />
-        </div>
-
-        <!-- Password -->
-        <div class="form-group">
-          <label for="password">Password</label>
-          <input
-            type="password"
-            id="password"
-            v-model="password"
-            placeholder="Enter password"
-            required
-          />
-        </div>
-
-        <!-- Login Button -->
-        <button type="submit" class="login-button">LOGIN</button>
-      </form>
-
-      <!-- Forgot Password -->
-      <a href="#" class="forgot-password" @click.prevent="handleForgotPassword">
-        Forgot your password?
-      </a>
-
-      <!-- Divider -->
-      <div class="or-divider">OR</div>
-
-      <!-- Social Login Buttons -->
-      <button class="social-button google" @click.prevent="loginWithGoogle">
-        Continue with Google
+  <div
+    :class="[
+      'h-dvh self-center bg-[#5C566E] p-16',
+      productStore.darkmode ? 'bg-[#5C566E]' : 'bg-[#ffffff]',
+    ]"
+  >
+    <!-- darkMode Btn -->
+    <div @click="productStore.darkmodeToggle" class="absolute right-1 top-0">
+      <button>
+        <Icon
+          icon="iconoir:sun-light"
+          width="24"
+          height="24"
+          :style="[productStore.darkmode ? 'color: white' : 'color: black']"
+        />
       </button>
-      <button class="social-button facebook" @click.prevent="loginWithFacebook">
-        Continue with Facebook
-      </button>
+    </div>
 
-      <!-- Register Link -->
-      <p class="register-link">
-        New to Ptes Sart?
-        <a href="http://localhost:5173/register" @click.prevent="handleRegister"
-          >Register</a
+    <div
+      :class="[
+        'register-container  rounded-lg',
+        productStore.darkmode ? 'bg-[#2C2638]' : 'bg-[#ffffff]',
+      ]"
+    >
+      <div
+        class="flex-1 m-10 rounded-xl overflow-hidden h-fit-content max-h-[450px]"
+      >
+        <img src="@/assets/images/Ferraricar.png" alt="pic" />
+      </div>
+      <div class="flex-1">
+        <div
+          :class="[
+            'flex flex-col items-center',
+            productStore.darkmode ? 'text-white' : 'text-black',
+          ]"
         >
-      </p>
+          <form
+            @submit.prevent="handleSubmit"
+            class="form w-[60%] gap-4 flex flex-col"
+          >
+            <h1
+              :class="[
+                'text-4xl text-start',
+                productStore.darkmode ? 'text-white' : 'text-black',
+              ]"
+            >
+              Login to Account
+            </h1>
+
+            <!-- Register Link -->
+            <div class="login-link text-start flex">
+              <div class="text-base">Need an account?</div>
+              <RouterLink
+                to="/register"
+                :class="[
+                  'underline self-center mx-2',
+                  productStore.darkmode ? 'text-[#BEABF2]' : 'text-[#7349e6]',
+                ]"
+                >Register</RouterLink
+              >
+            </div>
+
+            <div class="form-group">
+              <input
+                v-model="phoneNumber"
+                type="text"
+                id="phoneNumber"
+                placeholder="Phone number"
+                required
+              />
+            </div>
+
+            <div class="form-group">
+              <input
+                v-model="password"
+                type="password"
+                id="password"
+                placeholder="Password"
+                required
+              />
+            </div>
+
+            <button type="submit" class="submit-button">Login</button>
+
+            <!-- Social Login -->
+            <div class="or-divider">or login with</div>
+            <div
+              :class="[
+                'flex gap-3',
+                productStore.darkmode ? 'text-white' : 'text-black',
+              ]"
+            >
+              <button
+                class="social-button google"
+                @click.prevent="loginWithGoogle"
+              >
+                <Icon icon="flat-color-icons:google" width="24" height="24" />
+                <div class="ml-1">Google</div>
+              </button>
+              <button
+                class="social-button facebook"
+                @click.prevent="loginWithFacebook"
+              >
+                <Icon icon="logos:facebook" width="24" height="24" />
+                <div class="ml-1">Facebook</div>
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
     </div>
   </div>
 </template>
 <script>
+import { useProductStore } from '@/store'
+
 export default {
   name: 'LoginPage',
-  data() {
+  setup() {
+    const productStore = useProductStore()
+
     return {
-      mobileNumber: '',
-      password: '',
+      productStore,
     }
   },
+
+  data() {
+    return {
+      phoneNumber: '',
+      password: '',
+
+      savedPhoneNumber: localStorage.getItem('phoneNumber'),
+      savedPassword: localStorage.getItem('password'),
+    }
+  },
+
   methods: {
     handleSubmit() {
-      // Basic validation for empty fields
-      if (!this.mobileNumber || !this.password) {
-        alert('Please fill in all fields.')
-        return
+      if (!this.phoneNumber || !this.password) {
+        alert('Please fill in all required fields.')
       }
-      // Handle login logic (e.g., API call)
-      console.log('Mobile Number:', this.mobileNumber)
-      console.log('Password:', this.password)
-      // Redirect or display success message
+
+      if (
+        this.phoneNumber === this.savedPhoneNumber &&
+        this.password === this.savedPassword
+      ) {
+        this.productStore.login()
+        this.$router.push({ name: 'home' })
+        // console.log('Login successful.')
+      } else {
+        alert('Invalid phone number or password')
+      }
+
+      console.log('Phone Number:', this.phoneNumber)
+      console.log('Password', this.password)
+
+      console.log('Saved Phone Number:', this.savedPhoneNumber)
+      console.log('Saved Password:', this.savedPassword)
     },
-    handleForgotPassword() {
-      // Logic for forgot password (e.g., navigate to a reset page)
-      console.log('Forgot password clicked')
-    },
+
     loginWithGoogle() {
-      // Logic for Google login
-      console.log('Google login clicked')
+      console.log('Login with Google clicked.')
     },
     loginWithFacebook() {
-      // Logic for Facebook login
-      console.log('Facebook login clicked')
+      console.log('Login with Facebook clicked.')
     },
-    handleRegister() {
-      // Logic for register navigation
-      console.log('Register clicked')
+    navigateToLogin() {
+      console.log('Navigate to Login page.')
     },
   },
 }
 </script>
 <style scoped>
 /* General Container */
-.login-container {
+.register-container {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
-  background-color: #f5f5f5;
+  height: calc(100vh - 65px - 8rem); /* Adjusted for Navbar height 65px*/
 }
 
-/* Login Form */
-.login-form {
+/* Form Styles */
+/* .register-form {
   width: 100%;
-  max-width: 400px;
-  background: #fff;
-  padding: 20px;
+  max-width: 360px;
+  padding: 16px;
   border-radius: 8px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   text-align: center;
+  position: relative;
+} */
+
+.form input {
+  background-color: #d4d4d8;
+  border-color: #3b364b;
 }
 
-/* Form Group */
-.form-group {
-  margin-bottom: 16px;
-  text-align: left;
+.form-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
 }
 
-label {
-  display: block;
-  margin-bottom: 8px;
+.login-tab,
+.register-tab {
+  font-size: 14px;
+  cursor: pointer;
+  padding: 4px 8px;
+}
+
+.register-tab.active {
   font-weight: bold;
+  text-decoration: underline;
 }
 
-input[type='text'],
-input[type='password'] {
-  width: 100%;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  font-size: 14px;
-}
-
-/* Buttons */
-button {
-  width: 100%;
-  padding: 8px;
+.close-button {
+  background: none;
   border: none;
-  border-radius: 4px;
-  font-size: 14px;
+  font-size: 16px;
   cursor: pointer;
 }
 
-.login-button {
-  background-color: #050505;
+.form-group {
+  margin-bottom: 8px;
+  text-align: left;
+}
+
+.form-group.compact {
+  margin-bottom: 6px;
+}
+
+.dual-input {
+  display: flex;
+  gap: 6px;
+}
+
+.dual-input input,
+.dual-input select {
+  flex: 1;
+}
+
+input[type='text'],
+input[type='email'],
+input[type='password'],
+select {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #3b364b;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+.gender-radio {
+  display: flex;
+  gap: 8px;
+  justify-content: flex-start;
+}
+
+button {
+  width: 100%;
+  padding: 8px; /* Reduced from 12px */
+  border: none;
+  border-radius: 4px;
+  font-size: 14px; /* Retained for readability */
+  cursor: pointer;
+}
+
+.submit-button {
+  background-color: #6e55b5;
   color: white;
   margin-top: 8px;
 }
 
 .social-button {
-  width: 100%;
-  margin-top: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 6px;
+  padding: 8px; /* Reduced from 10px */
+  border: 1px solid #aaa;
+  border-radius: 4px;
+  font-size: 13px; /* Slightly smaller text */
 }
 
-.google {
-  background-color: white;
-  color: black;
-  border: 1px solid #ccc;
-}
-
+.google,
 .facebook {
-  background-color: white;
-  color: black;
-  border: 1px solid #ccc;
+  padding: 8px; /* Reduced padding for smaller size */
 }
 
-/* Forgot Password */
-.forgot-password {
-  display: inline-block;
-  margin-top: 8px;
-  color: #007bff;
-  cursor: pointer;
-}
-
-/* Divider */
 .or-divider {
-  margin: 20px 0;
-  font-size: 14px;
-  color: #888;
+  margin: 10px 0;
+  font-size: 12px;
+  text-align: center;
 }
 
-/* Register Link */
-.register-link {
-  margin-top: 20px;
-  font-size: 14px;
-}
-.register-link a {
-  color: black;
-  text-decoration: none;
-  font-weight: bold;
-  cursor: pointer;
+.login-link {
+  margin-top: 10px;
+  font-size: 12px;
 }
 </style>

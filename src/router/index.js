@@ -1,31 +1,75 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import Home from '@/views/Home.vue'
 import Browse from '@/views/Browse.vue'
-import Login from '@/views/Login.vue'
 import Product from '@/views/Product.vue'
 import Checkout from '@/views/CheckoutPage.vue'
 import Register from '@/views/Register.vue'
 import Cart from '@/views/Cart.vue'
 import Wishlist from '@/views/Wishlist.vue'
+import Login from '@/views/Login.vue'
+import MainLayout from '@/views/MainLayout.vue'
+import { useProductStore } from '@/store'
 
 const routes = [
-  { path: '/', name: 'Home', component: Home },
-  { path: '/browse', name: 'Browse', component: Browse },
-  { path: '/login', name: 'login', component: Login },
-  { path: '/product', name: 'Product', component: Product },
-  { path: '/checkout', name: 'Checkout', component: Checkout },
-  { path: '/register', name: 'Register', component: Register },
-  { path: '/cart', name: 'Cart', component: Cart },
-  { path: '/wishlist', name: 'Wishlist', component: Wishlist },
-
   {
-    path: '/browse/:category',
-    name: 'Browse',
-    component: Browse,
+    path: '/login',
+    name: 'login',
+    component: Login,
+    meta: { requiresAuth: false },
   },
+  {
+    path: '/register',
+    name: 'register',
+    component: Register,
+    meta: { requiresAuth: false },
+  },
+  {
+    path: '/',
+    name: 'home',
+    component: MainLayout,
+    meta: { requiresAuth: true },
+    children: [
+      {
+        path: '/',
+        component: Home,
+      },
+      {
+        path: '/browse',
+        name: 'browse',
+        component: Browse,
+      },
+      {
+        path: '/product',
+        name: 'product',
+        component: Product,
+      },
+      {
+        path: '/checkout',
+        name: 'checkout',
+        component: Checkout,
+      },
+      {
+        path: '/cart',
+        name: 'cart',
+        component: Cart,
+      },
+      {
+        path: '/wishlist',
+        name: 'wishlist',
+        component: Wishlist,
+      },
+
+      {
+        path: '/browse/:category',
+        component: Browse,
+      },
+    ],
+  },
+
   {
     path: '/browse',
     redirect: '/browse/walldecor',
+    meta: { requiresAuth: true },
   },
 ]
 
@@ -35,6 +79,24 @@ const router = createRouter({
   scrollBehavior() {
     return { top: 0 }
   },
+})
+
+router.beforeEach((to, from, next) => {
+  const requiresAuth = to.meta.requiresAuth ?? true // default to true if not specified
+  const productStore = useProductStore()
+  const isLoggedIn = productStore.isLoggedIn
+  // console.log(isLoggedIn)
+
+  if (requiresAuth && !isLoggedIn) {
+    next({ name: 'login' })
+  } else if (isLoggedIn && (to.name === 'login' || to.name === 'register')) {
+    next({
+      // redirect to home if logged in and trying to access login or register
+      name: 'home',
+    })
+  } else {
+    next()
+  }
 })
 
 export default router

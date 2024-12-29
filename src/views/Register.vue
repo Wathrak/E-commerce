@@ -1,14 +1,17 @@
 <template>
   <div
-    :class="['bg-[#5C566E] p-16', isDarkMode ? 'bg-[#5C566E]' : 'bg-[#ffffff]']"
+    :class="[
+      'h-dvh self-center bg-[#5C566E] p-16',
+      productStore.darkmode ? 'bg-[#5C566E]' : 'bg-[#ffffff]',
+    ]"
   >
-    <div @click="darkMode" class="absolute right-1 top-0">
+    <div @click="productStore.darkmodeToggle" class="absolute right-1 top-0">
       <button>
         <Icon
           icon="iconoir:sun-light"
           width="24"
           height="24"
-          :style="[isDarkMode ? 'color: white' : 'color: black']"
+          :style="[productStore.darkmode ? 'color: white' : 'color: black']"
         />
       </button>
     </div>
@@ -16,17 +19,19 @@
     <div
       :class="[
         'register-container  rounded-lg',
-        isDarkMode ? 'bg-[#2C2638]' : 'bg-[#ffffff]',
+        productStore.darkmode ? 'bg-[#2C2638]' : 'bg-[#ffffff]',
       ]"
     >
-      <div class="flex-1 m-10 rounded-xl overflow-hidden h-[95%]">
+      <div
+        class="flex-1 m-10 rounded-xl overflow-hidden h-fit-content max-h-[450px]"
+      >
         <img src="@/assets/images/Ferraricar.png" alt="pic" />
       </div>
       <div class="flex-1">
         <div
           :class="[
             'flex flex-col items-center',
-            isDarkMode ? 'text-white' : 'text-black',
+            productStore.darkmode ? 'text-white' : 'text-black',
           ]"
         >
           <form
@@ -36,7 +41,7 @@
             <h1
               :class="[
                 'text-4xl text-start',
-                isDarkMode ? 'text-white' : 'text-black',
+                productStore.darkmode ? 'text-white' : 'text-black',
               ]"
             >
               Create an account
@@ -48,7 +53,7 @@
                 to="/login"
                 :class="[
                   'underline self-center mx-2',
-                  isDarkMode ? 'text-[#BEABF2]' : 'text-[#7349e6]',
+                  productStore.darkmode ? 'text-[#BEABF2]' : 'text-[#7349e6]',
                 ]"
                 >Log in</RouterLink
               >
@@ -57,8 +62,10 @@
             <div class="flex gap-3">
               <div class="form-group">
                 <input
+                  v-model="firstName"
+                  @input="saveToLocalStorage"
                   type="text"
-                  id="first-name"
+                  id="firstName"
                   placeholder="First name"
                   required
                 />
@@ -66,8 +73,10 @@
 
               <div class="form-group">
                 <input
+                  v-model="lastName"
+                  @input="saveToLocalStorage"
                   type="text"
-                  id="last-name"
+                  id="lastName"
                   placeholder="Last name"
                   required
                 />
@@ -76,8 +85,10 @@
 
             <div class="form-group">
               <input
+                v-model="phoneNumber"
+                @input="saveToLocalStorage"
                 type="text"
-                id="phone-number"
+                id="phoneNumber"
                 placeholder="Phone number"
                 required
               />
@@ -89,6 +100,8 @@
 
             <div class="form-group">
               <input
+                v-model="password"
+                @input="saveToLocalStorage"
                 type="password"
                 id="password"
                 placeholder="Password"
@@ -98,18 +111,17 @@
 
             <div class="flex">
               <input
+                v-model="terms"
                 type="checkbox"
                 class="align-middle mr-1"
-                id="exampleCheck1"
+                id="terms"
               />
               <div class="flex items-center">
-                <label class="text-xs" for="exampleCheck1"
-                  >I agree to the
-                </label>
+                <label class="text-xs">I agree to the </label>
                 <div
                   :class="[
                     'text-xs underline self-center mx-2',
-                    isDarkMode ? 'text-[#BEABF2]' : 'text-[#7349e6]',
+                    productStore.darkmode ? 'text-[#BEABF2]' : 'text-[#7349e6]',
                   ]"
                 >
                   Terms & Conditions
@@ -122,7 +134,10 @@
             <!-- Social Login -->
             <div class="or-divider">Or register with</div>
             <div
-              :class="['flex gap-3', isDarkMode ? 'text-white' : 'text-black']"
+              :class="[
+                'flex gap-3',
+                productStore.darkmode ? 'text-white' : 'text-black',
+              ]"
             >
               <button
                 class="social-button google"
@@ -146,53 +161,64 @@
   </div>
 </template>
 <script>
+import { useProductStore } from '@/store'
+
 export default {
   name: 'RegisterPage',
+
+  setup() {
+    const productStore = useProductStore()
+
+    return {
+      productStore,
+    }
+  },
+
   data() {
     return {
-      gender: '',
       firstName: '',
       lastName: '',
-      mobileNumber: '',
-      email: '',
-
-      isDarkMode: false,
+      phoneNumber: '',
+      password: '',
+      terms: false,
     }
   },
   methods: {
-    darkMode() {
-      this.isDarkMode = !this.isDarkMode
-      // console.log('Light Mode:', this.isDarkMode)
-    },
-
     handleSubmit() {
       if (
-        !this.gender ||
         !this.firstName ||
         !this.lastName ||
-        !this.mobileNumber ||
-        !this.email ||
-        !this.cityProvince
+        !this.phoneNumber ||
+        !this.password
       ) {
         alert('Please fill in all required fields.')
         return
+      } else {
+        if (this.terms != true) {
+          alert('Please agree to the Terms & Conditions.')
+          return
+        }
+        this.$router.push('/login')
       }
-      console.log('Gender:', this.gender)
-      console.log('First Name:', this.firstName)
-      console.log('Last Name:', this.lastName)
-      console.log('Mobile Number:', this.mobileNumber)
-      console.log('Email:', this.email)
-      console.log('Country:', this.country)
-      console.log('City/Province:', this.cityProvince)
+
+      // console.log('First Name:', this.firstName)
+      // console.log('Last Name:', this.lastName)
+      // console.log('Phone Number:', this.phoneNumber)
+      // console.log('Terms:', this.terms)
     },
+
+    saveToLocalStorage() {
+      localStorage.setItem('firstName', this.firstName)
+      localStorage.setItem('lastName', this.lastName)
+      localStorage.setItem('phoneNumber', this.phoneNumber)
+      localStorage.setItem('password', this.password)
+    },
+
     loginWithGoogle() {
       console.log('Login with Google clicked.')
     },
     loginWithFacebook() {
       console.log('Login with Facebook clicked.')
-    },
-    navigateToLogin() {
-      console.log('Navigate to Login page.')
     },
   },
 }

@@ -24,7 +24,7 @@
         </div>
 
         <!-- Logo -->
-        <div class="text-2xl font-serif w-[127px]">
+        <div class="text-2xl font-serif min-w-[150px]">
           <RouterLink to="/">PTES SART</RouterLink>
         </div>
 
@@ -43,10 +43,11 @@
           <Icon icon="mdi:heart-outline" width="24" height="24" />
           <Icon icon="uil:cart" width="24" height="24" />
 
-          <RouterLink to="/login" class="text-sm font-medium">LOGIN</RouterLink>
-          <RouterLink to="/register" class="text-sm font-medium"
-            >REGISTER</RouterLink
-          >
+          <div class="text-sm font-medium flex items-center">
+            <div class="space-x-4">
+              <button @click="handleLogout">LOGOUT</button>
+            </div>
+          </div>
         </div>
       </div>
     </nav>
@@ -54,14 +55,21 @@
 </template>
 
 <script>
+import router from '@/router'
 import { useProductStore } from '@/store'
 
 export default {
   setup() {
     const productStore = useProductStore()
 
+    const handleLogout = () => {
+      productStore.logout()
+      router.push('/login')
+    }
+
     return {
       productStore,
+      handleLogout,
     }
   },
 }
