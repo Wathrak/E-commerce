@@ -2,14 +2,30 @@ import { defineStore } from 'pinia'
 
 export const useProductStore = defineStore('product', {
   actions: {
+    login() {
+      this.isLoggedIn = true
+      localStorage.setItem('isLoggedIn', 'true')
+      window.location.reload()
+    },
+    logout() {
+      this.isLoggedIn = false
+      localStorage.removeItem('isLoggedIn')
+    },
     clickNotification() {
       this.isNotificationActive = !this.isNotificationActive
       // console.log(this.isNotificationActive)
     },
+    darkmodeToggle() {
+      this.darkmode = !this.darkmode
+      // console.log(this.darkmode)
+    },
   },
   state: () => {
     return {
+      isLoggedIn: localStorage.getItem('isLoggedIn') === 'true',
       isNotificationActive: false,
+      darkmode: false,
+
       categories: [
         { id: 1, name: 'Canvas Wall Art' },
         { id: 2, name: 'Hand Painted Wall Art' },
