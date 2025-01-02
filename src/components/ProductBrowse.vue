@@ -1,5 +1,5 @@
 <template>
-  <div class="product-browse">
+  <div class="product-browse" @click="navigateToProduct">
     <img :src="product.image" :alt="product.name" />
     <h3>{{ product.name }}</h3>
     <div
@@ -23,11 +23,15 @@
   </div>
 </template>
 
-
 <script>
 export default {
   props: {
     product: Object,
+  },
+  methods: {
+    navigateToProduct() {
+      this.$router.push(`/product/${this.product.id}`);
+    },
   },
 };
 </script>
