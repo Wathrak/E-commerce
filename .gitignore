@@ -27,4 +27,5 @@ coverage
 *.sln
 *.sw?
 *.aider
+.env
 *.tsbuildinfo
