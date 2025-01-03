@@ -34,7 +34,7 @@
       <RouterLink to="/browse/walldecor" class="button w-full">
         <button>Wall Decor</button>
       </RouterLink>
-      <RouterLink to="/browse/walldecor" class="button w-full">
+      <RouterLink to="/browse/furnitures" class="button w-full">
         <button>Furniture</button>
       </RouterLink>
     </div>

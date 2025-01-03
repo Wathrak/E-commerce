@@ -3,9 +3,9 @@
     <div>
       <router-link :to="to">
         <div
-          class="image-container flex flex-col items-center justify-end h-[380px] w-[300px]"
-          :style="{ 'background-image': `url(${item.imgUrl})` }"
+          class="image-container flex flex-col items-center justify-end h-[300px] w-[300px] overflow-hidden"
         >
+          <img :src="item.imgUrl" alt="" />
           <router-link :to="toButton">
             <button class="image1">ADD TO CART</button>
           </router-link>

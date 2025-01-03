@@ -42,7 +42,7 @@ const routes = [
         path: '/product/:id',
         name: 'Product',
         component: Product,
-        props: true // Enables dynamic props for product details
+        props: true, // Enables dynamic props for product details
       },
       {
         path: '/checkout',
