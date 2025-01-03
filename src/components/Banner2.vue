@@ -8,11 +8,15 @@
     </div>
     <div class="mb-5">
       <button
-        v-for="(category, index) in productStore.categories[1]"
+        v-for="(category, index) in productStore.categories"
         :key="index"
         class="btn inline-flex mt-5 text-gray-500 p-3"
       >
-        <div>{{ category }}</div>
+        <div>
+          <button @click="productStore.clickCategory(category.name)">
+            {{ category.name }}
+          </button>
+        </div>
       </button>
     </div>
   </div>
@@ -20,6 +24,7 @@
 <script>
 import { useProductStore } from '@/store'
 import { Icon } from '@iconify/vue'
+import { emit } from 'process'
 export default {
   components: { Icon },
   setup() {
