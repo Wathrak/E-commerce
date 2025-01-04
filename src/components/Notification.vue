@@ -16,7 +16,12 @@
     </div>
     <div class="text-gray-400">Come and check our last arrival</div>
 
-    <RouterLink to="/browse/walldecor" class="button">
+    <!-- Painting Button -->
+    <RouterLink
+      to="/browse/walldecor"
+      class="button"
+      @click.native="productStore.clickNotification"
+    >
       <button>Painting</button>
     </RouterLink>
 
@@ -30,11 +35,20 @@
       Special Discount on Wall Decor and Furniture!!
     </div>
 
+    <!-- Wall Decor and Furniture Buttons -->
     <div class="flex justify-center">
-      <RouterLink to="/browse/walldecor" class="button w-full">
+      <RouterLink
+        to="/browse/walldecor"
+        class="button w-full"
+        @click.native="productStore.clickNotification"
+      >
         <button>Wall Decor</button>
       </RouterLink>
-      <RouterLink to="/browse/furnitures" class="button w-full">
+      <RouterLink
+        to="/browse/furnitures"
+        class="button w-full"
+        @click.native="productStore.clickNotification"
+      >
         <button>Furniture</button>
       </RouterLink>
     </div>
