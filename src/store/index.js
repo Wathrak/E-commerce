@@ -15,6 +15,10 @@ export const useProductStore = defineStore('product', {
       this.isNotificationActive = !this.isNotificationActive
       // console.log(this.isNotificationActive)
     },
+    clickCart() {
+      this.isCartActive = !this.isCartActive
+      // console.log(this.isNotificationActive)
+    },
     darkmodeToggle() {
       this.darkmode = !this.darkmode
       // console.log(this.darkmode)

@@ -41,8 +41,9 @@
             <Icon icon="mdi:bell-outline" width="24" height="24" />
           </button>
           <Icon icon="mdi:heart-outline" width="24" height="24" />
+          <button @click="productStore.clickCart">
           <Icon icon="uil:cart" width="24" height="24" />
-
+          </button>
           <div class="text-sm font-medium flex items-center">
             <div class="space-x-4">
               <button @click="handleLogout">LOGOUT</button>
