@@ -20,6 +20,8 @@
     </div>
     <p>{{ product.shop }}</p>
     <p>{{ product.price }}</p>
+    
+
   </div>
 </template>
 

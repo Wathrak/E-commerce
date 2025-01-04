@@ -2,7 +2,7 @@
   <div class="Lamps">
     <div class="product-grid">
       <ProductBrowse
-        v-for="product in products"
+        v-for="product in lamps"
         :key="product.id"
         :product="product"
       />
@@ -11,46 +11,15 @@
 </template>
 
 <script>
+import { useBrowseStore } from "@/store/browsestore";
 import ProductBrowse from "@/components/ProductBrowse.vue";
+
 export default {
   components: { ProductBrowse },
-  data() {
+  setup() {
+    const browseStore = useBrowseStore();
     return {
-      products: [
-        {
-          id: 1,
-          name: "Lamp 1",
-          category: "Lamps",
-          image: new URL('@/assets/images/ProductBrowse/Lamps/image1.png', import.meta.url).href,
-          shop: "Besdong Khmer",
-          price: "KHR 120,000",
-        },
-        {
-          id: 2,
-          name: "Lamp 2",
-          category: "Lamps",
-          image: new URL('@/assets/images/ProductBrowse/Lamps/image1.png', import.meta.url).href,
-          shop: "Besdong Khmer",
-          price: "KHR 120,000",
-        },
-        {
-          id: 2,
-          name: "Lamp 3",
-          category: "Lamps",
-          image: new URL('@/assets/images/ProductBrowse/Lamps/image1.png', import.meta.url).href,
-          shop: "Besdong Khmer",
-          price: "KHR 120,000",
-        },
-        {
-          id: 2,
-          name: "Lamp 4",
-          category: "Lamps",
-          image: new URL('@/assets/images/ProductBrowse/Lamps/image1.png', import.meta.url).href,
-          shop: "Besdong Khmer",
-          price: "KHR 120,000",
-        },
-        
-      ],
+      lamps: browseStore.lamps,
     };
   },
 };
@@ -63,4 +32,3 @@ export default {
   gap: 20px;
 }
 </style>
-

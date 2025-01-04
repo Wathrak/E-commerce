@@ -1,0 +1,111 @@
+
+# 2025-01-02 15:01:09.146243
++/ask src
+
+# 2025-01-02 15:01:38.978424
++/ask explain me all my source code in entire codebase step by step in detail and how they are connected
+
+# 2025-01-02 15:01:59.900794
++s
+
+# 2025-01-02 15:02:18.037563
++/ask explain me all my source code in entire codebase step by step in detail and how they are connected
+
+# 2025-01-02 15:02:40.076371
++y
+
+# 2025-01-02 15:03:51.490559
++/clear
+
+# 2025-01-02 15:03:55.192957
++exit
+
+# 2025-01-02 15:04:08.132176
++/ask src
+
+# 2025-01-02 15:04:35.592313
++/ask explain me all my source code in entire codebase step by step in detail and how they are connected
+
+# 2025-01-02 15:04:56.309855
++y
+
+# 2025-01-02 15:04:58.856868
++n
+
+# 2025-01-02 15:05:06.095217
++y
+
+# 2025-01-02 15:05:08.902083
++n
+
+# 2025-01-02 15:05:12.098757
++y
+
+# 2025-01-02 15:05:31.524626
++yes
+
+# 2025-01-02 15:05:32.658360
++s
+
+# 2025-01-02 15:05:59.757541
++n
+
+# 2025-01-02 15:06:15.227498
++/ask explain me all my source code in entire codebase step by step in detail and how they are connected
+
+# 2025-01-02 15:06:42.465791
++y
+
+# 2025-01-02 15:06:43.740320
++n
+
+# 2025-01-02 15:06:48.073101
++y
+
+# 2025-01-02 15:06:49.668619
++n
+
+# 2025-01-02 15:06:53.839784
++y
+
+# 2025-01-02 15:07:08.192313
++a
+
+# 2025-01-02 15:10:02.105895
++/clear
+
+# 2025-01-02 15:11:07.985409
++/ask do you think my codebase is clean or should i clean my code and make improvement
+
+# 2025-01-02 15:12:57.599193
++exclude .editorconfig
+
+# 2025-01-02 15:13:54.973941
++/undo
+
+# 2025-01-02 15:14:15.500525
++/exit
+
+# 2025-01-03 22:25:49.094875
++/add src
+
+# 2025-01-03 22:26:05.502977
++/add src/views
+
+# 2025-01-03 22:27:10.254045
++/architect on the browse page each product when clicked it direct to browse page and have it own dynamic data
+
+# 2025-01-03 22:27:41.433105
++/add src
+
+# 2025-01-03 22:28:03.036999
++/architect on the browse page each product when clicked it direct to browse page and have it own dynamic data
+
+# 2025-01-03 22:28:29.404907
++/add src
+
+# 2025-01-03 22:28:47.212484
++/ask on the browse page each product when clicked it direct to browse page and have it own dynamic data
+
+# 2025-01-03 22:35:59.283805
++/ask on the product.vue the data and everything is statically set on the code, however what i want is when on browse page when any product is click it wil direct to the product page with it data and not the static data i set on proudct.vue,
