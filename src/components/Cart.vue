@@ -15,15 +15,20 @@
         Check out our latest arrivals stay up-to-date with latest style
       </p>
 
-      <div class="w-full space-y-3 max-w-sm">
+      <div class="w-full space-y-3">
         <h3 class="text-xl font-medium mb-4">Start Shopping!!</h3>
         <div class="flex justify-center">
-          <button @click="handleButtonClick('/browse/walldecor')" class="button w-full">
-            Wall Decor
-          </button>
-          <button @click="handleButtonClick('/browse/furnitures')" class="button w-full">
-            Furniture
-          </button>
+          <div class="flex flex-col gap-3 w-full">
+            <button @click="handleButtonClick('/browse/walldecor')" class="button">
+              Wall Decor
+            </button>
+            <button @click="handleButtonClick('/browse/lamps')" class="button">
+              Lamp
+            </button>
+            <button @click="handleButtonClick('/browse/furnitures')" class="button">
+              Furniture
+            </button>
+          </div>
         </div>
       </div>
     </div>
@@ -56,9 +61,16 @@ const handleButtonClick = (route) => {
   background-color: black;
   color: white;
   font-weight: 500;
-  padding: 10px;
-  margin: 10px;
-  border-radius: 5px;
+  padding: 0.75rem 1rem;
+  border-radius: 0.3125rem;
   text-align: center;
+  font-size: 1rem;
+  line-height: 1.5;
+  width: 100%;
+  max-width: 95%;
+  min-width: 75%;
+  margin-inline: auto;
 }
+
+
 </style>
