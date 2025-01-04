@@ -6,7 +6,7 @@
           v-for="(thumb, index) in thumbnails"
           :key="index"
           :src="thumb"
-          @click="setMainImage(thumb)"
+          @click="productStore2.setMainImage(thumb)"
           :class="{ active: thumb === mainImage }"
         />
       </div>
@@ -14,29 +14,33 @@
         <img :src="mainImage" alt="Product Image" />
 
         <div class="reviews-section">
-      <h3>Other Reviews from this Shop</h3>
-      <div class="reviews-summary">
-        <span>⭐⭐⭐⭐⭐ (2,993)</span>
-      </div>
-      <div class="review-card" v-for="(review, index) in reviews" :key="index">
-        <div class="review-header">
-          <span class="review-rating">⭐⭐⭐⭐⭐</span>
+          <h3>Other Reviews from this Shop</h3>
+          <div class="reviews-summary">
+            <span>⭐⭐⭐⭐⭐ (2,993)</span>
+          </div>
+          <div
+            class="review-card"
+            v-for="(review, index) in reviews"
+            :key="index"
+          >
+            <div class="review-header">
+              <span class="review-rating">⭐⭐⭐⭐⭐</span>
+            </div>
+            <p class="review-text">{{ review.text }}</p>
+            <div class="review-purchase">
+              <span class="purchase-info">Purchase: {{ review.product }}</span>
+            </div>
+            <div class="review-details">
+              <span class="review-user">{{ review.user }}</span>
+              <span class="review-date">{{ review.date }}</span>
+            </div>
+            <div class="review-ratings">
+              <span>Item Quality ⭐ {{ review.itemQuality }}</span>
+              <span>Shipping ⭐{{ review.shipping }}</span>
+              <span>Customer Service ⭐{{ review.customerService }}</span>
+            </div>
+          </div>
         </div>
-        <p class="review-text">{{ review.text }}</p>
-        <div class="review-purchase">
-          <span class="purchase-info">Purchase: {{ review.product }}</span>
-        </div>
-        <div class="review-details">
-          <span class="review-user">{{ review.user }}</span>
-          <span class="review-date">{{ review.date }}</span>
-        </div>
-        <div class="review-ratings">
-          <span>Item Quality ⭐ {{ review.itemQuality }}</span>
-          <span>Shipping ⭐{{ review.shipping }}</span>
-          <span>Customer Service ⭐{{ review.customerService }}</span>
-        </div>
-      </div>
-      </div>
       </div>
     </div>
 
@@ -50,170 +54,97 @@
         <label
           v-for="size in sizes"
           :key="size"
+          @click="productStore2.selectSize(size)"
           :class="{ 'selected-size': selectedSize === size }"
         >
           <input type="radio" :value="size" v-model="selectedSize" />
           {{ size }}
         </label>
-
       </div>
 
       <h3 class="section-title">Quantity</h3>
       <div class="quantity-selector">
-        <button @click="decreaseQuantity">-</button>
+        <button @click="productStore2.decreaseQuantity">-</button>
         <span>{{ quantity }}</span>
-        <button @click="increaseQuantity">+</button>
+        <button @click="productStore2.increaseQuantity">+</button>
       </div>
 
-      <button class="add-to-bag" @click="addToBag">Add to bag</button>
+      <button class="add-to-bag" @click="productStore2.addToBag">
+        Add to bag
+      </button>
 
       <div class="features">
-    <!-- Features in a grid layout -->
-    <div class="feature">
-      <i class="icon-delivery"></i>
-      <div class="feature-text">
-        <span class="feature-title">Fast Delivery</span>
-        <small class="feature-subtext">From 1 - 2 days</small>
-      </div>
-    </div>
-    <div class="feature">
-      <i class="icon-hotline"></i>
-      <div class="feature-text">
-        <span class="feature-title">Support hotline</span>
-        <small class="feature-subtext">(+855) 016 126 629</small>
-      </div>
-    </div>
-    <div class="feature">
-      <i class="icon-payment"></i>
-      <div class="feature-text">
-        <span class="feature-title">Easy Payment</span>
-        <small class="feature-subtext">Many forms</small>
-      </div>
-    </div>
-      </div>
-      <br>
-      <div class="more-products">
-    <h3>More Products</h3>
-    <div class="product-list">
-      <div
-        class="product-item"
-        v-for="(product, index) in moreProducts"
-        :key="index"
-      >
-        <img :src="product.image" :alt="product.title" />
-        <div class="product-info">
-          <p class="product-title">{{ product.title }}</p>
-          <p class="product-price">{{ product.price }}</p>
+        <!-- Features in a grid layout -->
+        <div class="feature">
+          <i class="icon-delivery"></i>
+          <div class="feature-text">
+            <span class="feature-title">Fast Delivery</span>
+            <small class="feature-subtext">From 1 - 2 days</small>
+          </div>
+        </div>
+        <div class="feature">
+          <i class="icon-hotline"></i>
+          <div class="feature-text">
+            <span class="feature-title">Support hotline</span>
+            <small class="feature-subtext">(+855) 016 126 629</small>
+          </div>
+        </div>
+        <div class="feature">
+          <i class="icon-payment"></i>
+          <div class="feature-text">
+            <span class="feature-title">Easy Payment</span>
+            <small class="feature-subtext">Many forms</small>
+          </div>
         </div>
       </div>
-    </div>
-    </div>
+      <br />
+      <div class="more-products">
+        <h3>More Products</h3>
+        <div class="product-list">
+          <div
+            class="product-item"
+            v-for="(product, index) in moreProducts"
+            :key="index"
+          >
+            <img :src="product.image" :alt="product.title" />
+            <div class="product-info">
+              <p class="product-title">{{ product.title }}</p>
+              <p class="product-price">{{ product.price }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
+import { useProductStore2 } from '@/store/productstore'
+import { mapState } from 'pinia'
+
 export default {
-  data() {
+  setup() {
+    const productStore2 = useProductStore2()
+
     return {
-      product: {
-        price: "$4.99",
-        description: "Printable Fall Landscape Set of 3 Split Prints, Autumn "
-      },
-      mainImage: "src/assets/images/ProductImage/photo_2024-12-05_16-29-56.jpg",
-      thumbnails: [
-        "src/assets/images/ProductImage/photo_2024-12-05_16-29-56.jpg",
-        "src/assets/images/ProductImage/il_794xN.5228816822_53pe.jpg",
-        "src/assets/images/ProductImage/il_794xN.5228816852_lomu.jpg",
-        "src/assets/images/ProductImage/il_794xN.5228816950_1bu0.jpg",
-        "src/assets/images/ProductImage/il_794xN.5228817002_1s73.jpg",
-      ],
-
-
-      reviews: [
-        {
-          text: "Picture is really beautiful.",
-          product:
-            "Printable Fall Landscape Set of 3 Split Prints, Autumn Forest Set of 3 Photography",
-          user: "Rimuru Tempest",
-          date: "Dec 25, 2025",
-          itemQuality: 5,
-          shipping: 5,
-          customerService: 5,
-        },
-        {
-          text: "Picture is really beautiful.",
-          product:
-            "Printable Fall Landscape Set of 3 Split Prints, Autumn Forest Set of 3 Photography",
-          user: "Banana Cat",
-          date: "Dec 25, 2025",
-          itemQuality: 5,
-          shipping: 5,
-          customerService: 5,
-        },
-        {
-          text: "Waku Waku!!",
-          product:
-            "Printable Fall Landscape Set of 3 Split Prints, Autumn Forest Set of 3 Photography",
-          user: "Anya Forger",
-          date: "Dec 25, 2025",
-          itemQuality: 5,
-          shipping: 5,
-          customerService: 5,
-        },
-
-      ],
-
-      moreProducts: [
-        {
-          title: "Autumn Landscape Set of 3 Prints",
-          price: "US $3.99",
-          image: "src/assets/images/ProductImage/il_794xN.4159464681_l6fz.jpg",
-        },
-        {
-          title: "Fall Forest Landscape",
-          price: "US $3.99",
-          image: "src/assets/images/ProductImage/photo_2024-12-06_01-42-11.jpg",
-        },
-        {
-          title: "Fall Watercolor Forest Landscape",
-          price: "US $3.99",
-          image: "src/assets/images/ProductImage/il_794xN.5300493903_ivjn.jpg",
-        },
-        {
-          title: "Set of 3 Halloween Prints",
-          price: "US $3.99",
-          image: "src/assets/images/ProductImage/photo_2024-12-06_01-40-23.jpg",
-        },
-      ],
-
-      sizes: ["S", "M", "L", "XL", "XXL"],
-      selectedSize: "M",
-      quantity: 1,
-    };
-
-  },
-  methods: {
-    setMainImage(image) {
-      this.mainImage = image;
-    },
-    increaseQuantity() {
-      this.quantity++;
-    },
-    decreaseQuantity() {
-      if (this.quantity > 1) this.quantity--;
-    },
-    addToBag() {
-      alert(
-        `Added ${this.quantity} item(s) of size ${this.selectedSize} to the bag!`
-      );
-
-    },
-
+      productStore2,
+    }
   },
 
-
-};
+  computed: {
+    ...mapState(useProductStore2, [
+      'thumbnails',
+      'imgUrl',
+      'moreProducts',
+      'product',
+      'reviews',
+      'sizes',
+      'selectedSize',
+      'quantity',
+      'mainImage',
+    ]),
+  },
+}
 </script>
 
 <style scoped>
@@ -255,10 +186,9 @@ export default {
 
 .product-price {
   font-size: 0.85rem;
-  color: #7ADA5D;
+  color: #7ada5d;
   margin-top: 0.5rem;
 }
-
 
 .reviews-section {
   margin-top: 2rem;
@@ -360,7 +290,6 @@ export default {
   cursor: pointer;
 }
 
-
 .product-container {
   display: flex;
   gap: 2rem;
@@ -376,6 +305,7 @@ export default {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
+  width: 60px;
 }
 .thumbnail-list img {
   width: 60px;
@@ -427,7 +357,9 @@ export default {
   border-radius: 6px;
   cursor: pointer;
   font-size: 0.85rem;
-  transition: border-color 0.3s ease, background-color 0.3s ease;
+  transition:
+    border-color 0.3s ease,
+    background-color 0.3s ease;
 }
 
 .size-selector label.selected-size {
@@ -435,7 +367,7 @@ export default {
   background-color: #f0f0f0;
 }
 
-.size-selector input[type="radio"] {
+.size-selector input[type='radio'] {
   display: none;
 }
 
