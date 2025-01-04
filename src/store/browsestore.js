@@ -158,6 +158,7 @@ export const useBrowseStore = defineStore('browseStore', {
         image: new URL('@/assets/images/ProductBrowse/Lamps/image1.png', import.meta.url).href,
         shop: "Besdong Khmer",
         price: "KHR 120,000",
+        description: "lamp1",
       },
       {
         id: 2,
@@ -166,6 +167,7 @@ export const useBrowseStore = defineStore('browseStore', {
         image: new URL('@/assets/images/ProductBrowse/Lamps/image1.png', import.meta.url).href,
         shop: "Besdong Khmer",
         price: "KHR 120,000",
+        description: "lamp1",
       },
       {
         id: 3,
@@ -174,6 +176,7 @@ export const useBrowseStore = defineStore('browseStore', {
         image: new URL('@/assets/images/ProductBrowse/Lamps/image1.png', import.meta.url).href,
         shop: "Besdong Khmer",
         price: "KHR 120,000",
+        description: "lamp1",
       },
       {
         id: 4,
@@ -182,6 +185,7 @@ export const useBrowseStore = defineStore('browseStore', {
         image: new URL('@/assets/images/ProductBrowse/Lamps/image1.png', import.meta.url).href,
         shop: "Besdong Khmer",
         price: "KHR 120,000",
+        description: "lamp1",
       },
     ],
     furnitures: [
@@ -192,6 +196,7 @@ export const useBrowseStore = defineStore('browseStore', {
         image: new URL('@/assets/images/ProductBrowse/Furnitures/image1.png', import.meta.url).href,
         shop: "Besdong Khmer",
         price: "KHR 100,000",
+        description: "furniture1",
       },
       {
         id: 2,
@@ -200,6 +205,7 @@ export const useBrowseStore = defineStore('browseStore', {
         image: new URL('@/assets/images/ProductBrowse/Furnitures/image1.png', import.meta.url).href,
         shop: "Besdong Khmer",
         price: "KHR 120,000",
+        description: "furniture1",
       },
       {
         id: 3,
@@ -208,6 +214,7 @@ export const useBrowseStore = defineStore('browseStore', {
         image: new URL('@/assets/images/ProductBrowse/Furnitures/image1.png', import.meta.url).href,
         shop: "Besdong Khmer",
         price: "KHR 120,000",
+        description: "furniture1",
       },
       {
         id: 4,
@@ -216,6 +223,7 @@ export const useBrowseStore = defineStore('browseStore', {
         image: new URL('@/assets/images/ProductBrowse/Furnitures/image1.png', import.meta.url).href,
         shop: "Besdong Khmer",
         price: "KHR 120,000",
+        description: "furniture1",
       },
       {
         id: 5,
@@ -224,6 +232,7 @@ export const useBrowseStore = defineStore('browseStore', {
         image: new URL('@/assets/images/ProductBrowse/Furnitures/image2.png', import.meta.url).href,
         shop: "Besdong Khmer",
         price: "KHR 130,000",
+        description: "furniture1",
       },
       {
         id: 6,
@@ -232,6 +241,7 @@ export const useBrowseStore = defineStore('browseStore', {
         image: new URL('@/assets/images/ProductBrowse/Furnitures/image3.png', import.meta.url).href,
         shop: "Besdong Khmer",
         price: "KHR 140,000",
+        description: "furniture1",
       },
       {
         id: 7,
@@ -240,6 +250,7 @@ export const useBrowseStore = defineStore('browseStore', {
         image: new URL('@/assets/images/ProductBrowse/Furnitures/image4.png', import.meta.url).href,
         shop: "Besdong Khmer",
         price: "KHR 150,000",
+        description: "lamp1",
       },
       {
         id: 8,
@@ -248,6 +259,7 @@ export const useBrowseStore = defineStore('browseStore', {
         image: new URL('@/assets/images/ProductBrowse/Furnitures/image5.png', import.meta.url).href,
         shop: "Besdong Khmer",
         price: "KHR 160,000",
+        description: "furniture1",
       },
       {
         id: 9,
@@ -256,6 +268,7 @@ export const useBrowseStore = defineStore('browseStore', {
         image: new URL('@/assets/images/ProductBrowse/Furnitures/image6.png', import.meta.url).href,
         shop: "Besdong Khmer",
         price: "KHR 170,000",
+        description: "furniture1",
       },
       {
         id: 10,
@@ -264,6 +277,7 @@ export const useBrowseStore = defineStore('browseStore', {
         image: new URL('@/assets/images/ProductBrowse/Furnitures/image7.png', import.meta.url).href,
         shop: "Besdong Khmer",
         price: "KHR 180,000",
+        description: "furniture1",
       },
       {
         id: 11,
@@ -272,6 +286,7 @@ export const useBrowseStore = defineStore('browseStore', {
         image: new URL('@/assets/images/ProductBrowse/Furnitures/image8.png', import.meta.url).href,
         shop: "Besdong Khmer",
         price: "KHR 190,000",
+        description: "furniture1",
       },
       {
         id: 12,
@@ -280,6 +295,7 @@ export const useBrowseStore = defineStore('browseStore', {
         image: new URL('@/assets/images/ProductBrowse/Furnitures/image9.png', import.meta.url).href,
         shop: "Besdong Khmer",
         price: "KHR 200,000",
+        description: "furniture1",
       },
       {
         id: 13,
@@ -288,6 +304,7 @@ export const useBrowseStore = defineStore('browseStore', {
         image: new URL('@/assets/images/ProductBrowse/Furnitures/image10.png', import.meta.url).href,
         shop: "Besdong Khmer",
         price: "KHR 210,000",
+        description: "furniture1",
       },
       {
         id: 14,
@@ -296,6 +313,7 @@ export const useBrowseStore = defineStore('browseStore', {
         image: new URL('@/assets/images/ProductBrowse/Furnitures/image11.png', import.meta.url).href,
         shop: "Besdong Khmer",
         price: "KHR 220,000",
+        description: "furniture1",
       },
       {
         id: 15,
@@ -304,6 +322,7 @@ export const useBrowseStore = defineStore('browseStore', {
         image: new URL('@/assets/images/ProductBrowse/Furnitures/image12.png', import.meta.url).href,
         shop: "Besdong Khmer",
         price: "KHR 230,000",
+        description: "furniture1",
       },
       {
         id: 16,
@@ -312,6 +331,7 @@ export const useBrowseStore = defineStore('browseStore', {
         image: new URL('@/assets/images/ProductBrowse/Furnitures/image13.png', import.meta.url).href,
         shop: "Besdong Khmer",
         price: "KHR 240,000",
+        description: "furniture1",
       },
 
     ],
