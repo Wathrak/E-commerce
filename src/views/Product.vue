@@ -3,15 +3,16 @@
     <div class="image-gallery">
       <div class="thumbnail-list">
         <img
-          v-for="(thumb, index) in thumbnails"
+          v-for="(thumb, index) in currentProduct.thumbnails"
           :key="index"
           :src="thumb"
-          @click="productStore2.setMainImage(thumb)"
+          @click="setMainImage(thumb)"
           :class="{ active: thumb === mainImage }"
+          alt="Thumbnail"
         />
       </div>
       <div class="main-image">
-        <img :src="mainImage" alt="Product Image" />
+        <img :src="mainImage" alt="Main Product Image" />
 
         <div class="reviews-section">
           <h3>Other Reviews from this Shop</h3>
@@ -45,9 +46,8 @@
     </div>
 
     <div class="product-details">
-      <p class="price">{{ product.price }}</p>
-      <p class="description">{{ product.description }}</p>
-      <span>Forest set of 3 Photography, Fall Wall Decor.</span>
+      <p class="price">{{ currentProduct.price }}</p>
+      <p class="description">{{ currentProduct.description }}</p>
 
       <h3 class="section-title">Size</h3>
       <div class="size-selector">
@@ -64,14 +64,12 @@
 
       <h3 class="section-title">Quantity</h3>
       <div class="quantity-selector">
-        <button @click="productStore2.decreaseQuantity">-</button>
+        <button @click="decreaseQuantity">-</button>
         <span>{{ quantity }}</span>
-        <button @click="productStore2.increaseQuantity">+</button>
+        <button @click="increaseQuantity">+</button>
       </div>
 
-      <button class="add-to-bag" @click="productStore2.addToBag">
-        Add to bag
-      </button>
+      <button class="add-to-bag" @click="addToBag">Add to bag</button>
 
       <div class="features">
         <!-- Features in a grid layout -->
@@ -120,29 +118,51 @@
 
 <script>
 import { useProductStore2 } from '@/store/productstore'
-import { mapState } from 'pinia'
+import { computed, onMounted, ref, watch } from 'vue'
+import { useRoute } from 'vue-router'
 
 export default {
   setup() {
     const productStore2 = useProductStore2()
+    const route = useRoute()
+
+    const productId = Number(route.params.id)
+    const currentProduct = productStore2.product.find(
+      product => product.id === productId,
+    )
+
+    const mainImage = ref(currentProduct?.thumbnails[0])
+    const setMainImage = thumb => {
+      mainImage.value = thumb
+    }
+
+    const increaseQuantity = () => {
+      productStore2.increaseQuantity()
+    }
+    const decreaseQuantity = () => {
+      productStore2.decreaseQuantity()
+    }
+    const addToBag = () => {
+      productStore2.addToBag()
+    }
+    const quantity = computed(() => productStore2.quantity)
+    const sizes = computed(() => productStore2.sizes)
+    const selectedSize = computed(() => productStore2.selectedSize)
 
     return {
       productStore2,
+      currentProduct,
+      mainImage,
+      setMainImage,
+      sizes,
+      quantity,
+      selectedSize,
+      increaseQuantity,
+      decreaseQuantity,
+      addToBag,
+      reviews: productStore2.reviews,
+      moreProducts: productStore2.moreProducts,
     }
-  },
-
-  computed: {
-    ...mapState(useProductStore2, [
-      'thumbnails',
-      'imgUrl',
-      'moreProducts',
-      'product',
-      'reviews',
-      'sizes',
-      'selectedSize',
-      'quantity',
-      'mainImage',
-    ]),
   },
 }
 </script>

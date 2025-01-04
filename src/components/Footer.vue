@@ -36,7 +36,7 @@
     <div class="flex w-10 h-5 gap-1 t4">
       <Icon icon="logos:visaelectron" class="bg-white" />
       <Icon icon="logos:visaelectron" />
-      <img src="../assets/images/khqr.png" alt="icon" />
+      <img src="../assets/images/khqr.png" alt="icon" class="h-[75%]" />
     </div>
   </footer>
 

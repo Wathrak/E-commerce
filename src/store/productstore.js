@@ -1,25 +1,92 @@
 import { defineStore } from 'pinia'
-import img1 from '@/assets/images/ProductImage/photo_2024-12-05_16-29-56.jpg'
-import thumb1 from '@/assets/images/ProductImage/photo_2024-12-05_16-29-56.jpg'
-import thumb2 from '@/assets/images/ProductImage/il_794xN.5228816822_53pe.jpg'
-import thumb3 from '@/assets/images/ProductImage/il_794xN.5228816852_lomu.jpg'
-import thumb4 from '@/assets/images/ProductImage/il_794xN.5228816950_1bu0.jpg'
-import thumb5 from '@/assets/images/ProductImage/il_794xN.5228817002_1s73.jpg'
-import product1 from '@/assets/images/ProductImage/il_794xN.4159464681_l6fz.jpg'
-import product2 from '@/assets/images/ProductImage/photo_2024-12-06_01-42-11.jpg'
-import product3 from '@/assets/images/ProductImage/il_794xN.5300493903_ivjn.jpg'
-import product4 from '@/assets/images/ProductImage/photo_2024-12-06_01-40-23.jpg'
+import img1 from '@/assets/images/ProductImage/Product1/photo_2024-12-05_16-29-56.jpg'
+import product1 from '@/assets/images/ProductImage/Product1/il_794xN.4159464681_l6fz.jpg'
+import product2 from '@/assets/images/ProductImage/Product1/photo_2024-12-06_01-42-11.jpg'
+import product3 from '@/assets/images/ProductImage/Product1/il_794xN.5300493903_ivjn.jpg'
+import product4 from '@/assets/images/ProductImage/Product1/photo_2024-12-06_01-40-23.jpg'
 
 export const useProductStore2 = defineStore('productStore2', {
   state: () => ({
-    imgUrl: img1,
-    thumbnails: [thumb1, thumb2, thumb3, thumb4, thumb5],
-    product: {
-      price: '$4.99',
-      description: 'Printable Fall Landscape Set of 3 Split Prints, Autumn ',
-    },
+    product: [
+      {
+        id: 1,
+        price: '$99.99',
+        description:
+          'Horses in Paradise Hand Painted Wall Painting (With Outer Floater Frame)',
+        thumbnails: [
+          new URL(
+            '@/assets/images/ProductImage/Product2/horse1.png',
+            import.meta.url,
+          ).href,
+          new URL(
+            '@/assets/images/ProductImage/Product2/horse2.png',
+            import.meta.url,
+          ).href,
+          new URL(
+            '@/assets/images/ProductImage/Product2/horse3.png',
+            import.meta.url,
+          ).href,
+        ],
+      },
+      {
+        id: 2,
+        price: '$45.99',
+        description: 'Printable Fall Landscape Set of 3 Split Prints, Autumn ',
+        thumbnails: [
+          new URL(
+            '@/assets/images/ProductImage/Product1/photo_2024-12-05_16-29-56.jpg',
+            import.meta.url,
+          ).href,
+          new URL(
+            '@/assets/images/ProductImage/Product1/il_794xN.5228816822_53pe.jpg',
+            import.meta.url,
+          ).href,
+          new URL(
+            '@/assets/images/ProductImage/Product1/il_794xN.5228816852_lomu.jpg',
+            import.meta.url,
+          ).href,
+          new URL(
+            '@/assets/images/ProductImage/Product1/il_794xN.5228816950_1bu0.jpg',
+            import.meta.url,
+          ).href,
+          new URL(
+            '@/assets/images/ProductImage/Product1/il_794xN.5228817002_1s73.jpg',
+            import.meta.url,
+          ).href,
+        ],
+      },
 
-    mainImage: 'src/assets/images/ProductImage/photo_2024-12-05_16-29-56.jpg',
+      ...Array.from({ length: 14 }, (_, i) => ({
+        id: i + 3,
+        price: `$${(Math.random() * (99.99 - 20.0) + 20.0).toFixed(2)}`, // random prices
+        description: `Product description for product ${i + 3}`,
+        thumbnails: [
+          new URL(
+            '@/assets/images/ProductImage/Product1/photo_2024-12-05_16-29-56.jpg',
+            import.meta.url,
+          ).href,
+          new URL(
+            '@/assets/images/ProductImage/Product1/il_794xN.5228816822_53pe.jpg',
+            import.meta.url,
+          ).href,
+          new URL(
+            '@/assets/images/ProductImage/Product1/il_794xN.5228816852_lomu.jpg',
+            import.meta.url,
+          ).href,
+          new URL(
+            '@/assets/images/ProductImage/Product1/il_794xN.5228816950_1bu0.jpg',
+            import.meta.url,
+          ).href,
+          new URL(
+            '@/assets/images/ProductImage/Product1/il_794xN.5228817002_1s73.jpg',
+            import.meta.url,
+          ).href,
+        ],
+      })),
+    ],
+
+    imgUrl: img1,
+    mainImage: null,
     sizes: ['S', 'M', 'L', 'XL', 'XXL'],
     selectedSize: 'M',
     quantity: 1,
@@ -96,6 +163,14 @@ export const useProductStore2 = defineStore('productStore2', {
       alert(
         `Added ${this.quantity} item(s) of size ${this.selectedSize} to the bag!`,
       )
+    },
+    initializeMainImage(productId) {
+      const product = this.product[productId]
+      if (product?.thumbnails?.length) {
+        this.mainImage = product.thumbnails[0]
+      } else {
+        this.mainImage = null
+      }
     },
   },
 })

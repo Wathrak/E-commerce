@@ -10,8 +10,10 @@
         v-for="star in 5"
         :key="star"
         :class="{
-          'filled': star <= Math.floor(product.rating),
-          'half': star === Math.ceil(product.rating) && !Number.isInteger(product.rating),
+          filled: star <= Math.floor(product.rating),
+          half:
+            star === Math.ceil(product.rating) &&
+            !Number.isInteger(product.rating),
         }"
         class="star"
       >
@@ -20,8 +22,6 @@
     </div>
     <p>{{ product.shop }}</p>
     <p>{{ product.price }}</p>
-    
-
   </div>
 </template>
 
@@ -32,10 +32,10 @@ export default {
   },
   methods: {
     navigateToProduct() {
-      this.$router.push(`/product/${this.product.id}`);
+      this.$router.push(`/product/${this.product.id}`)
     },
   },
-};
+}
 </script>
 
 <style scoped>
@@ -78,7 +78,7 @@ export default {
   color: #ddd;
 }
 .star.half::before {
-  content: "★";
+  content: '★';
   color: #212529;
   position: absolute;
   left: 0;
