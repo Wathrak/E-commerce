@@ -14,7 +14,7 @@
   </template>
   <script>
   export default {
-    name: 'WishlistPage',
+    name: 'Wishlist',
     methods: {
       navigateToShop() {
         console.log('Navigating to shop...');
@@ -37,7 +37,7 @@
     background-color: #f9f9f9;
     text-align: center;
   }
-  
+
   /* Empty Wishlist Section */
   .wishlist-empty {
     max-width: 500px;
@@ -46,19 +46,19 @@
     border-radius: 10px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   }
-  
+
   h1 {
     font-size: 24px;
     color: #333;
     margin-bottom: 10px;
   }
-  
+
   p {
     font-size: 16px;
     color: #555;
     margin-bottom: 20px;
   }
-  
+
   /* Start Shopping Button */
   .start-shopping-button {
     background-color: black;
@@ -71,18 +71,18 @@
     margin-bottom: 20px;
     transition: background-color 0.3s ease;
   }
-  
+
   .start-shopping-button:hover {
     background-color: black;
   }
-  
+
   /* Category Buttons */
   .category-buttons {
     display: flex;
     justify-content: center;
     gap: 10px;
   }
-  
+
   .category-button {
     background-color: #f5f5f5;
     color: #333;
@@ -93,7 +93,7 @@
     cursor: pointer;
     transition: background-color 0.3s ease, color 0.3s ease;
   }
-  
+
   .category-button:hover {
     background-color: black;
     color: white;
