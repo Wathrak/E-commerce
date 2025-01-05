@@ -1,6 +1,6 @@
 <template>
   <div class="relative">
-    <div class="text-center z-0 absolute">
+    <div class="text-center z-0">
       <LandingImage />
       <BannerItem />
 
@@ -97,22 +97,14 @@ import Banner2 from '@/components/Banner2.vue'
 import BannerItem from '@/components/BannerItem.vue'
 import Footer from '@/components/Footer.vue'
 import LandingImage from '@/components/LandingImage.vue'
-import Notification from '@/components/Notification.vue'
 import ProductCard from '@/components/ProductCard.vue'
 import ProductCard2 from '@/components/ProductCard2.vue'
 import { useProductStore } from '@/store'
-import { mapState } from 'pinia'
+import { computed } from 'vue' // Import computed for reactivity
 
 export default {
-  setup() {
-    const productStore = useProductStore()
-
-    return {
-      productStore,
-    }
-  },
-
   name: 'HomePage',
+
   components: {
     BannerItem,
     ProductCard,
@@ -122,15 +114,19 @@ export default {
     Footer,
   },
 
-  computed: {
-    ...mapState(useProductStore, { Products: 'products' }),
-    ...mapState(useProductStore, { Items: 'items' }),
-  },
+  setup() {
+    const productStore = useProductStore()
 
-  data() {
-    return {}
+    // Use computed properties to reactively watch the store state
+    const Products = computed(() => productStore.products)
+    const filteredItems = computed(() => productStore.filteredItems)
+
+    return {
+      productStore,
+      Products,
+      filteredItems,
+    }
   },
-  methods: {},
 }
 </script>
 

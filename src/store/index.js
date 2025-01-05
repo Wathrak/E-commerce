@@ -5,7 +5,6 @@ export const useProductStore = defineStore('product', {
     login() {
       this.isLoggedIn = true
       localStorage.setItem('isLoggedIn', 'true')
-      window.location.reload()
     },
     logout() {
       this.isLoggedIn = false
@@ -13,30 +12,25 @@ export const useProductStore = defineStore('product', {
     },
     clickNotification() {
       this.isNotificationActive = !this.isNotificationActive
-      // console.log(this.isNotificationActive)
     },
     clickCart() {
       this.isCartActive = !this.isCartActive
-      // console.log(this.isNotificationActive)
     },
     darkmodeToggle() {
       this.darkmode = !this.darkmode
-      // console.log(this.darkmode)
     },
     clickCategory(category) {
       this.selectedCategory = category
-      // console.log(this.selectedCategory)
-      console.log(this.filteredItems)
     },
   },
+
   getters: {
     filteredItems(state) {
       if (!state.selectedCategory) {
         return state.items.slice(0, 6)
       }
       return state.items.filter(
-        item =>
-          item.category.toLowerCase() === state.selectedCategory.toLowerCase(),
+        (item) => item.category.toLowerCase() === state.selectedCategory.toLowerCase()
       )
     },
   },

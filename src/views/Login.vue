@@ -1,11 +1,12 @@
 <template>
   <div
+    :key="componentKey"
     :class="[
       'h-dvh self-center bg-[#5C566E] p-16',
       productStore.darkmode ? 'bg-[#5C566E]' : 'bg-[#ffffff]',
     ]"
   >
-    <!-- darkMode Btn -->
+    <!-- Dark Mode Toggle Button -->
     <div @click="productStore.darkmodeToggle" class="absolute right-1 top-0">
       <button>
         <Icon
@@ -17,17 +18,19 @@
       </button>
     </div>
 
+    <!-- Login Container -->
     <div
       :class="[
-        'register-container  rounded-lg',
+        'register-container rounded-lg',
         productStore.darkmode ? 'bg-[#2C2638]' : 'bg-[#ffffff]',
       ]"
     >
-      <div
-        class="flex-1 m-10 rounded-xl overflow-hidden h-fit-content max-h-[450px]"
-      >
+      <!-- Image Section -->
+      <div class="flex-1 m-10 rounded-xl overflow-hidden h-fit-content max-h-[450px]">
         <img src="@/assets/images/Ferraricar.png" alt="pic" />
       </div>
+
+      <!-- Form Section -->
       <div class="flex-1">
         <div
           :class="[
@@ -61,6 +64,7 @@
               >
             </div>
 
+            <!-- Phone Number Input -->
             <div class="form-group">
               <input
                 v-model="phoneNumber"
@@ -71,6 +75,7 @@
               />
             </div>
 
+            <!-- Password Input -->
             <div class="form-group">
               <input
                 v-model="password"
@@ -81,9 +86,10 @@
               />
             </div>
 
+            <!-- Submit Button -->
             <button type="submit" class="submit-button">Login</button>
 
-            <!-- Social Login -->
+            <!-- Social Login Section -->
             <div class="or-divider">or login with</div>
             <div
               :class="[
@@ -91,6 +97,7 @@
                 productStore.darkmode ? 'text-white' : 'text-black',
               ]"
             >
+              <!-- Google Login -->
               <button
                 class="social-button google"
                 @click.prevent="loginWithGoogle"
@@ -98,6 +105,8 @@
                 <Icon icon="flat-color-icons:google" width="24" height="24" />
                 <div class="ml-1">Google</div>
               </button>
+
+              <!-- Facebook Login -->
               <button
                 class="social-button facebook"
                 @click.prevent="loginWithFacebook"
@@ -114,14 +123,21 @@
 </template>
 <script>
 import { useProductStore } from '@/store'
+import { ref } from 'vue'
+import { Icon } from '@iconify/vue'
 
 export default {
   name: 'LoginPage',
+  components: {
+    Icon,
+  },
   setup() {
     const productStore = useProductStore()
+    const componentKey = ref(0) // Reactive key for forcing re-render
 
     return {
       productStore,
+      componentKey,
     }
   },
 
@@ -129,16 +145,17 @@ export default {
     return {
       phoneNumber: '',
       password: '',
-
       savedPhoneNumber: localStorage.getItem('phoneNumber'),
       savedPassword: localStorage.getItem('password'),
     }
   },
 
   methods: {
+    // Handle form submission
     handleSubmit() {
       if (!this.phoneNumber || !this.password) {
         alert('Please fill in all required fields.')
+        return
       }
 
       if (
@@ -146,27 +163,24 @@ export default {
         this.password === this.savedPassword
       ) {
         this.productStore.login()
-        this.$router.push({ name: 'home' })
-        // console.log('Login successful.')
+        this.componentKey++ // Force re-render by changing the key
+        this.$router.push({ name: 'home' }) // Navigate to home page
       } else {
         alert('Invalid phone number or password')
       }
 
       console.log('Phone Number:', this.phoneNumber)
-      console.log('Password', this.password)
-
+      console.log('Password:', this.password)
       console.log('Saved Phone Number:', this.savedPhoneNumber)
       console.log('Saved Password:', this.savedPassword)
     },
 
+    // Social login methods (stubs)
     loginWithGoogle() {
       console.log('Login with Google clicked.')
     },
     loginWithFacebook() {
       console.log('Login with Facebook clicked.')
-    },
-    navigateToLogin() {
-      console.log('Navigate to Login page.')
     },
   },
 }
@@ -177,20 +191,10 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: calc(100vh - 65px - 8rem); /* Adjusted for Navbar height 65px*/
+  height: calc(100vh - 65px - 8rem); /* Adjusted for Navbar height 65px */
 }
 
 /* Form Styles */
-/* .register-form {
-  width: 100%;
-  max-width: 360px;
-  padding: 16px;
-  border-radius: 8px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  text-align: center;
-  position: relative;
-} */
-
 .form input {
   background-color: #d4d4d8;
   border-color: #3b364b;
@@ -260,10 +264,10 @@ select {
 
 button {
   width: 100%;
-  padding: 8px; /* Reduced from 12px */
+  padding: 8px;
   border: none;
   border-radius: 4px;
-  font-size: 14px; /* Retained for readability */
+  font-size: 14px;
   cursor: pointer;
 }
 
@@ -278,15 +282,15 @@ button {
   align-items: center;
   justify-content: center;
   margin-top: 6px;
-  padding: 8px; /* Reduced from 10px */
+  padding: 8px;
   border: 1px solid #aaa;
   border-radius: 4px;
-  font-size: 13px; /* Slightly smaller text */
+  font-size: 13px;
 }
 
 .google,
 .facebook {
-  padding: 8px; /* Reduced padding for smaller size */
+  padding: 8px;
 }
 
 .or-divider {

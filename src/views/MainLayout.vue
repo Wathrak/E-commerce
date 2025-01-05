@@ -1,33 +1,28 @@
 <template>
-  <Navbar class="fixed top-0 left-0 w-full z-10 bg-white" />
+  <div class="min-h-screen flex flex-col">
+    <!-- Navbar -->
+    <Navbar class="fixed top-0 left-0 w-full z-10 bg-white" />
 
-  <div class="relative">
-    <!-- Notification Tab -->
+    <!-- Notification and Cart -->
     <Notification
-      :class="[
-        'z-10 top-0 right-0 fixed',
-        productStore.isNotificationActive ? 'fixed' : 'hidden',
-      ]"
+      v-if="productStore.isNotificationActive"
+      class="fixed top-0 right-0 z-20"
     />
-
-    <!-- Cart Tab -->
     <Cart
-      :class="[
-        'z-10 top-0 right-0 fixed',
-        productStore.isCartActive ? 'fixed' : 'hidden',
-      ]"
+      v-if="productStore.isCartActive"
+      class="fixed top-0 right-0 z-20"
     />
 
     <!-- Main Content -->
     <div
       :class="[
-        'text-center z-0 absolute top-0 w-full mt-[65px]',
+        'flex-1 mt-[65px]',
         productStore.isNotificationActive || productStore.isCartActive
           ? 'opacity-35 pointer-events-none'
           : 'opacity-100',
       ]"
     >
-      <RouterView />
+      <RouterView /> <!-- This is where routed components render -->
     </div>
   </div>
 </template>
@@ -63,7 +58,7 @@ export default {
       productStore,
     }
   },
-}
+};
 </script>
 
 <style>

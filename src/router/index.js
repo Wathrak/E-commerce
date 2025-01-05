@@ -25,48 +25,46 @@ const routes = [
   },
   {
     path: '/',
-    name: 'home',
-    component: MainLayout,
+    component: MainLayout, // MainLayout serves as the parent layout
     meta: { requiresAuth: true },
     children: [
       {
-        path: '/',
-        component: Home,
+        path: '', // Default child for "/"
+        name: 'home',
+        component: Home, // Render the HomePage component
       },
       {
-        path: '/browse',
+        path: 'browse',
         name: 'browse',
         component: Browse,
       },
       {
-        path: '/product/:id',
-        name: 'Product',
+        path: 'product/:id',
+        name: 'product',
         component: Product,
-        props: true, // Enables dynamic props for product details
+        props: true, // Enable dynamic props
       },
       {
-        path: '/checkout',
+        path: 'checkout',
         name: 'checkout',
         component: Checkout,
       },
       {
-        path: '/cart',
+        path: 'cart',
         name: 'cart',
         component: Cart,
       },
       {
-        path: '/wishlist',
+        path: 'wishlist',
         name: 'wishlist',
         component: Wishlist,
       },
-
       {
-        path: '/browse/:category',
+        path: 'browse/:category',
         component: Browse,
       },
     ],
   },
-
   {
     path: '/browse',
     redirect: '/browse/walldecor',
