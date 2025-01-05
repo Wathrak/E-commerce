@@ -3,7 +3,8 @@
     <div
       class="h-[300px] bg-cover bg-center relative"
       style="
-        background-image: url('https://i.pinimg.com/originals/66/8f/08/668f08c281486c01eee91a9de92b9994.jpg');
+        background-image: url('https://mir-s3-cdn-cf.behance.net/project_modules/1400/3a7586140073963.623b10f9b30a9.png');
+        /* background-image: url('https://i.pinimg.com/originals/66/8f/08/668f08c281486c01eee91a9de92b9994.jpg'); */
       "
     >
       <div class="browse-header">
