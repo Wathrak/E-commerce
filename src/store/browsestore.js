@@ -1,4 +1,3 @@
-import Furniture from '@/components/Product_Category/Furniture.vue'
 import { defineStore } from 'pinia'
 
 export const useBrowseStore = defineStore('browseStore', {

@@ -126,12 +126,17 @@ export default {
     const productStore2 = useProductStore2()
     const route = useRoute()
 
-    const productId = Number(route.params.id)
-    const currentProduct = productStore2.product.find(
-      product => product.id === productId,
+    const category = route.params.category // Get category from URL
+    const productId = Number(route.params.id) // Get product ID from URL
+
+    // Filter the products based on the category and id
+    const currentProduct = ref(
+      productStore2.product.find(
+        product => product.id === productId && product.category === category
+      )
     )
 
-    const mainImage = ref(currentProduct?.thumbnails[0])
+    const mainImage = ref(currentProduct.value?.thumbnails[0])
     const setMainImage = thumb => {
       mainImage.value = thumb
     }
