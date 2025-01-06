@@ -39,7 +39,7 @@ const routes = [
         component: Browse,
       },
       {
-        path: 'product/:id',
+        path: 'product/:category/:id',
         name: 'product',
         component: Product,
         props: true, // Enable dynamic props

@@ -32,10 +32,24 @@ export default {
   },
   methods: {
     navigateToProduct() {
-      this.$router.push(`/product/${this.product.id}`)
+      
+      let categoryRoute = '';
+      if (this.product.category === 'Wall Decor') {
+        categoryRoute = 'wall-decor';
+      } else if (this.product.category === 'Lamps') {
+        categoryRoute = 'lamp';
+      } else if (this.product.category === 'Furnitures') {
+        categoryRoute = 'furniture';
+      }
+
+      if (categoryRoute) {
+        this.$router.push(`/product/${categoryRoute}/${this.product.id}`);
+      } else {
+        console.error('Unknown category:', this.product.category);
+      }
     },
   },
-}
+};
 </script>
 
 <style scoped>
