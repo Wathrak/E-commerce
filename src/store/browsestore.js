@@ -35,7 +35,7 @@ export const useBrowseStore = defineStore('browseStore', {
         name: 'Wall Decor 3',
         category: 'Wall Decor',
         image: new URL(
-          '@/assets/images/ProductBrowse/WallDecor/image1.png',
+          '@/assets/images/ProductBrowse/WallDecor/p1.png',
           import.meta.url,
         ).href,
         rating: 4.0,
@@ -48,7 +48,7 @@ export const useBrowseStore = defineStore('browseStore', {
         name: 'Wall Decor 4',
         category: 'Wall Decor',
         image: new URL(
-          '@/assets/images/ProductBrowse/WallDecor/image1.png',
+          '@/assets/images/ProductBrowse/WallDecor/p2.png',
           import.meta.url,
         ).href,
         rating: 4.0,
@@ -61,7 +61,7 @@ export const useBrowseStore = defineStore('browseStore', {
         name: 'Wall Decor 5',
         category: 'Wall Decor',
         image: new URL(
-          '@/assets/images/ProductBrowse/WallDecor/image1.png',
+          '@/assets/images/ProductBrowse/WallDecor/f1.png',
           import.meta.url,
         ).href,
         rating: 4.0,
@@ -74,7 +74,7 @@ export const useBrowseStore = defineStore('browseStore', {
         name: 'Wall Decor 6',
         category: 'Wall Decor',
         image: new URL(
-          '@/assets/images/ProductBrowse/WallDecor/image1.png',
+          '@/assets/images/ProductBrowse/WallDecor/f2.png',
           import.meta.url,
         ).href,
         rating: 4.0,
