@@ -118,7 +118,7 @@
 </template>
 
 <script>
-import { useCartStore } from '@/store/Cartstores';
+import { useCartStore } from '@/store/cartstores';
 import { useProductStore2 } from '@/store/productstore'
 import { computed, ref,} from 'vue'
 import { useRoute } from 'vue-router'

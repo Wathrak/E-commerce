@@ -19,6 +19,17 @@ export default {
     product: Object,
     to: String,
   },
+  data() {
+    return {
+      show: false,
+    }
+  },
+  methods: {
+    addToCart() {
+      this.show = true
+      setTimeout(() => (this.show = false), 1000) // Hide after 1 second
+    },
+  },
 }
 </script>
 
@@ -39,5 +50,12 @@ export default {
 }
 .product-card:hover {
   background-size: 120%;
+}
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.5s;
+}
+.fade-enter, .fade-leave-to /* .fade-leave-active in <2.1.8 */ {
+  opacity: 0;
 }
 </style>
