@@ -109,7 +109,7 @@
 </template>
 
 <script>
-import AddressDialog from '../components/AddressDialog.vue';
+import AddressDialog from '@/components/CheckoutPage/AddressDialog.vue';
 
 export default {
   name: 'CheckoutPage',

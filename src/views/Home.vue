@@ -91,11 +91,15 @@
 </template>
 
 <script>
+<<<<<<< HEAD
+import BannerItem from '@/components/LandingPage/BannerItem.vue'
+=======
 import BannerItem from '@/components/BannerItem.vue'
+>>>>>>> 44a09998b44ed9f7b62dec8dfb287d5aa3e6378d
 import Footer from '@/components/Footer.vue'
-import LandingImage from '@/components/LandingImage.vue'
-import ProductCard from '@/components/ProductCard.vue'
-import ProductCard2 from '@/components/ProductCard2.vue'
+import LandingImage from '@/components/LandingPage/LandingImage.vue'
+import ProductCard from '@/components/LandingPage/ProductCard.vue'
+import ProductCard2 from '@/components/LandingPage/ProductCard2.vue'
 import { useProductStore } from '@/store'
 import { computed } from 'vue' // Import computed for reactivity
 

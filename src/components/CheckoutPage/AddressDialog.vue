@@ -47,7 +47,7 @@
 
 <script>
 
-import AddressPopup from '../components/AddressPopup.vue';
+import AddressPopup from '@/components/CheckoutPage/AddressPopup.vue';
 
 export default {
   name: 'AddressDialog',

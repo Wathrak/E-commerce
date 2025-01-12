@@ -12,7 +12,7 @@
 
 <script>
 import { useBrowseStore } from '@/store/browsestore'
-import ProductBrowse from '@/components/ProductBrowse.vue'
+import ProductBrowse from '@/components/Product_Category/ProductBrowse.vue'
 
 export default {
   components: { ProductBrowse },

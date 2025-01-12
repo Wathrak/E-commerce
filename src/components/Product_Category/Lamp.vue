@@ -11,18 +11,18 @@
 </template>
 
 <script>
-import { useBrowseStore } from "@/store/browsestore";
-import ProductBrowse from "@/components/ProductBrowse.vue";
+import { useBrowseStore } from '@/store/browsestore'
+import ProductBrowse from '@/components/Product_Category/ProductBrowse.vue'
 
 export default {
   components: { ProductBrowse },
   setup() {
-    const browseStore = useBrowseStore();
+    const browseStore = useBrowseStore()
     return {
       lamps: browseStore.lamps,
-    };
+    }
   },
-};
+}
 </script>
 
 <style scoped>
