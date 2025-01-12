@@ -44,11 +44,8 @@ import Lamp from '@/components/Product_Category/Lamp.vue'
 import Furniture from '@/components/Product_Category/Furniture.vue'
 
 export default {
-<<<<<<< HEAD
+
   components: { Footer, ProductBrowse, WallDecor, Lamp, Furniture },
-=======
-  components: { Footer, ProductBrowse, WallDecor, Lamp, Furniture},
->>>>>>> 44a09998b44ed9f7b62dec8dfb287d5aa3e6378d
   data() {
     return {
       categories: ['Wall Decor', 'Lamps', 'Furnitures'],
