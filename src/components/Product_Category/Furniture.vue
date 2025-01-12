@@ -2,51 +2,28 @@
   <div class="Furnitures">
     <div class="product-grid">
       <ProductBrowse
-        v-for="product in paginatedProducts"
+      v-for="product in furnitures"
         :key="product.id"
         :product="product"
       />
     </div>
-    <div class="pagination">
-      <button @click="prevPage" :disabled="currentPage === 1">Previous</button>
-      <button @click="nextPage" :disabled="currentPage === totalPages">Next</button>
-    </div>
+
   </div>
 </template>
 
 <script>
 import { useBrowseStore } from "@/store/browsestore";
 import ProductBrowse from "@/components/ProductBrowse.vue";
-import { computed } from "vue";
+
 export default {
   components: { ProductBrowse },
   setup() {
-    const browseStore = useBrowseStore();
-    const paginatedProducts = computed(() => browseStore.paginatedProducts);
-    const currentPage = computed(() => browseStore.currentPage);
-    const totalPages = computed(() => Math.ceil(browseStore.furnitures.length / browseStore.itemsPerPage));
-
-    const prevPage = () => {
-      if (browseStore.currentPage > 1) {
-        browseStore.setPage(browseStore.currentPage - 1);
-      }
-    };
-
-    const nextPage = () => {
-      if (browseStore.currentPage < totalPages.value) {
-        browseStore.setPage(browseStore.currentPage + 1);
-      }
-    };
-
+    const browseStore = useBrowseStore()
     return {
-      paginatedProducts,
-      currentPage,
-      totalPages,
-      prevPage,
-      nextPage,
-    };
+      furnitures: browseStore.furnitures,
+    }
   },
-};
+}
 </script>
 
 <style scoped>

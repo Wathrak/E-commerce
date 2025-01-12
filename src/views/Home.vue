@@ -15,8 +15,6 @@
         </div>
       </div>
 
-      <Banner2 />
-
       <div class="flex flex-wrap gap-[20px] justify-center">
         <ProductCard2
           v-for="item in productStore.filteredItems"
@@ -93,7 +91,6 @@
 </template>
 
 <script>
-import Banner2 from '@/components/Banner2.vue'
 import BannerItem from '@/components/BannerItem.vue'
 import Footer from '@/components/Footer.vue'
 import LandingImage from '@/components/LandingImage.vue'
@@ -109,7 +106,6 @@ export default {
     BannerItem,
     ProductCard,
     LandingImage,
-    Banner2,
     ProductCard2,
     Footer,
   },

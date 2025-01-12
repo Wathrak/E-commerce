@@ -37,7 +37,6 @@
 </template>
 
 <script>
-import Pagination from '@/components/Pagination.vue'
 import Footer from '@/components/Footer.vue'
 import ProductBrowse from '@/components/ProductBrowse.vue'
 import WallDecor from '@/components/Product_Category/WallDecor.vue'
@@ -45,7 +44,7 @@ import Lamp from '@/components/Product_Category/Lamp.vue'
 import Furniture from '@/components/Product_Category/Furniture.vue'
 
 export default {
-  components: { Footer, ProductBrowse, WallDecor, Lamp, Furniture, Pagination },
+  components: { Footer, ProductBrowse, WallDecor, Lamp, Furniture},
   data() {
     return {
       categories: ['Wall Decor', 'Lamps', 'Furnitures'],

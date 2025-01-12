@@ -4,7 +4,6 @@ import Browse from '@/views/Browse.vue'
 import Product from '@/views/Product.vue'
 import Checkout from '@/views/CheckoutPage.vue'
 import Register from '@/views/Register.vue'
-import Cart from '@/views/Cart_old.vue'
 import Wishlist from '@/views/Wishlist.vue'
 import Login from '@/views/Login.vue'
 import MainLayout from '@/views/MainLayout.vue'
@@ -48,11 +47,6 @@ const routes = [
         path: 'checkout',
         name: 'checkout',
         component: Checkout,
-      },
-      {
-        path: 'cart',
-        name: 'cart',
-        component: Cart,
       },
       {
         path: 'wishlist',
