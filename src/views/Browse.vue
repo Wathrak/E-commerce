@@ -4,7 +4,6 @@
       class="h-[300px] bg-cover bg-center relative"
       style="
         background-image: url('https://mir-s3-cdn-cf.behance.net/project_modules/1400/3a7586140073963.623b10f9b30a9.png');
-        /* background-image: url('https://i.pinimg.com/originals/66/8f/08/668f08c281486c01eee91a9de92b9994.jpg'); */
       "
     >
       <div class="browse-header">
@@ -15,21 +14,35 @@
       </div>
     </div>
 
-    <div class="category-selector">
-      <button
-        v-for="category in categories"
-        :key="category"
-        :class="{ active: category === currentCategory }"
-        @click="selectCategory(category)"
-      >
-        {{ category }}
-      </button>
+    <div class="relative px-8 py-4">
+      <div class="category-selector">
+        <button
+          v-for="category in categories"
+          :key="category"
+          :class="{ active: category === currentCategory }"
+          @click="selectCategory(category)"
+        >
+          {{ category }}
+        </button>
+      </div>
+
+      <!-- Dropdown filter button -->
+      <div class="filter-dropdown">
+        <select v-model="selectedFilter" class="px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-black">
+          <option value="default">Sort by</option>
+          <option value="low-to-high">Price: Low to High</option>
+          <option value="high-to-low">Price: High to Low</option>
+          <option value="highest-rating">Highest Rating</option>
+        </select>
+      </div>
     </div>
 
     <div class="product-grid">
-      <WallDecor v-if="currentCategory === 'Wall Decor'" />
-      <Furniture v-if="currentCategory === 'Furniture'" />
-      <Lamp v-if="currentCategory === 'Lamps'" />
+      <ProductBrowse
+        v-for="product in sortedFilteredProducts"
+        :key="product.id"
+        :product="product"
+      />
     </div>
 
     <Footer />
@@ -37,46 +50,65 @@
 </template>
 
 <script>
+import { computed, ref } from 'vue'
+import { useRoute, useRouter } from 'vue-router'
 import Footer from '@/components/Footer.vue'
 import ProductBrowse from '@/components/Product_Category/ProductBrowse.vue'
 import WallDecor from '@/components/Product_Category/WallDecor.vue'
 import Lamp from '@/components/Product_Category/Lamp.vue'
 import Furniture from '@/components/Product_Category/Furniture.vue'
+import { useSharedStore } from '@/store/sharedstore'
 
 export default {
-
   components: { Footer, ProductBrowse, WallDecor, Lamp, Furniture },
-  data() {
-    return {
-      categories: ['Wall Decor', 'Lamps', 'Furniture'],
-      products: [],
-    }
-  },
-  computed: {
-    currentCategory() {
-      const routeCategory = this.$route.params.category
+  setup() {
+    const sharedStore = useSharedStore()
+    const categories = ref(['Wall Decor', 'Lamps', 'Furniture'])
+    const selectedFilter = ref('default')
+    const route = useRoute()
+    const router = useRouter()
+
+    const currentCategory = computed(() => {
+      const routeCategory = route.params.category
       const formattedCategory = routeCategory
-        ? routeCategory
-            .replace(/-/g, ' ')
-            .replace(/\b\w/g, c => c.toUpperCase())
+        ? routeCategory.replace(/-/g, ' ').replace(/\b\w/g, c => c.toUpperCase())
         : 'Wall Decor'
-      return this.categories.includes(formattedCategory)
+      return categories.value.includes(formattedCategory)
         ? formattedCategory
         : 'Wall Decor'
-    },
-    filteredProducts() {
-      return this.products.filter(
-        product => product.category === this.currentCategory,
+    })
+
+    const filteredProducts = computed(() => {
+      return sharedStore.products.filter(
+        product => product.category === currentCategory.value,
       )
-    },
-  },
-  methods: {
-    selectCategory(category) {
-      // Update the route when a category is selected
+    })
+
+    const sortedFilteredProducts = computed(() => {
+      let sortedProducts = [...filteredProducts.value]
+      if (selectedFilter.value === 'low-to-high') {
+        sortedProducts.sort((a, b) => parseInt(a.price.replace(/[^0-9]/g, ''), 10) - parseInt(b.price.replace(/[^0-9]/g, ''), 10))
+      } else if (selectedFilter.value === 'high-to-low') {
+        sortedProducts.sort((a, b) => parseInt(b.price.replace(/[^0-9]/g, ''), 10) - parseInt(a.price.replace(/[^0-9]/g, ''), 10))
+      } else if (selectedFilter.value === 'highest-rating') {
+        sortedProducts.sort((a, b) => b.rating - a.rating)
+      }
+      return sortedProducts
+    })
+
+    const selectCategory = (category) => {
       const routeCategory = category.toLowerCase().replace(/ /g, '-')
-      this.$router.push(`/browse/${routeCategory}`)
-    },
-  },
+      router.push(`/browse/${routeCategory}`)
+    }
+
+    return {
+      categories,
+      currentCategory,
+      selectedFilter,
+      sortedFilteredProducts,
+      selectCategory
+    }
+  }
 }
 </script>
 
@@ -95,9 +127,6 @@ export default {
   display: flex;
   justify-content: center;
   gap: 10px;
-  margin: 20px 0;
-  z-index: 5;
-  position: relative;
 }
 
 .category-selector button {
@@ -114,6 +143,13 @@ export default {
   color: white;
 }
 
+.filter-dropdown {
+  position: absolute;
+  top: 50%;
+  right: 2rem;
+  transform: translateY(-50%);
+}
+
 .product-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -121,3 +157,4 @@ export default {
   padding: 20px;
 }
 </style>
+
