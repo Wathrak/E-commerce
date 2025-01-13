@@ -28,7 +28,7 @@
 
     <div class="product-grid">
       <WallDecor v-if="currentCategory === 'Wall Decor'" />
-      <Furniture v-if="currentCategory === 'Furnitures'" />
+      <Furniture v-if="currentCategory === 'Furniture'" />
       <Lamp v-if="currentCategory === 'Lamps'" />
     </div>
 
@@ -48,7 +48,7 @@ export default {
   components: { Footer, ProductBrowse, WallDecor, Lamp, Furniture },
   data() {
     return {
-      categories: ['Wall Decor', 'Lamps', 'Furnitures'],
+      categories: ['Wall Decor', 'Lamps', 'Furniture'],
       products: [],
     }
   },

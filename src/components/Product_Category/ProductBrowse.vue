@@ -32,13 +32,13 @@ export default {
   },
   methods: {
     navigateToProduct() {
-      
+
       let categoryRoute = '';
       if (this.product.category === 'Wall Decor') {
         categoryRoute = 'wall-decor';
       } else if (this.product.category === 'Lamps') {
         categoryRoute = 'lamp';
-      } else if (this.product.category === 'Furnitures') {
+      } else if (this.product.category === 'Furniture') {
         categoryRoute = 'furniture';
       }
 

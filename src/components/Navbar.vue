@@ -17,7 +17,7 @@
             >LAMPS</RouterLink
           >
           <RouterLink
-            to="/browse/furnitures"
+            to="/browse/furniture"
             class="text-gray-800 hover:text-gray-600"
             >FURNITURES</RouterLink
           >
