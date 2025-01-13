@@ -67,7 +67,7 @@
         <button @click="increaseQuantity">+</button>
       </div>
 
-      <button class="add-to-bag" @click="addToBag">Add to bag</button>
+      <button class="add-to-bag" @click="addToBag">Add to Cart</button>
 
       <div class="features">
         <div class="feature">

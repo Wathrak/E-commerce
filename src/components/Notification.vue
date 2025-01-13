@@ -16,7 +16,7 @@
     </div>
     <div class="text-gray-400">Come and check our last arrival</div>
 
-    <button @click="handleButtonClick('/browse/walldecor')" class="button">
+    <button @click="handleButtonClick('/browse/wall-decor')" class="button">
       Painting
     </button>
 
@@ -34,7 +34,7 @@
       <button @click="handleButtonClick('/browse/wall-decor')" class="button w-full">
         Wall Decor
       </button>
-      <button @click="handleButtonClick('/browse/furnitures')" class="button w-full">
+      <button @click="handleButtonClick('/browse/furniture')" class="button w-full">
         Furniture
       </button>
     </div>
