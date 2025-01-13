@@ -7,7 +7,7 @@
         <!-- Left Navigation -->
         <div class="flex items-center space-x-8">
           <RouterLink
-            to="/browse/walldecor"
+            to="/browse/wall-decor"
             class="text-gray-800 hover:text-gray-600 w-[95px]"
             >WALL DECOR</RouterLink
           >

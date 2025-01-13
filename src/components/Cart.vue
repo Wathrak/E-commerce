@@ -81,7 +81,7 @@
         <h3 class="text-xl font-medium mb-4">Start Shopping!!</h3>
         <div class="flex justify-center">
           <div class="flex flex-col gap-3 w-full">
-            <button @click="handleButtonClick('/browse/walldecor')" class="button">
+            <button @click="handleButtonClick('/browse/wall-decor')" class="button">
               Wall Decor
             </button>
             <button @click="handleButtonClick('/browse/lamps')" class="button">

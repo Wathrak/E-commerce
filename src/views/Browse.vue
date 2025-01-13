@@ -2,10 +2,10 @@
   <div class="relative">
     <div
       class="h-[300px] bg-cover bg-center relative"
-      style="
-        background-image: url('https://mir-s3-cdn-cf.behance.net/project_modules/1400/3a7586140073963.623b10f9b30a9.png');
-      "
+      :style="{ backgroundImage: `url(${browseBanner})` }"
     >
+      <!-- Overlay for opacity -->
+      <div class="overlay"></div>
       <div class="browse-header">
         <h1 class="text-4xl font-serif mb-4">{{ currentCategory || 'All' }}</h1>
         <p class="items-center space-x-2 text-sm hover:underline">
@@ -65,6 +65,9 @@ import Lamp from '@/components/Product_Category/Lamp.vue'
 import Furniture from '@/components/Product_Category/Furniture.vue'
 import { useSharedStore } from '@/store/sharedstore'
 
+// Import the image
+import browseBanner from '@/assets/images/BrowseBanner.png'
+
 export default {
   components: { Footer, ProductBrowse, WallDecor, Lamp, Furniture },
   setup() {
@@ -123,10 +126,22 @@ export default {
       }
     }
 
-    // Watch for changes in the route's query parameters
-    watch(route, (newRoute) => {
-      searchQuery.value = newRoute.query.search || ''
-    }, { immediate: true })
+    // Watch for changes in the route's query parameters and params
+    watch(
+      () => [route.query.search, route.params.category],
+      ([newSearchQuery, newCategory]) => {
+        searchQuery.value = newSearchQuery || ''
+        const formattedCategory = newCategory
+          ? newCategory.replace(/-/g, ' ').replace(/\b\w/g, c => c.toUpperCase())
+          : null
+        if (categories.value.includes(formattedCategory)) {
+          currentCategory.value = formattedCategory
+        } else {
+          currentCategory.value = null
+        }
+      },
+      { immediate: true }
+    )
 
     return {
       categories,
@@ -134,7 +149,8 @@ export default {
       selectedFilter,
       sortedFilteredProducts,
       selectCategory,
-      searchQuery
+      searchQuery,
+      browseBanner,
     }
   }
 }
@@ -147,7 +163,7 @@ export default {
   left: 50%;
   transform: translate(-50%, -50%);
   text-align: center;
-  color: white;
+  color: #F8F9FA;
   z-index: 10;
 }
 
@@ -183,5 +199,16 @@ export default {
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 20px;
   padding: 20px;
+}
+
+/* Overlay for the background image */
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.2); /* 20% black overlay */
+  z-index: 5; /* Ensure the overlay is behind the header content */
 }
 </style>
