@@ -70,6 +70,7 @@
       </div>
 
       <button class="add-to-bag" @click="addToBag">Add to bag</button>
+      
 
       <div class="features">
         <!-- Features in a grid layout -->
@@ -117,12 +118,14 @@
 </template>
 
 <script>
+import { useCartStore } from '@/store/cartstores';
 import { useProductStore2 } from '@/store/productstore'
-import { computed, onMounted, ref, watch } from 'vue'
+import { computed, ref,} from 'vue'
 import { useRoute } from 'vue-router'
 
 export default {
   setup() {
+    const cartStore = useCartStore()
     const productStore2 = useProductStore2()
     const route = useRoute()
 
@@ -147,9 +150,24 @@ export default {
     const decreaseQuantity = () => {
       productStore2.decreaseQuantity()
     }
+
     const addToBag = () => {
-      productStore2.addToBag()
-    }
+      const productData = {
+        id: currentProduct.value.id,
+        name: currentProduct.value.name,
+        price: currentProduct.value.price,
+        size: productStore2.selectedSize,
+        quantity: productStore2.quantity,
+        image: mainImage.value,
+      };
+
+      cartStore.addProduct(productData); // Add product to the cart store
+
+      alert(`${currentProduct.value.name} has been added to your bag!`);
+    };
+
+    
+
     const quantity = computed(() => productStore2.quantity)
     const sizes = computed(() => productStore2.sizes)
     const selectedSize = computed(() => productStore2.selectedSize)
@@ -169,7 +187,11 @@ export default {
       moreProducts: productStore2.moreProducts,
     }
   },
+
 }
+
+
+
 </script>
 
 <style scoped>

@@ -34,6 +34,8 @@
             <input
               type="search"
               placeholder="Search"
+              v-model="searchQuery"
+              @input="handleSearch"
               class="pl-3 pr-10 py-1 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-gray-500"
             />
           </div>
@@ -79,6 +81,16 @@ export default {
       productStore,
       handleLogout,
     }
+  },
+  data() {
+    return {
+      searchQuery: '',
+    }
+  },
+  methods: {
+    handleSearch() {
+      this.$router.push({ name: 'browse', query: { search: this.searchQuery } })
+    },
   },
 }
 </script>
