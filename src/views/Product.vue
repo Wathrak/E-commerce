@@ -70,7 +70,6 @@
       </div>
 
       <button class="add-to-bag" @click="addToBag">Add to bag</button>
-      
 
       <div class="features">
         <!-- Features in a grid layout -->
@@ -118,9 +117,9 @@
 </template>
 
 <script>
-import { useCartStore } from '@/store/cartstores';
-import { useProductStore2 } from '@/store/productstore'
-import { computed, ref,} from 'vue'
+import { useCartStore } from '@/store/cartstores'
+import { useProductStore2 } from '@/store/productstore1'
+import { computed, ref } from 'vue'
 import { useRoute } from 'vue-router'
 
 export default {
@@ -135,8 +134,8 @@ export default {
     // Filter the products based on the category and id
     const currentProduct = ref(
       productStore2.product.find(
-        product => product.id === productId && product.category === category
-      )
+        product => product.id === productId && product.category === category,
+      ),
     )
 
     const mainImage = ref(currentProduct.value?.thumbnails[0])
@@ -159,14 +158,12 @@ export default {
         size: productStore2.selectedSize,
         quantity: productStore2.quantity,
         image: mainImage.value,
-      };
+      }
 
-      cartStore.addProduct(productData); // Add product to the cart store
+      cartStore.addProduct(productData) // Add product to the cart store
 
-      alert(`${currentProduct.value.name} has been added to your bag!`);
-    };
-
-    
+      alert(`${currentProduct.value.name} has been added to your bag!`)
+    }
 
     const quantity = computed(() => productStore2.quantity)
     const sizes = computed(() => productStore2.sizes)
@@ -187,11 +184,7 @@ export default {
       moreProducts: productStore2.moreProducts,
     }
   },
-
 }
-
-
-
 </script>
 
 <style scoped>

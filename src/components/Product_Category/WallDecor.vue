@@ -11,7 +11,7 @@
 </template>
 
 <script>
-import { useBrowseStore } from '@/store/browsestore'
+import { useBrowseStore } from '@/store/browsestore1'
 import ProductBrowse from '@/components/Product_Category/ProductBrowse.vue'
 
 export default {
