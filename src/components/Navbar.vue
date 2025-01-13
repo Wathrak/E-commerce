@@ -89,7 +89,11 @@ export default {
   },
   methods: {
     handleSearch() {
-      this.$router.push({ name: 'browse', query: { search: this.searchQuery } })
+      if (this.searchQuery) {
+        this.$router.push({ path: '/browse', query: { search: this.searchQuery } })
+      } else {
+        this.$router.push({ path: '/browse' })
+      }
     },
   },
 }

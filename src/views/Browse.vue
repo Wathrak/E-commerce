@@ -7,15 +7,21 @@
       "
     >
       <div class="browse-header">
-        <h1 class="text-4xl font-serif mb-4">{{ currentCategory }}</h1>
+        <h1 class="text-4xl font-serif mb-4">{{ currentCategory || 'All' }}</h1>
         <p class="items-center space-x-2 text-sm hover:underline">
-          Home > {{ currentCategory }}
+          Home > {{ currentCategory || 'All' }}
         </p>
       </div>
     </div>
 
     <div class="relative px-8 py-4">
       <div class="category-selector">
+        <button
+          :class="{ active: !currentCategory }"
+          @click="selectCategory('All')"
+        >
+          All
+        </button>
         <button
           v-for="category in categories"
           :key="category"
@@ -50,7 +56,7 @@
 </template>
 
 <script>
-import { computed, ref } from 'vue'
+import { computed, ref, watch } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import Footer from '@/components/Footer.vue'
 import ProductBrowse from '@/components/Product_Category/ProductBrowse.vue'
@@ -68,20 +74,32 @@ export default {
     const route = useRoute()
     const router = useRouter()
 
+    // Initialize search query
+    const searchQuery = ref(route.query.search || '')
+
     const currentCategory = computed(() => {
       const routeCategory = route.params.category
       const formattedCategory = routeCategory
         ? routeCategory.replace(/-/g, ' ').replace(/\b\w/g, c => c.toUpperCase())
-        : 'Wall Decor'
+        : null
       return categories.value.includes(formattedCategory)
         ? formattedCategory
-        : 'Wall Decor'
+        : null
     })
 
     const filteredProducts = computed(() => {
-      return sharedStore.products.filter(
-        product => product.category === currentCategory.value,
-      )
+      let products = sharedStore.products
+      if (currentCategory.value) {
+        products = products.filter(
+          product => product.category === currentCategory.value,
+        )
+      }
+      if (searchQuery.value) {
+        products = products.filter(product =>
+          product.name.toLowerCase().includes(searchQuery.value.toLowerCase())
+        )
+      }
+      return products
     })
 
     const sortedFilteredProducts = computed(() => {
@@ -97,16 +115,26 @@ export default {
     })
 
     const selectCategory = (category) => {
-      const routeCategory = category.toLowerCase().replace(/ /g, '-')
-      router.push(`/browse/${routeCategory}`)
+      if (category === 'All') {
+        router.push('/browse')
+      } else {
+        const routeCategory = category.toLowerCase().replace(/ /g, '-')
+        router.push(`/browse/${routeCategory}`)
+      }
     }
+
+    // Watch for changes in the route's query parameters
+    watch(route, (newRoute) => {
+      searchQuery.value = newRoute.query.search || ''
+    }, { immediate: true })
 
     return {
       categories,
       currentCategory,
       selectedFilter,
       sortedFilteredProducts,
-      selectCategory
+      selectCategory,
+      searchQuery
     }
   }
 }
@@ -157,4 +185,3 @@ export default {
   padding: 20px;
 }
 </style>
-
