@@ -324,12 +324,14 @@ export default {
 .add-to-bag {
   background-color: #000;
   color: #fff;
-  padding: 0.3rem 4rem;
+  padding: 0.3rem 1rem;
   border: none;
   cursor: pointer;
   border-radius: 8px;
   font-size: 0.9rem;
-  width: auto;
+  width: 100%;
+  max-width: 14rem;
+  line-height: 1.8;
 }
 
 .features {
