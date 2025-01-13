@@ -100,7 +100,7 @@
             <img :src="product.image" :alt="product.title" />
             <div class="product-info">
               <p class="product-title">{{ product.title }}</p>
-              <p class="product-price">US ${{ product.price }}</p>
+              <p class="product-price">{{ product.price }}</p>
             </div>
           </div>
         </div>
