@@ -163,9 +163,12 @@ export default {
 
       cartStore.addProduct(productData); // Add product to the cart store
 
-      alert(`${currentProduct.value.name} has been added to your bag!`);
-    };
-
+      if (currentProduct.value && currentProduct.value.name) {
+        alert(`${currentProduct.value.name} has been added to your bag!`);
+      } else {
+        alert('An item has been added to your bag!');
+      }
+    }
     
 
     const quantity = computed(() => productStore2.quantity)

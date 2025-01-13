@@ -11,7 +11,7 @@ export const useProductStore2 = defineStore('productStore2', {
       {
         id: 1,
         category: 'wall-decor',
-        price: '$99.99',
+        price: 99.99,
         description: 'Horses in Paradise Hand Painted Wall Painting (With Outer Floater Frame)',
         thumbnails: [
           new URL('@/assets/images/ProductImage/Product2/horse1.png', import.meta.url).href,
@@ -22,7 +22,7 @@ export const useProductStore2 = defineStore('productStore2', {
       {
         id: 2,
         category: 'lamp',
-        price: '$45.99',
+        price: 45.99,
         description: 'Printable Fall Landscape Set of 3 Split Prints, Autumn',
         thumbnails: [
           new URL('@/assets/images/ProductImage/Product1/photo_2024-12-05_16-29-56.jpg', import.meta.url).href,
@@ -35,7 +35,7 @@ export const useProductStore2 = defineStore('productStore2', {
       ...Array.from({ length: 14 }, (_, i) => ({
         id: i + 3, // Correct id assignment
         category: 'wall-decor',
-        price: `$${(Math.random() * (99.99 - 20.0) + 20.0).toFixed(2)}`, // Random prices
+        price: (Math.random() * (99.99 - 20.0) + 20.0).toFixed(2), // Random prices
         description: `Product description for product ${i + 3}`,
         thumbnails: [
           new URL('@/assets/images/ProductImage/Product1/photo_2024-12-05_16-29-56.jpg', import.meta.url).href,
@@ -50,7 +50,7 @@ export const useProductStore2 = defineStore('productStore2', {
       ...Array.from({ length: 14 }, (_, i) => ({
         id: i + 3, // Correct id assignment
         category: 'lamp',
-        price: `$${(Math.random() * (99.99 - 20.0) + 20.0).toFixed(2)}`, // Random prices
+        price: (Math.random() * (99.99 - 20.0) + 20.0).toFixed(2), // Random prices
         description: `Product description for product ${i + 3}`,
         thumbnails: [
           new URL('@/assets/images/ProductImage/Product1/photo_2024-12-05_16-29-56.jpg', import.meta.url).href,
@@ -66,7 +66,7 @@ export const useProductStore2 = defineStore('productStore2', {
       ...Array.from({ length: 14 }, (_, i) => ({
         id: i + 3, // Correct id assignment
         category: 'furniture',
-        price: `$${(Math.random() * (99.99 - 20.0) + 20.0).toFixed(2)}`, // Random prices
+        price: (Math.random() * (99.99 - 20.0) + 20.0).toFixed(2), // Random prices
         description: `Product description for product ${i + 3}`,
         thumbnails: [
           new URL('@/assets/images/ProductImage/Product1/photo_2024-12-05_16-29-56.jpg', import.meta.url).href,
