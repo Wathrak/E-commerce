@@ -20,7 +20,6 @@ export const useSharedStore = defineStore('sharedStore', {
           new URL('@/assets/images/ProductImage/Product2/horse3.png', import.meta.url).href,
         ],
       },
-
       {
         id: 2,
         name: 'Horses in Paradise',
@@ -36,7 +35,6 @@ export const useSharedStore = defineStore('sharedStore', {
           new URL('@/assets/images/ProductImage/Product2/horse3.png', import.meta.url).href,
         ],
       },
-
       {
         id: 3,
         name: 'Horses in Paradise',
@@ -52,7 +50,6 @@ export const useSharedStore = defineStore('sharedStore', {
           new URL('@/assets/images/ProductImage/Product2/horse3.png', import.meta.url).href,
         ],
       },
-
       // Lamps
       {
         id: 5,
@@ -69,7 +66,6 @@ export const useSharedStore = defineStore('sharedStore', {
           new URL('@/assets/images/ProductImage/Product2/horse3.png', import.meta.url).href,
         ],
       },
-
       {
         id: 6,
         name: 'Lamp 2',
@@ -85,7 +81,6 @@ export const useSharedStore = defineStore('sharedStore', {
           new URL('@/assets/images/ProductImage/Product2/horse3.png', import.meta.url).href,
         ],
       },
-
       // Furniture
       {
         id: 9,

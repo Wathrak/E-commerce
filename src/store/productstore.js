@@ -1,5 +1,4 @@
 // src/store/productstore.js
-
 import { defineStore } from 'pinia'
 import { useSharedStore } from './sharedstore'
 import img1 from '@/assets/images/ProductImage/Product1/photo_2024-12-05_16-29-56.jpg'
@@ -15,9 +14,10 @@ export const useProductStore2 = defineStore('productStore2', {
       products: sharedStore.products,
       imgUrl: img1,
       mainImage: null,
+      wishlist: [],
+      quantity: 1,
       sizes: ['S', 'M', 'L', 'XL', 'XXL'],
       selectedSize: 'M',
-      quantity: 1,
       selectedCategory: '', // To store selected category
       reviews: [
         {
@@ -81,7 +81,10 @@ export const useProductStore2 = defineStore('productStore2', {
     },
     furniture(state) {
       return state.products.filter(product => product.category === 'Furniture')
-    }
+    },
+    isInWishlist: (state) => (productId) => {
+      return state.wishlist.some(item => item.id === productId)
+    },
   },
   actions: {
     setMainImage(image) {
@@ -100,21 +103,29 @@ export const useProductStore2 = defineStore('productStore2', {
       alert(`Added ${this.quantity} item(s) of size ${this.selectedSize} to the bag!`)
     },
     initializeMainImage(productId) {
-      const product = this.products.find(p => p.id === productId); // Find product by id
-      if (product?.image) {
-        this.mainImage = product.image; // Set the main image from the product
+      const product = this.products.find(p => p.id === productId)
+      if (product?.thumbnails?.[0]) {
+        this.mainImage = product.thumbnails[0] // Set the first thumbnail as the main image
       } else {
-        this.mainImage = null; // Set to null if no image is found
+        this.mainImage = null // Set to null if no image is found
       }
     },
     setCategory(category) {
-      this.selectedCategory = category; // Set selected category
+      this.selectedCategory = category // Set selected category
     },
     getFilteredProducts() {
       if (this.selectedCategory) {
-        return this.products.filter(p => p.category === this.selectedCategory);
+        return this.products.filter(p => p.category === this.selectedCategory)
       }
-      return this.products; // Return all products if no category is selected
+      return this.products // Return all products if no category is selected
+    },
+    addToWishlist(product) {
+      if (!this.isInWishlist(product.id)) {
+        this.wishlist.push(product)
+      }
+    },
+    removeFromWishlist(productId) {
+      this.wishlist = this.wishlist.filter(item => item.id !== productId)
     },
   },
 })

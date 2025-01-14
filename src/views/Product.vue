@@ -44,7 +44,7 @@
     </div>
 
     <div class="product-details">
-      <p class="price">${{ currentProduct.price }}</p>
+      <p class="price">{{ currentProduct.price }}</p>
       <p class="description">{{ currentProduct.description }}</p>
 
       <h3 class="section-title">Size</h3>
@@ -67,7 +67,16 @@
         <button @click="increaseQuantity">+</button>
       </div>
 
-      <button class="add-to-bag" @click="addToBag">Add to Cart</button>
+      <div class="action-buttons">
+        <button class="add-to-bag" @click="addToBag">Add to Cart</button>
+        <button @click="toggleWishlist" class="icon-button">
+          <Icon
+            :icon="isInWishlist ? 'mdi:heart' : 'mdi:heart-outline'"
+            width="30px"
+            height="30px"
+          />
+        </button>
+      </div>
 
       <div class="features">
         <div class="feature">
@@ -121,11 +130,11 @@ import { useRoute } from 'vue-router'
 export default {
   setup() {
     const cartStore = useCartStore()
-    const productStore2 = useProductStore2()
+    const productStore = useProductStore2()
     const route = useRoute()
 
-    const category = route.params.category
-    const productId = Number(route.params.id)
+    const category = ref(route.params.category)
+    const productId = ref(Number(route.params.id))
 
     const normalizeCategory = (cat) => {
       switch (cat) {
@@ -143,14 +152,17 @@ export default {
       }
     }
 
-    const normalizedCategory = normalizeCategory(category)
+    const normalizedCategory = computed(() => normalizeCategory(category.value))
     const currentProduct = ref(null)
     const mainImage = ref('')
 
     watchEffect(() => {
-      currentProduct.value = productStore2.products.find(
-        product => product.id === productId && product.category === normalizedCategory
+      console.log('Current Category:', normalizedCategory.value)
+      console.log('Product ID:', productId.value)
+      currentProduct.value = productStore.products.find(
+        product => product.id === productId.value && product.category === normalizedCategory.value
       )
+      console.log('Current Product:', currentProduct.value)
       if (currentProduct.value && !mainImage.value) {
         mainImage.value = currentProduct.value.thumbnails[0]
       }
@@ -161,17 +173,15 @@ export default {
     }
 
     const increaseQuantity = () => {
-      productStore2.increaseQuantity()
+      productStore.increaseQuantity()
     }
 
     const decreaseQuantity = () => {
-      if (productStore2.quantity > 1) {
-        productStore2.decreaseQuantity()
-      }
+      productStore.decreaseQuantity()
     }
 
     const selectSize = (size) => {
-      productStore2.selectSize(size)
+      productStore.selectSize(size)
     }
 
     const addToBag = () => {
@@ -179,21 +189,40 @@ export default {
         id: currentProduct.value.id,
         name: currentProduct.value.name,
         price: currentProduct.value.price,
-        size: productStore2.selectedSize,
-        quantity: productStore2.quantity,
+        size: productStore.selectedSize,
+        quantity: productStore.quantity,
         image: mainImage.value,
       }
       cartStore.addProduct(productData)
       alert(`${currentProduct.value.name} has been added to your bag!`)
     }
 
-    const quantity = computed(() => productStore2.quantity)
-    const sizes = computed(() => productStore2.sizes)
-    const selectedSize = computed(() => productStore2.selectedSize)
-    const reviews = computed(() => productStore2.reviews)
-    const moreProducts = computed(() => productStore2.moreProducts)
+    const toggleWishlist = () => {
+      const productData = {
+        id: currentProduct.value.id,
+        name: currentProduct.value.name,
+        price: currentProduct.value.price,
+        size: productStore.selectedSize,
+        quantity: productStore.quantity,
+        image: mainImage.value,
+      }
+      if (isInWishlist.value) {
+        productStore.removeFromWishlist(currentProduct.value.id)
+      } else {
+        productStore.addToWishlist(productData)
+      }
+    }
 
-    watch([route.params.id, route.params.category], () => {
+    const quantity = computed(() => productStore.quantity)
+    const sizes = computed(() => productStore.sizes)
+    const selectedSize = computed(() => productStore.selectedSize)
+    const reviews = computed(() => productStore.reviews)
+    const moreProducts = computed(() => productStore.moreProducts)
+    const isInWishlist = computed(() => productStore.isInWishlist(currentProduct.value?.id))
+
+    watch(route, (newRoute) => {
+      category.value = newRoute.params.category
+      productId.value = Number(newRoute.params.id)
       mainImage.value = ''
     })
 
@@ -208,6 +237,8 @@ export default {
       decreaseQuantity,
       selectSize,
       addToBag,
+      toggleWishlist,
+      isInWishlist,
       reviews,
       moreProducts
     }
@@ -321,6 +352,13 @@ export default {
   font-size: 0.8rem;
 }
 
+.action-buttons {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
 .add-to-bag {
   background-color: #000;
   color: #fff;
@@ -332,6 +370,7 @@ export default {
   width: 100%;
   max-width: 14rem;
   line-height: 1.8;
+  flex-grow: 1;
 }
 
 .features {
