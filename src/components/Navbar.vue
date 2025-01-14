@@ -7,7 +7,7 @@
         <!-- Left Navigation -->
         <div class="flex items-center space-x-8">
           <RouterLink
-            to="/browse/walldecor"
+            to="/browse/wall-decor"
             class="text-gray-800 hover:text-gray-600 w-[95px]"
             >WALL DECOR</RouterLink
           >
@@ -89,7 +89,11 @@ export default {
   },
   methods: {
     handleSearch() {
-      this.$router.push({ name: 'browse', query: { search: this.searchQuery } })
+      if (this.searchQuery) {
+        this.$router.push({ path: '/browse', query: { search: this.searchQuery } })
+      } else {
+        this.$router.push({ path: '/browse' })
+      }
     },
   },
 }

@@ -32,7 +32,7 @@ const navigateToShop = () => {
 };
 
 const navigateToCategory = (category) => {
-  const routePath = `/browse/${category.replace(' ', '').toLowerCase()}`;
+  const routePath = `/browse/${category.replace(/ /g, '-').toLowerCase()}`;
   console.log(`Navigating to category: ${routePath}`);
   router.push(routePath);
 };
