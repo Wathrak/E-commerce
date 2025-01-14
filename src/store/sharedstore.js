@@ -2,11 +2,11 @@
 import { defineStore } from 'pinia'
 
 function generateProducts(configs) {
-  const categoryIndices = {} // To keep track of IDs per category
+  const categoryIndices = {}
 
   return configs.flatMap(({ length, thumbnails, category, name }) => {
     if (!categoryIndices[category]) {
-      categoryIndices[category] = 1 // Initialize index for this category
+      categoryIndices[category] = 1
     }
 
     return Array.from({ length }, () => {
