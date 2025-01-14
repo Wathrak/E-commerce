@@ -58,7 +58,7 @@ export default {
       productStore,
     }
   },
-};
+}
 </script>
 
 <style>
@@ -82,8 +82,6 @@ export default {
   border: 1px solid #ddd;
   border-radius: 4px;
 }
-
-/* Add this global style to disable scrolling */
 .no-scroll {
   overflow: hidden;
 }

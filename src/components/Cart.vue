@@ -1,10 +1,6 @@
 <template>
-  <div
-    class="bg-white w-[400px] h-screen flex flex-col gap-5 p-5 font-semibold"
-  >
-    <div
-      class="flex text-3xl font-bold text-gray-600 pt-5 pb-5 justify-between"
-    >
+  <div class="bg-white w-[400px] h-screen flex flex-col gap-5 p-5 font-semibold">
+    <div class="flex text-3xl font-bold text-gray-600 pt-5 pb-5 justify-between">
       <button @click="closeCart">X</button>
       <div>Cart</div>
       <button>
@@ -14,21 +10,11 @@
     <hr />
     <!-- Cart Items -->
     <div v-if="cartItems.length > 0" class="flex flex-col gap-4 flex-1 overflow-y-auto">
-      <div
-        v-for="(item, index) in cartItems"
-        :key="index"
-        class="flex items-center justify-between border-b pb-4"
-      >
-        <img
-          :src="item.image"
-          alt="Product Image"
-          class="w-16 h-16 rounded-md"
-        />
+      <div v-for="(item, index) in cartItems" :key="index" class="flex items-center justify-between border-b pb-4">
+        <img :src="item.image" alt="Product Image" class="w-16 h-16 rounded-md" />
         <div class="flex-1 px-4">
           <!-- Product Title with fallback for missing name -->
-          <h3 class="text-lg font-medium">
-            {{ item.name || "Product" }}
-          </h3>
+          <h3 class="text-lg font-medium">{{ item.name || "Product" }}</h3>
           <div class="flex items-center justify-between text-sm text-gray-500 mt-1">
             <!-- Size Selection Dropdown -->
             <div class="flex items-center">
@@ -42,13 +28,7 @@
               </select>
             </div>
             <div class="flex items-center gap-3">
-              <button
-                @click="decreaseQuantity(index)"
-                :disabled="item.quantity <= 1"
-                class="quantity-button"
-              >
-                -
-              </button>
+              <button @click="decreaseQuantity(index)" :disabled="item.quantity <= 1" class="quantity-button">-</button>
               <span class="quantity-text">{{ item.quantity }}</span>
               <button @click="increaseQuantity(index)" class="quantity-button">+</button>
             </div>
@@ -56,11 +36,7 @@
         </div>
         <div class="flex flex-col items-end">
           <!-- Trash button with hover effect and confirmation dialog -->
-          <button
-            @click="confirmRemoveItem(index)"
-            class="trash-button flex justify-between items-center text-lg font-bold mt-2"
-            aria-label="Remove item"
-          >
+          <button @click="confirmRemoveItem(index)" class="trash-button flex justify-between items-center text-lg font-bold mt-2" aria-label="Remove item">
             <Icon icon="mdi:trash-can-outline" class="w-6 h-6 hover:text-red-500 transition-colors" />
           </button>
         </div>
@@ -81,15 +57,9 @@
         <h3 class="text-xl font-medium mb-4">Start Shopping!!</h3>
         <div class="flex justify-center">
           <div class="flex flex-col gap-3 w-full">
-            <button @click="handleButtonClick('/browse/wall-decor')" class="button">
-              Wall Decor
-            </button>
-            <button @click="handleButtonClick('/browse/lamps')" class="button">
-              Lamp
-            </button>
-            <button @click="handleButtonClick('/browse/furnitures')" class="button">
-              Furniture
-            </button>
+            <button @click="handleButtonClick('/browse/wall-decor')" class="button">Wall Decor</button>
+            <button @click="handleButtonClick('/browse/lamps')" class="button">Lamp</button>
+            <button @click="handleButtonClick('/browse/furnitures')" class="button">Furniture</button>
           </div>
         </div>
       </div>
@@ -145,7 +115,7 @@ const cartTotal = computed(() => {
 const deliveryFee = 0.99;
 
 const closeCart = () => {
-  productStore.clickCart();
+  productStore.closeCart();
 };
 
 const handleButtonClick = (route) => {
@@ -173,6 +143,7 @@ const confirmRemoveItem = (index) => {
 };
 
 const proceedToCheckout = () => {
+  closeCart();
   router.push('/checkout');
 };
 
@@ -262,5 +233,4 @@ const updateItemSize = (index, newSize) => {
   transform: scale(1.1);
   color: red;
 }
-
 </style>

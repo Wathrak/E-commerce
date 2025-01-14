@@ -1,9 +1,8 @@
-// src/store/productstore.js
 import { defineStore } from 'pinia'
 import { useSharedStore } from './sharedstore'
-import img1 from '@/assets/images/ProductImage/Product1/photo_2024-12-05_16-29-56.jpg'
+import img1 from '@/assets/images/ProductImage/Product1/photo2.jpg'
 import product1 from '@/assets/images/ProductImage/Product1/il_794xN.4159464681_l6fz.jpg'
-import product2 from '@/assets/images/ProductImage/Product1/photo_2024-12-06_01-42-11.jpg'
+import product2 from '@/assets/images/ProductImage/Product1/photo1.jpg'
 import product3 from '@/assets/images/ProductImage/Product1/il_794xN.5300493903_ivjn.jpg'
 import product4 from '@/assets/images/ProductImage/Product1/photo_2024-12-06_01-40-23.jpg'
 
@@ -14,7 +13,7 @@ export const useProductStore2 = defineStore('productStore2', {
       products: sharedStore.products,
       imgUrl: img1,
       mainImage: null,
-      wishlist: [],
+      wishlist: JSON.parse(localStorage.getItem('wishlist')) || [], // Load wishlist items from localStorage
       quantity: 1,
       sizes: ['S', 'M', 'L', 'XL', 'XXL'],
       selectedSize: 'M',
@@ -121,11 +120,22 @@ export const useProductStore2 = defineStore('productStore2', {
     },
     addToWishlist(product) {
       if (!this.isInWishlist(product.id)) {
-        this.wishlist.push(product)
+        this.wishlist.push({ ...product })  // Ensure all product properties including image are copied
+        this.saveWishlistToLocalStorage()
       }
     },
     removeFromWishlist(productId) {
       this.wishlist = this.wishlist.filter(item => item.id !== productId)
+      this.saveWishlistToLocalStorage()
     },
+    saveWishlistToLocalStorage() {
+      localStorage.setItem('wishlist', JSON.stringify(this.wishlist))
+    },
+    loadWishlistFromLocalStorage() {
+      const storedWishlist = localStorage.getItem('wishlist')
+      if (storedWishlist) {
+        this.wishlist = JSON.parse(storedWishlist)
+      }
+    }
   },
 })
