@@ -3,41 +3,43 @@
     <div class="wishlist-content" v-if="wishlist.length > 0">
       <h1 class="title">Wish List ({{ wishlist.length }} {{ wishlist.length === 1 ? 'item' : 'items' }})</h1>
       <div class="wishlist-products">
-        <div class="wishlist-product" v-for="(product, index) in wishlist" :key="index" @click="navigateToProduct(product.category, product.id)">
-          <img
-            :src="product.image"
-            :alt="product.name"
-            class="product-image"
-          />
+        <div class="wishlist-product" v-for="(product, index) in wishlist" :key="index">
+          <div class="product-header" @click="navigateToProduct(product.category, product.id)">
+            <img
+              :src="product.image"
+              :alt="product.name"
+              class="product-image"
+            />
+            <div class="product-details">
+              <p class="name">{{ product.name }}</p>
+              <p class="price">{{ product.price }}</p>
+            </div>
+            <button @click.stop="removeFromWishlist(product.id)" class="delete-button">
+              <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-KDapWmiEGA9WZVlnkOA9nLHus92jPR.png" alt="Delete" class="delete-icon" />
+            </button>
+          </div>
           <div class="product-info">
-            <div class="product-header">
-              <div>
-                <p class="price">US ${{ product.price }}</p>
-                <p class="name">{{ product.name }}</p>
+            <div class="selectors">
+              <div class="size-wrapper">
+                <label class="size-label">Size:</label>
+                <select v-model="product.size" class="size-select" @click.stop>
+                  <option value="S">S</option>
+                  <option value="M">M</option>
+                  <option value="L">L</option>
+                </select>
               </div>
-              <button @click.stop="removeFromWishlist(product.id)" class="delete-button">
-                <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-KDapWmiEGA9WZVlnkOA9nLHus92jPR.png" alt="Delete" class="delete-icon" />
-              </button>
-            </div>
-            <div class="size-wrapper">
-              <label class="size-label">Size</label>
-              <select v-model="product.size" class="size-select" @click.stop>
-                <option value="S">S</option>
-                <option value="M">M</option>
-                <option value="L">L</option>
-              </select>
-            </div>
-            <div class="quantity-wrapper">
-              <label class="quantity-label">Quantity</label>
-              <div class="quantity-controls">
-                <button @click.stop="decreaseQuantity(product)" class="quantity-button">-</button>
-                <span class="quantity">{{ product.quantity }}</span>
-                <button @click.stop="increaseQuantity(product)" class="quantity-button">+</button>
+              <div class="quantity-wrapper">
+                <label class="quantity-label">Quantity</label>
+                <div class="quantity-controls">
+                  <button @click.stop="decreaseQuantity(product)" class="quantity-button">-</button>
+                  <span class="quantity">{{ product.quantity }}</span>
+                  <button @click.stop="increaseQuantity(product)" class="quantity-button">+</button>
+                </div>
               </div>
             </div>
             <button
               @click.stop="addToCart(product)"
-              :class="{'move-to-cart': true}">
+              class="move-to-cart">
               Move to Cart
             </button>
           </div>
@@ -123,7 +125,7 @@ const navigateToProduct = (category, productId) => {
 }
 
 .wishlist-content {
-  max-width: 1200px;
+  max-width: 75rem; /* 1200px */
   margin: 0 auto;
 }
 
@@ -135,7 +137,7 @@ const navigateToProduct = (category, productId) => {
 
 .wishlist-products {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(15.625rem, 1fr)); /* 250px */
   gap: 1rem;
 }
 
@@ -143,38 +145,41 @@ const navigateToProduct = (category, productId) => {
   display: flex;
   flex-direction: column;
   border: 1px solid #ccc;
-  border-radius: 5px;
+  border-radius: 0.3125rem; /* 5px */
   padding: 1rem;
   background-color: #fff;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.1); /* 2px 4px */
+}
+
+.product-header {
+  display: flex;
+  align-items: center;
   cursor: pointer;
 }
 
 .product-image {
-  width: 100%;
-  height: 120px;
+  width: 5rem; /* 80px */
+  height: 5rem; /* 80px */
   object-fit: cover;
-  border-radius: 5px;
-  margin-bottom: 1rem;
+  border-radius: 0.3125rem; /* 5px */
+  margin-right: 1rem;
 }
 
-.product-info {
+.product-details {
   flex: 1;
   display: flex;
   flex-direction: column;
 }
 
-.product-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  margin-bottom: 1rem;
+.price, .name {
+  margin: 0;
 }
 
 .price {
   font-size: 1rem;
   font-weight: 500;
-  color: #e74c3c;
+  color: #00771e;
+  margin-top: 0.5rem;
 }
 
 .name {
@@ -190,42 +195,48 @@ const navigateToProduct = (category, productId) => {
 }
 
 .delete-icon {
-  width: 20px;
-  height: 20px;
+  width: 1.25rem; /* 20px */
+  height: 1.25rem; /* 20px */
+}
+
+.product-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 1rem;
+}
+
+.selectors {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin-bottom: 1rem; /* Add some space between selectors and button */
 }
 
 .size-wrapper {
-  margin-bottom: 1rem;
-}
-
-.size-label {
-  display: block;
-  font-size: 0.875rem;
-  margin-bottom: 0.5rem;
-}
-
-.size-select {
-  width: 100%;
-  padding: 0.5rem;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  background-color: white;
-  appearance: none;
-  background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3E%3Cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m6 8 4 4 4-4'/%3E%3C/svg%3E");
-  background-position: right 0.5rem center;
-  background-repeat: no-repeat;
-  background-size: 1.5em 1.5em;
-  padding-right: 2.5rem;
+  display: flex;
+  align-items: center;
 }
 
 .quantity-wrapper {
-  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  margin-left: -1rem; /* Adjust this value to move quantity to the left */
 }
 
+.size-label,
 .quantity-label {
-  display: block;
   font-size: 0.875rem;
-  margin-bottom: 0.5rem;
+  margin-right: 0.5rem;
+}
+
+.size-select {
+  width: auto;
+  padding: 0.25rem;
+  border: 1px solid #ddd;
+  border-radius: 0.25rem; /* 4px */
+  background-color: #f5f5f5; /* Add gray background */
+  color: #333; /* Darken text color */
 }
 
 .quantity-controls {
@@ -234,29 +245,32 @@ const navigateToProduct = (category, productId) => {
 }
 
 .quantity-button {
-  background: none;
-  border: 1px solid #ddd;
-  padding: 0.25rem 0.75rem;
+  width: 1.875rem; /* 30px */
+  height: 1.25rem; /* 20px */
+  background-color: #ddd;
+  border: none;
   cursor: pointer;
-  background-color: #f5f5f5;
+  border-radius: 0.375rem; /* 6px */
+  font-size: 0.8rem;
 }
 
 .quantity {
-  margin: 0 1rem;
-  font-size: 1rem;
+  margin: 0 0.5rem;
+  font-size: 0.85rem;
 }
 
 .move-to-cart {
-  width: 100%;
-  padding: 0.75rem;
+  width: 100%; /* Full width */
+  padding: 0.5rem;
   border: 1px solid black;
   background-color: transparent;
   color: black;
-  border-radius: 4px;
+  border-radius: 0.25rem; /* 4px */
   cursor: pointer;
   font-size: 1rem;
-  margin-top: auto;
   transition: background-color 0.2s, opacity 0.2s;
+  text-align: center; /* Center text */
+  margin-top: 1rem; /* Add some space above the button */
 }
 
 .move-to-cart:hover {
@@ -265,7 +279,7 @@ const navigateToProduct = (category, productId) => {
 
 .empty-wishlist {
   text-align: center;
-  max-width: 600px;
+  max-width: 37.5rem; /* 600px */
   margin: 4rem auto;
 }
 
@@ -301,8 +315,8 @@ const navigateToProduct = (category, productId) => {
   color: white;
   border: none;
   padding: 0.75rem 2rem;
-  min-width: 180px;
-  border-radius: 4px;
+  min-width: 11.25rem; /* 180px */
+  border-radius: 0.25rem; /* 4px */
   cursor: pointer;
   transition: opacity 0.2s;
 }
@@ -311,14 +325,14 @@ const navigateToProduct = (category, productId) => {
   opacity: 0.8;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 48rem) { /* 768px */
   .wishlist-products {
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(12.5rem, 1fr)); /* 200px */
     gap: 1rem;
   }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 30rem) { /* 480px */
   .wishlist-products {
     grid-template-columns: 1fr;
   }
@@ -329,8 +343,8 @@ const navigateToProduct = (category, productId) => {
   }
 
   .product-image {
-    width: 120px;
-    height: 120px;
+    width: 5rem; /* 80px */
+    height: 5rem; /* 80px */
     margin-bottom: 0;
   }
 
