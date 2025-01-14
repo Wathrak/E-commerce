@@ -61,7 +61,7 @@ export const useSharedStore = defineStore('sharedStore', {
         price: 'KHR 120,000',
         description: 'Lamp 1 Description',
         thumbnails: [
-          new URL('@/assets/images/ProductImage/Product2/horse1.png', import.meta.url).href,
+          new URL('@/assets/images/ProductBrowse/Lamps/image1.png', import.meta.url).href,
           new URL('@/assets/images/ProductImage/Product2/horse2.png', import.meta.url).href,
           new URL('@/assets/images/ProductImage/Product2/horse3.png', import.meta.url).href,
         ],
