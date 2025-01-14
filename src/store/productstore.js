@@ -39,9 +39,10 @@ export const useProductStore2 = defineStore('productStore2', {
         import.meta.url,
       ).href,
       mainImage: null,
+      wishlist: JSON.parse(localStorage.getItem('wishlist')) || [], // Load wishlist items from localStorage
+      quantity: 1,
       sizes: ['S', 'M', 'L', 'XL', 'XXL'],
       selectedSize: 'M',
-      quantity: 1,
       selectedCategory: '', // To store selected category
       reviews: [
         {
@@ -121,16 +122,39 @@ export const useProductStore2 = defineStore('productStore2', {
         this.mainImage = product.image // Set the main image from the product
       } else {
         this.mainImage = null // Set to null if no image is found
+        this.mainImage = null // Set to null if no image is found
       }
     },
     setCategory(category) {
+      this.selectedCategory = category // Set selected category
       this.selectedCategory = category // Set selected category
     },
     getFilteredProducts() {
       if (this.selectedCategory) {
         return this.products.filter(p => p.category === this.selectedCategory)
+        return this.products.filter(p => p.category === this.selectedCategory)
       }
       return this.products // Return all products if no category is selected
+      return this.products // Return all products if no category is selected
+    },
+    addToWishlist(product) {
+      if (!this.isInWishlist(product.id)) {
+        this.wishlist.push({ ...product }) // Ensure all product properties including image are copied
+        this.saveWishlistToLocalStorage()
+      }
+    },
+    removeFromWishlist(productId) {
+      this.wishlist = this.wishlist.filter(item => item.id !== productId)
+      this.saveWishlistToLocalStorage()
+    },
+    saveWishlistToLocalStorage() {
+      localStorage.setItem('wishlist', JSON.stringify(this.wishlist))
+    },
+    loadWishlistFromLocalStorage() {
+      const storedWishlist = localStorage.getItem('wishlist')
+      if (storedWishlist) {
+        this.wishlist = JSON.parse(storedWishlist)
+      }
     },
   },
 })
