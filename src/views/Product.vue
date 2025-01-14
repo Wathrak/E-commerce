@@ -48,7 +48,8 @@
     </div>
 
     <div class="product-details">
-      <p class="price">${{ currentProduct.price }}</p>
+      <p class="title">{{ currentProduct.generatedTitle }}</p>
+      <p class="price">{{ currentProduct.price }}</p>
       <p class="description">{{ currentProduct.description }}</p>
 
       <h3 class="section-title">Size</h3>
@@ -151,6 +152,20 @@ export default {
       }
     }
 
+    const generateRandomTitle = () => {
+      const adjectives = [
+        'Beautiful',
+        'Elegant',
+        'Stylish',
+        'Modern',
+        'Vintage',
+      ]
+      const themes = ['Lamp', 'Wall Decor', 'Furniture', 'Set', 'Piece']
+      return `${adjectives[Math.floor(Math.random() * adjectives.length)]} ${
+        themes[Math.floor(Math.random() * themes.length)]
+      }`
+    }
+
     const normalizedCategory = normalizeCategory(category)
     const currentProduct = ref(null)
     const mainImage = ref('')
@@ -160,8 +175,11 @@ export default {
         product =>
           product.id === productId && product.category === normalizedCategory,
       )
-      if (currentProduct.value && !mainImage.value) {
-        mainImage.value = currentProduct.value.thumbnails[0]
+      if (currentProduct.value) {
+        currentProduct.value.generatedTitle = generateRandomTitle()
+        if (!mainImage.value) {
+          mainImage.value = currentProduct.value.thumbnails[0]
+        }
       }
     })
 
@@ -227,7 +245,7 @@ export default {
 <style scoped>
 .product-container {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1.25fr 1fr;
   gap: 2rem;
   max-width: 1400px;
   margin: 0 auto;
@@ -249,12 +267,12 @@ export default {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
-  width: 60px;
+  width: 100px;
 }
 
 .thumbnail-list img {
-  width: 60px;
-  height: 60px;
+  width: 100px;
+  height: auto;
   border: 2px solid transparent;
   cursor: pointer;
   border-radius: 8px;
@@ -266,7 +284,7 @@ export default {
 
 .main-image img {
   width: 700px;
-  height: 400px;
+  height: auto;
   border-radius: 8px;
 }
 
@@ -276,22 +294,24 @@ export default {
   gap: 1rem;
 }
 
+.title {
+  font-size: 25px;
+  font-weight: 900;
+}
+
 .price {
   font-size: 1.2rem;
-  font-weight: bold;
-  margin: 0.3rem 0;
+  font-weight: 500;
 }
 
 .section-title {
   font-size: 1rem;
-  margin: 0.8rem 0 0.4rem;
   font-weight: bold;
 }
 
 .size-selector {
   display: flex;
   gap: 0.3rem;
-  margin-bottom: 0.8rem;
 }
 
 .size-selector label {
